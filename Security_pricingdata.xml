@@ -1,0 +1,55 @@
+<fundspricing>
+    <fund code="IE0012333446" currency="EUR">
+        <price date="12/08/2014">
+            <NAV>20.12</NAV>
+            <bid>20.01</bid>
+            <offer>21.25</offer>
+        </price>
+        <price date="11/08/2014">
+            <NAV>20.15</NAV>
+            <bid>20.03</bid>
+            <offer>20.17</offer>
+        </price>
+        <price date="10/08/2014">
+            <NAV>18.13</NAV>
+            <bid>18.12</bid>
+            <offer>18.56</offer>
+        </price>
+    </fund>
+    <fund code="GB0032730698" currency="GBP">
+        <price date="11/08/2014">
+            <NAV>67.12</NAV>
+            <bid>66.01</bid>
+            <offer>68.24</offer>
+        </price>
+    </fund>
+    <fund code="GB00B7FRND86" currency="AUD">
+        <price date="11/08/2014">
+            <NAV>17.22</NAV>
+            <bid>17.11</bid>
+            <offer>19.98</offer>
+        </price>
+    </fund>
+    <fund code="GB0033547265" currency="EUR">
+        <price date="12/08/2014">
+            <NAV>102.55</NAV>
+            <bid>102.30</bid>
+            <offer>103.01</offer>
+        </price> 
+        <price date="11/08/2014">
+            <NAV>102.40</NAV>
+            <bid>102.42</bid>
+            <offer>103.51</offer>
+        </price> 
+        <price date="10/08/2014">
+            <NAV>99.57</NAV>
+            <bid>99.34</bid>
+            <offer>99.98</offer>
+        </price> 
+        <price date="09/08/2014">
+            <NAV>99.47</NAV>
+            <bid>99.34</bid>
+            <offer>99.95</offer>
+        </price> 
+    </fund>
+</fundspricing>

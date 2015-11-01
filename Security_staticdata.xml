@@ -1,0 +1,58 @@
+<fundstatic>
+    <manager name="Fidelity ltd">
+        <fund code="IE0012333446">
+            <fname>Fidelity open bond</fname>
+            <frequency>daily</frequency>
+        </fund>
+    </manager>
+    <manager name="Blackrock">
+        <fund code="LU0097548765">
+            <fname>Blackrock open ended</fname>
+            <frequency>daily</frequency>
+        </fund>
+    </manager>
+        <manager name="Majedie">
+        <fund code="GB0032730698">
+            <fname>Majedie UK Equity Fund Acc</fname>
+            <frequency>daily</frequency>
+        </fund>
+        <fund code="GB0033547265">
+            <fname>Majedie UK Focus</fname>
+            <frequency>daily</frequency>
+        </fund>
+        <fund code="GB0033975722">
+            <fname>Majedie UK Smaller Companies Fund</fname>
+            <frequency>daily</frequency>
+        </fund>
+        <fund code="GB00B7FRND86">
+            <fname>Majedie UK Income Fund</fname>
+            <frequency>daily</frequency>
+        </fund>
+        <fund code="GB00BN31T816">
+            <fname>Majedie Global Equity Fund</fname>
+            <frequency>daily</frequency>
+        </fund>
+    </manager>
+        <manager name="Russell investment group">
+        <fund code="IE00B459FF93">
+            <fname>Russell global strategic yield Class A Roll Up</fname>
+            <frequency>daily</frequency>
+        </fund>
+        <fund code="IE00B8B0QM88">
+            <fname>Russell global strategic yield AUDH-B (F)</fname>
+            <frequency>daily</frequency>
+        </fund>
+        <fund code="IE00B4N1NJ71">
+            <fname>Russell global strategic yield Class U</fname>
+            <frequency>daily</frequency>
+        </fund>
+        <fund code="IE00B761WB08">
+            <fname>Russell global strategic yield Class SH-B</fname>
+            <frequency>daily</frequency>
+        </fund>
+        <fund code="IE00B6TGKF51">
+            <fname>Russell global strategic yield Class AUDH-B</fname>
+            <frequency>daily</frequency>
+        </fund>
+    </manager>
+</fundstatic>
