@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" data-semver="3.3.5" data-require="bootstrap@*" />
+  <link href="style.css" rel="stylesheet" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+  <script>
+    if (!window.jQuery) {
+      document.write('<script src="/path/to/your/jquery"><\/script>');
+    }
+  </script>
+  <script>
+    var staticData;
+    var pricingData;
+    $.get("Security_staticdata.xml", function(data) {
+      staticData = data;
+    });
+    $.get("Security_pricingdata.xml", function(data) {
+      pricingData = data;
+    });
+
+    function fundsPrices(manager) {
+      loadTable(manager);
+      loadShowAll_btn();
+    }
+
+    function loadShowAll_btn() {
+      var showAll = "<a onClick='loadTable(&quot;All&quot;)' href='#'>Show All</a>";
+      document.getElementById('main-top').innerHTML = showAll;
+    }
+
+    function loadTable(managerOpt) {
+      var funds = pricingData.getElementsByTagName("fund");
+      var manager = staticData.getElementsByTagName("manager");
+
+      var mnanagerNum = manager.length;
+      var table = "<div class='row'><table id='t01' class='col-sm-12'><tr><th class='col-sm-2'>ISIN code</th><th class='col-sm-5'>Security name</th><th class='col-sm-1'>Currency</th><th class='col-sm-2'>NAV price</th><th class='col-sm-2'>Valuation date</th></tr>";
+      var j, i, k, fundNum;
+
+      function populateTable(i) {
+        fundNum = manager[i].children.length;
+
+        for (j = 0; j < fundNum; j++) {
+          for (k = 0; k < funds.length; k++) {
+            if (funds[k].getAttribute("code") === manager[i].children.item(j).getAttribute("code")) {
+              table = table + "<tr><td>" +
+                manager[i].children.item(j).getAttribute("code") + "</td><td>" +
+                manager[i].children.item(j).getElementsByTagName("fname")[0].childNodes[0].nodeValue + "</td><td>" +
+                funds[k].getAttribute("currency") + "</td><td>" +
+                funds[k].children.item(0).getElementsByTagName("NAV")[0].childNodes[0].nodeValue + "</td><td>" +
+                funds[k].children.item(0).getAttribute("date") +
+                "</td></tr>";
+            }
+          }
+
+        }
+      }
+      var managerName;
+
+      for (i = 0; i < mnanagerNum; i++) {
+        managerName = manager[i].getAttribute("name");
+        table = table + "<tr><td colspan='5'><a onclick='loadTable(&quot;" + managerName + "&quot;)' href='#'>" + managerName +
+          "</a></td></tr>";
+        if (managerOpt === manager[i].getAttribute("name")) {
+          populateTable(i);
+        } else if (managerOpt === "All") {
+          populateTable(i);
+        }
+      }
+      table = table + "</table></div>"
+      document.getElementById("main-mid").innerHTML = table;
+    }
+
+    function loadDropdown() {
+      var stuff = "<select onchange='loadTable(this.value)' name='managers'><option value='All'>All</option>";
+      var i;
+      var manager = staticData.getElementsByTagName("manager");
+      var mnanagerNum = manager.length;
+      for (i = 0; i < mnanagerNum; i++) {
+        var value = manager[i].getAttribute("name");
+        stuff = stuff + "<option value='" + value + "'>" + value + "</option>";
+      }
+      stuff = stuff + "</select>";
+      document.getElementById("dropdown").innerHTML = stuff;
+    }
+  </script>
+</head>
+
+<body>
+  <header class="container-fluid">
+    <H1>FUND MANAGEMENT SYSTE</H1>
+  </header>
+  <div class="container-fluid">
+    <div class="row">
+      <aside class="col-sm-2">
+        <h4 class="menu-title">
+            MENU
+          </h4>
+        <div class="menu-list">
+          <a href="#">
+            <h4>Add manager</h4>
+          </a>
+          <a href="#">
+            <h4>Add fund</h4>
+          </a>
+          <a onclick='fundsPrices()' href="#">
+            <h4>Funds Prices</h4>
+          </a>
+        </div>
+      </aside>
+
+      <section class="col-sm-10">
+        <div id="main-top"></div>
+        <div id="main-mid"></div>
+        <div id="main-bot"></div>
+      </section>
+
+    </div>
+  </div>
+  <footer class="container-fluid">
+    <H1>FOOTER</H1>
+  </footer>
+</body>
+
+</html>
