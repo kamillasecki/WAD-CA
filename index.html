@@ -13,6 +13,7 @@
     }
   </script>
   <script>
+  //getting pricing and static data from xml files
     var staticData;
     var pricingData;
     $.get("Security_staticdata.xml", function(data) {
@@ -22,27 +23,35 @@
       pricingData = data;
     });
 
+//this function is called when 'Funds prices' is clicked on menu panel
     function fundsPrices(manager) {
       loadTable(manager);
       loadShowAll_btn();
     }
 
+//function resposible for adding 'show all' button
     function loadShowAll_btn() {
       var showAll = "<a onClick='loadTable(&quot;All&quot;)' href='#'>Show All</a>";
       document.getElementById('main-top').innerHTML = showAll;
     }
 
+//function resposible for loading the table accepting manager name or 'all;'
     function loadTable(managerOpt) {
+      //aquire fund pricing tree
       var funds = pricingData.getElementsByTagName("fund");
+      //aquire fund static data tree
       var manager = staticData.getElementsByTagName("manager");
-
+      //check number of managers in xml
       var mnanagerNum = manager.length;
+      //draw the header
       var table = "<div class='row'><table id='t01' class='col-sm-12'><tr><th class='col-sm-2'>ISIN code</th><th class='col-sm-5'>Security name</th><th class='col-sm-1'>Currency</th><th class='col-sm-2'>NAV price</th><th class='col-sm-2'>Valuation date</th></tr>";
       var j, i, k, fundNum;
-
+      
+      //populating table with data for i manager
       function populateTable(i) {
+        //get number of funds for i manager
         fundNum = manager[i].children.length;
-
+        //for each fund draw the table row
         for (j = 0; j < fundNum; j++) {
           for (k = 0; k < funds.length; k++) {
             if (funds[k].getAttribute("code") === manager[i].children.item(j).getAttribute("code")) {
@@ -55,25 +64,31 @@
                 "</td></tr>";
             }
           }
-
         }
       }
+      
+      //draw the list of managers
       var managerName;
-
+      //for each manager in tree
       for (i = 0; i < mnanagerNum; i++) {
         managerName = manager[i].getAttribute("name");
+        //display its name as a link
         table = table + "<tr><td colspan='5'><a onclick='loadTable(&quot;" + managerName + "&quot;)' href='#'>" + managerName +
           "</a></td></tr>";
+        //if the mnager name was also passed in loadTable() parameter display prices as well using populateTable()
         if (managerOpt === manager[i].getAttribute("name")) {
           populateTable(i);
+        //if 'all parameter has been passed by 'show all' bytton draw all prices
         } else if (managerOpt === "All") {
           populateTable(i);
         }
       }
-      table = table + "</table></div>"
+      table = table + "</table></div>";
+      //finally pass the created html to 'main-mid' div
       document.getElementById("main-mid").innerHTML = table;
     }
 
+//old function displaying dropdown preserved for the moment as other dropdown will be needed in the future [not used at the moment]
     function loadDropdown() {
       var stuff = "<select onchange='loadTable(this.value)' name='managers'><option value='All'>All</option>";
       var i;
