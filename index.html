@@ -19,16 +19,19 @@
     var activeISIN;
     var activeManager;
     
+  //update manager which is currently being displaye
     function changeActiveManager(manager){
       activeManager = manager;
       fundsPrices();
     }
     
+  //update security for which pricing history is being displayed
     function changeActiveISIN(isin){
     activeISIN = isin;
     fundsPrices();
     }
     
+  //call for pricing and static data from xml and assign to variables
     $.get("Security_staticdata.xml", function(data) {
       staticData = data;
     });
@@ -85,12 +88,19 @@
         }
       }
       
+    //function printing additional rows for historical data
       function fundInfo (isin) {
+        //check if printing isin is active one
         if (isin == activeISIN) {
-          for (var z = 1 ; z < funds[k].children.length ; z++){
-            table = table + "<tr><td colspan='3'></td><td>" + funds[k].children.item(z).getElementsByTagName("NAV")[0].childNodes[0].nodeValue + "</td><td>" + funds[k].children.item(z).getAttribute("date") + "</td></tr>"
+          //check how many archive prices is available and print one row for each
+          var ArchPricesNo = funds[k].children.length;
+          for (var z = 1 ; z < ArchPricesNo ; z++){
+            var archDate = funds[k].children.item(z).getAttribute("date");
+            var archNav = funds[k].children.item(z).getElementsByTagName("NAV")[0].childNodes[0].nodeValue;
+            table = table + "<tr><td colspan='3'></td>" + 
+                                "<td>" + archNav + "</td>" + 
+                                "<td>" + archDate + "</td></tr>";
           }
-          
         }
       }
       
@@ -100,8 +110,11 @@
       for (i = 0; i < mnanagerNum; i++) {
         managerName = manager[i].getAttribute("name");
         //display its name as a link
-        table = table + "<tr><td colspan='5'><h4><a onclick='changeActiveManager(&quot;" + managerName + "&quot;)' href='#'>" + managerName +
-          "</a></h4></td></tr>";
+        table = table + "<tr><td colspan='5'><h4><a onclick='changeActiveManager(&quot;" 
+                      + managerName 
+                      + "&quot;)' href='#'>" 
+                      + managerName 
+                      + "</a></h4></td></tr>";
         //if the mnager name was also passed in loadTable() parameter display prices as well using populateTable()
         if (activeManager === manager[i].getAttribute("name")) {
           populateTable(i);
@@ -110,7 +123,7 @@
           populateTable(i);
         }
       }
-      table = table + "</table></div>";
+      table = table + "</table><br/></div>";
       //finally pass the created html to 'main-mid' div
       document.getElementById("main-mid").innerHTML = table;
     }
