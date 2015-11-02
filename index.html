@@ -55,16 +55,27 @@
         for (j = 0; j < fundNum; j++) {
           for (k = 0; k < funds.length; k++) {
             if (funds[k].getAttribute("code") === manager[i].children.item(j).getAttribute("code")) {
-              table = table + "<tr><td>" +
-                manager[i].children.item(j).getAttribute("code") + "</td><td>" +
-                manager[i].children.item(j).getElementsByTagName("fname")[0].childNodes[0].nodeValue + "</td><td>" +
-                funds[k].getAttribute("currency") + "</td><td>" +
-                funds[k].children.item(0).getElementsByTagName("NAV")[0].childNodes[0].nodeValue + "</td><td>" +
-                funds[k].children.item(0).getAttribute("date") +
-                "</td></tr>";
+              var fund = new Object();
+              fund.isin = manager[i].children.item(j).getAttribute("code");
+              fund.fundName = manager[i].children.item(j).getElementsByTagName("fname")[0].childNodes[0].nodeValue;
+              fund.currency = funds[k].getAttribute("currency");
+              fund.nav = funds[k].children.item(0).getElementsByTagName("NAV")[0].childNodes[0].nodeValue;
+              fund.date = funds[k].children.item(0).getAttribute("date");
+              table = table + "<tr><td>" + fund.isin + "</td>" +
+                                  "<td>" + fund.fundName + "</td>" + 
+                                  "<td>" + fund.currency + "</td>" + 
+                                  "<td>" + fund.nav + "</td>" + 
+                                  "<td>" + fund.date +"</td></tr>";
+                fundInfo (fund.isin, i, j);
             }
           }
         }
+      }
+      
+      function fundInfo (isin, i, j) {
+        //if (isin == activeISIN) {
+          
+      //  }
       }
       
       //draw the list of managers
@@ -120,6 +131,9 @@
           </a>
           <a href="#">
             <h4>Add fund</h4>
+          </a>
+          <a href="#">
+            <h4>Update prices</h4>
           </a>
           <a onclick='fundsPrices()' href="#">
             <h4>Funds Prices</h4>
