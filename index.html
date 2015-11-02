@@ -16,6 +16,19 @@
   //getting pricing and static data from xml files
     var staticData;
     var pricingData;
+    var activeISIN;
+    var activeManager;
+    
+    function changeActiveManager(manager){
+      activeManager = manager;
+      fundsPrices();
+    }
+    
+    function changeActiveISIN(isin){
+    activeISIN = isin;
+    fundsPrices();
+    }
+    
     $.get("Security_staticdata.xml", function(data) {
       staticData = data;
     });
@@ -24,14 +37,14 @@
     });
 
 //this function is called when 'Funds prices' is clicked on menu panel
-    function fundsPrices(manager) {
-      loadTable(manager);
+    function fundsPrices(activeManager) {
+      loadTable(activeManager);
       loadShowAll_btn();
     }
 
 //function resposible for adding 'show all' button
     function loadShowAll_btn() {
-      var showAll = "<a onClick='loadTable(&quot;All&quot;)' href='#'>Show All</a>";
+      var showAll = "<a onClick='changeActiveManager(&quot;All&quot;)' href='#'>Show All</a>";
       document.getElementById('main-top').innerHTML = showAll;
     }
 
@@ -62,20 +75,20 @@
               fund.nav = funds[k].children.item(0).getElementsByTagName("NAV")[0].childNodes[0].nodeValue;
               fund.date = funds[k].children.item(0).getAttribute("date");
               table = table + "<tr><td>" + fund.isin + "</td>" +
-                                  "<td>" + fund.fundName + "</td>" + 
+                                  "<td><a onclick='changeActiveISIN(&quot;" + fund.isin + "&quot;)' href='#'>" + fund.fundName + "</a></td>" + 
                                   "<td>" + fund.currency + "</td>" + 
                                   "<td>" + fund.nav + "</td>" + 
                                   "<td>" + fund.date +"</td></tr>";
-                fundInfo (fund.isin, i, j);
+                fundInfo (fund.isin);
             }
           }
         }
       }
       
-      function fundInfo (isin, i, j) {
-        //if (isin == activeISIN) {
-          
-      //  }
+      function fundInfo (isin) {
+        if (isin == activeISIN) {
+          table = table + "<td colspan='5'><h3>Display historical details here</h3></td>";
+        }
       }
       
       //draw the list of managers
@@ -84,13 +97,13 @@
       for (i = 0; i < mnanagerNum; i++) {
         managerName = manager[i].getAttribute("name");
         //display its name as a link
-        table = table + "<tr><td colspan='5'><a onclick='loadTable(&quot;" + managerName + "&quot;)' href='#'>" + managerName +
+        table = table + "<tr><td colspan='5'><a onclick='changeActiveManager(&quot;" + managerName + "&quot;)' href='#'>" + managerName +
           "</a></td></tr>";
         //if the mnager name was also passed in loadTable() parameter display prices as well using populateTable()
-        if (managerOpt === manager[i].getAttribute("name")) {
+        if (activeManager === manager[i].getAttribute("name")) {
           populateTable(i);
         //if 'all parameter has been passed by 'show all' bytton draw all prices
-        } else if (managerOpt === "All") {
+        } else if (activeManager === "All") {
           populateTable(i);
         }
       }
