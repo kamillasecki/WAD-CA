@@ -87,7 +87,10 @@
       
       function fundInfo (isin) {
         if (isin == activeISIN) {
-          table = table + "<td colspan='5'><h3>Display historical details here</h3></td>";
+          for (var z = 1 ; z < funds[k].children.length ; z++){
+            table = table + "<tr><td colspan='3'></td><td>" + funds[k].children.item(z).getElementsByTagName("NAV")[0].childNodes[0].nodeValue + "</td><td>" + funds[k].children.item(z).getAttribute("date") + "</td></tr>"
+          }
+          
         }
       }
       
@@ -97,8 +100,8 @@
       for (i = 0; i < mnanagerNum; i++) {
         managerName = manager[i].getAttribute("name");
         //display its name as a link
-        table = table + "<tr><td colspan='5'><a onclick='changeActiveManager(&quot;" + managerName + "&quot;)' href='#'>" + managerName +
-          "</a></td></tr>";
+        table = table + "<tr><td colspan='5'><h4><a onclick='changeActiveManager(&quot;" + managerName + "&quot;)' href='#'>" + managerName +
+          "</a></h4></td></tr>";
         //if the mnager name was also passed in loadTable() parameter display prices as well using populateTable()
         if (activeManager === manager[i].getAttribute("name")) {
           populateTable(i);
@@ -130,7 +133,7 @@
 
 <body>
   <header class="container-fluid">
-    <H1>FUND MANAGEMENT SYSTE</H1>
+    <H1>FUND MANAGEMENT SYSTEM</H1>
   </header>
   <div class="container-fluid">
     <div class="row">
