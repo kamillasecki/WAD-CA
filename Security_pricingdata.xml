@@ -1,5 +1,5 @@
 <fundspricing>
-    <fund code="IE0012333446" currency="EUR">
+    <fund code="IE0012333446">
         <price date="12/08/2014">
             <NAV>20.12</NAV>
             <bid>20.01</bid>
@@ -16,49 +16,49 @@
             <offer>18.56</offer>
         </price>
     </fund>
-    <fund code="GB0032730698" currency="GBP">
+    <fund code="GB0032730698">
         <price date="11/08/2014">
             <NAV>67.12</NAV>
             <bid>66.01</bid>
             <offer>68.24</offer>
         </price>
     </fund>
-    <fund code="IE00B459FF93" currency="AUD">
+    <fund code="IE00B459FF93">
         <price date="11/08/2014">
             <NAV>17.22</NAV>
             <bid>17.11</bid>
             <offer>19.98</offer>
         </price>
     </fund>
-    <fund code="LU0097548765" currency="AUD">
+    <fund code="LU0097548765">
         <price date="11/08/2014">
             <NAV>34.22</NAV>
             <bid>33.11</bid>
             <offer>35.98</offer>
         </price>
     </fund>
-    <fund code="IE00B4N1NJ71" currency="AUD">
+    <fund code="IE00B4N1NJ71">
         <price date="11/08/2014">
             <NAV>17.22</NAV>
             <bid>17.11</bid>
             <offer>19.98</offer>
         </price>
     </fund>
-    <fund code="IE00B761WB08" currency="AUD">
+    <fund code="IE00B761WB08">
         <price date="11/08/2014">
             <NAV>17.22</NAV>
             <bid>17.11</bid>
             <offer>19.98</offer>
         </price>
     </fund>
-    <fund code="GB00BN31T816" currency="AUD">
+    <fund code="GB00BN31T816">
         <price date="11/08/2014">
             <NAV>1025</NAV>
             <bid>1021</bid>
             <offer>2029</offer>
         </price>
     </fund>
-    <fund code="GB0033547265" currency="EUR">
+    <fund code="GB0033547265">
         <price date="12/08/2014">
             <NAV>102.55</NAV>
             <bid>102.30</bid>
