@@ -11,7 +11,7 @@
             <frequency>daily</frequency>
         </fund>
     </manager>
-        <manager name="Majedie">
+    <manager name="Majedie">
         <fund code="GB0032730698" currency="AUD">
             <fname>Majedie UK Equity Fund Acc</fname>
             <frequency>daily</frequency>
@@ -33,7 +33,7 @@
             <frequency>daily</frequency>
         </fund>
     </manager>
-        <manager name="Russell investment group">
+    <manager name="Russell investment group">
         <fund code="IE00B459FF93" currency="EUR">
             <fname>Russell global strategic yield Class A Roll Up</fname>
             <frequency>daily</frequency>

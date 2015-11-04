@@ -22,6 +22,11 @@
             <bid>66.01</bid>
             <offer>68.24</offer>
         </price>
+        <price date="10/08/2014">
+            <NAV>67.03</NAV>
+            <bid>65.97</bid>
+            <offer>68.00</offer>
+        </price>
     </fund>
     <fund code="IE00B459FF93">
         <price date="11/08/2014">
@@ -35,6 +40,11 @@
             <NAV>34.22</NAV>
             <bid>33.11</bid>
             <offer>35.98</offer>
+        </price>
+        <price date="10/08/2014">
+            <NAV>33.20</NAV>
+            <bid>33.02</bid>
+            <offer>34.72</offer>
         </price>
     </fund>
     <fund code="IE00B4N1NJ71">
