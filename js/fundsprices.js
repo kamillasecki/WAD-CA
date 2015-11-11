@@ -11,7 +11,6 @@
       fundsPrices();
     }
     
-    
   //update manager which is currently being displayed
     function changeActiveManager(manager){
       activeManager = manager;
@@ -23,18 +22,10 @@
     activeISIN = isin;
     fundsPrices();
     }
-    
-  //call for pricing and static data from xml and assign to variables
-    $.get("Security_staticdata.xml", function(data) {
-      staticData = data;
-    });
-    $.get("Security_pricingdata.xml", function(data) {
-      pricingData = data;
-    });
 
 //this function is called when 'Funds prices' is clicked on menu panel
     function fundsPrices(activeManager) {
-      loadTable(activeManager);
+      loadTable();
       loadShowAll_btn();
     }
 
@@ -49,8 +40,87 @@
       document.getElementById('main-top').innerHTML = showAll;
     }
 
+function loadTable() {
+  
+  $.get('Security_staticdata.xml' , function(staticData) {
+    $.get('Security_pricingdata.xml', function(pricingData) {
+      var $funds = $(pricingData).find("fund");
+      var $manager = $(staticData).find("manager");
+      
+       if (priceType === "NAV") {
+        var table = "<div class='row'><table id='t01' class='col-sm-12'><tr><th class='col-sm-2'>ISIN code</th><th class='col-sm-5'>Security name</th><th class='col-sm-1'>Currency</th><th class='col-sm-2'>NAV price</th><th class='col-sm-2'>Valuation date</th></tr>";
+      } else {
+        var table = "<div class='row'><table id='t01' class='col-sm-12'><tr><th class='col-sm-2'>ISIN code</th><th class='col-sm-5'>Security name</th><th class='col-sm-1'>Currency</th><th class='col-sm-1'>Bid price</th><th class='col-sm-1'>Offer price</th><th class='col-sm-2'>Valuation date</th></tr>";
+      }
+      
+      $manager.each(function(){
+        var $thisManager = $(this);
+        var managerName = $thisManager.attr("name");
+        console.log(managerName);
+        table = table + "<tr><td colspan='5'><h4><a href='javascript:changeActiveManager(&quot;" 
+                      + managerName 
+                      + "&quot;)'>" 
+                      + managerName 
+                      + "</a></h4></td></tr>";
+        
+        if (activeManager === "All" | activeManager === managerName) {
+        var $securities = $thisManager.find("fund");
+        //looping through all securities assignd to manager
+        $securities.each(function(){
+          var $thisSecurity = $(this);
+          var code = $thisSecurity.attr("code");
+          console.log("checking: " + code);
+          $funds.each(function(){
+            var $thisFund = $(this);
+            var isin = $thisFund.attr("code");
+            if (isin === code) {
+            console.log("found matching code");
+            var fund = new Object();
+            fund.isin = isin;
+            fund.name = $thisSecurity.find("fname").text();
+            fund.currency = $thisSecurity.attr("currency");
+            fund.date = $thisFund.find("price:first").attr("date");
+            console.log(fund.name);
+            console.log(fund.currency);
+            console.log(fund.date);
+            if (priceType === "NAV") {
+                fund.nav = $thisFund.find("price:first").find("NAV").text();
+              } else {
+                fund.bid = $thisFund.find("price:first").find("bid").text();
+                fund.offer = $thisFund.find("price:first").find("offer").text();
+              }
+            table = table + "<tr><td>" + fund.isin + "</td>" +
+                                  "<td><a href='javascript:changeActiveISIN(&quot;" + fund.isin + "&quot;)'>" + fund.name + "</a></td>" + 
+                                  "<td>" + fund.currency + "</td>";
+                                  
+              if (priceType === "NAV") {
+                table = table + "<td>" + fund.nav + "</td>";
+              } else {
+                table = table + "<td>" + fund.bid + "</td><td>" + fund.offer + "</td>";
+              }
+                                   
+              table = table + "<td>" + fund.date +"</td></tr>";
+            
+            }
+          });
+          
+        })}
+             
+                  
+                  
+              
+      });
+      table = table + "</table><br/></div>";
+      //finally pass the created html to 'main-mid' div
+      document.getElementById("main-mid").innerHTML = table;  
+    });
+  });
+ 
+}
+
+
 //function resposible for loading the table accepting manager name or 'all;'
-    function loadTable(managerOpt) {
+    function loadTable2(managerOpt) {
       //aquire fund pricing tree
       var funds = pricingData.getElementsByTagName("fund");
       //aquire fund static data tree
