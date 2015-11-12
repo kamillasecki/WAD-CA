@@ -3,6 +3,7 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 Header, footer {
+  height: 5%;
   background-color: #333;
   color: #ddd;
   text-align: center;
@@ -21,3 +22,18 @@ aside {
   text-align: center;
 }
 
+.manager {
+  background-color: #white;
+}
+
+.fund {
+  background-color: white;
+}
+
+.archive {
+  background-color: white;
+}
+
+  a:link {
+    color: black;
+  }
