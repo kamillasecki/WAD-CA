@@ -24,17 +24,35 @@
   }
 
   //this function is called when 'Funds prices' is clicked on menu panel
-  function fundsPrices(activeManager) {
+  function fundsPrices() {
     loadTable();
     loadShowAll_btn();
   }
 
 
-    $(".btn btn-default").click(function() {
-      changeActiveManager("All");
+//MENU CONTROL
+  //use this function to remove highlight form button
+  function zeroButton(btnName) {
+      $(btnName).addClass("btn-default")
+      .removeClass("btn-primary");
+  }
+  //use this function to highlight button
+  function activeButton(btnName) {
+      $(btnName).addClass("btn-primary")
+      .removeClass("btn-default");
+  }
+  
+  //actions to execute on button click
+  $(document).ready(function() {
+    $("#fundsPrices").click(function() {
+      fundsPrices();
+      zeroButton("#addManager");
+      zeroButton("#addFund");
+      zeroButton("#updatePrices");
+      activeButton("#fundsPrices");
     });
-    
-
+  });
+  
   //function resposible for adding 'show all' button
   function loadShowAll_btn() {
     var showAll = '';
@@ -89,9 +107,9 @@
         var table = "";
         //create table header, two options depending on which priceType has been chosen (with nav only or with bid and offer)
         if (priceType === "NAV") {
-          table = "<div class='row'><table id='t01' class='col-sm-12'><tr><th class='col-sm-2'>ISIN code</th><th class='col-sm-5'>Security name</th><th class='col-sm-1'>Currency</th><th class='col-sm-2'>NAV price</th><th class='col-sm-2'>Valuation date</th></tr>";
+          table = "<div class='row'><table class='table-hover col-sm-12'><tr><th class='col-sm-2'>ISIN code</th><th class='col-sm-5'>Security name</th><th class='col-sm-1'>Currency</th><th class='col-sm-2'>NAV price</th><th class='col-sm-2'>Valuation date</th></tr>";
         } else {
-          table = "<div class='row'><table id='t01' class='col-sm-12'><tr><th class='col-sm-2'>ISIN code</th><th class='col-sm-5'>Security name</th><th class='col-sm-1'>Currency</th><th class='col-sm-1'>Bid price</th><th class='col-sm-1'>Offer price</th><th class='col-sm-2'>Valuation date</th></tr>";
+          table = "<div class='row'><table class='table-hover col-sm-12'><tr><th class='col-sm-2'>ISIN code</th><th class='col-sm-5'>Security name</th><th class='col-sm-1'>Currency</th><th class='col-sm-1'>Bid price</th><th class='col-sm-1'>Offer price</th><th class='col-sm-2'>Valuation date</th></tr>";
         }
 
         //loop through all managers
@@ -100,12 +118,21 @@
           var $thisManager = $(this);
           var managerName = $thisManager.attr("name");
           //for each manager build header / link
+          if (priceType === "NAV") {
           table = table + 
                   "<tr class='manager'><td colspan='5'><h4><a href='javascript:changeActiveManager(&quot;" + 
                   managerName + 
                   "&quot;)'><div>" + 
                   managerName + 
                   "</div></a></h4></td></tr>";
+          } else {
+            table = table + 
+                  "<tr class='manager'><td colspan='6'><h4><a href='javascript:changeActiveManager(&quot;" + 
+                  managerName + 
+                  "&quot;)'><div>" + 
+                  managerName + 
+                  "</div></a></h4></td></tr>";
+          }
           //if manager is active/has been clicked or all managers are selected keep printing funds assigned to this manager
           if (activeManager === "All" | activeManager === managerName) {
             var $securities = $thisManager.find("fund");
@@ -174,18 +201,4 @@
         document.getElementById("main-mid").innerHTML = table;
       });
     });
-  }
-
-  //old function displaying dropdown preserved for the moment as other dropdown will be needed in the future [not used at the moment]
-  function loadDropdown() {
-    var stuff = "<select onchange='loadTable(this.value)' name='managers'><option value='All'>All</option>";
-    var i;
-    var manager = staticData.getElementsByTagName("manager");
-    var mnanagerNum = manager.length;
-    for (i = 0; i < mnanagerNum; i++) {
-      var value = manager[i].getAttribute("name");
-      stuff = stuff + "<option value='" + value + "'>" + value + "</option>";
-    }
-    stuff = stuff + "</select>";
-    document.getElementById("dropdown").innerHTML = stuff;
   }

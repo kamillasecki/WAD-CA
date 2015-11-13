@@ -34,6 +34,16 @@
             <bid>17.11</bid>
             <offer>19.98</offer>
         </price>
+        <price date="10/08/2014">
+            <NAV>17.11</NAV>
+            <bid>17.23</bid>
+            <offer>19.99</offer>
+        </price>
+        <price date="09/08/2014">
+            <NAV>18.56</NAV>
+            <bid>18.15</bid>
+            <offer>20.03</offer>
+        </price>
     </fund>
     <fund code="LU0097548765">
         <price date="11/08/2014">
