@@ -3,11 +3,12 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 Header, footer {
-  height: 5%;
   background-color: #333;
-  color: #ddd;
   text-align: center;
-  padding: 20px;
+}
+
+footer {
+  color: #ddd;
 }
 table,
 th,
@@ -23,7 +24,7 @@ aside {
 }
 
 .manager {
-  background-color: #white;
+  background-color: white;
 }
 
 .fund {
