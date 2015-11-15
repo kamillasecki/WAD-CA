@@ -1,0 +1,46 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" data-semver="3.3.5" data-require="bootstrap@*" />
+  <link href="style.css" rel="stylesheet" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="js/fundsprices.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <header class="container-fluid">
+    <div class="jumbotron">
+      <H1>FUND MANAGEMENT SYSTEM</H1>
+    </div>
+  </header>
+  <div class="container-fluid">
+    <div class="row">
+      <aside class="col-sm-2">
+        <div class="menu-list">
+         <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#myModal">
+  Add manager
+</button>
+
+         <button type="button" id="addFund" class="btn btn-default btn-lg btn-block">Add fund</button>
+         <button type="button" id="updatePrices" class="btn btn-default btn-lg btn-block">Update prices</button>
+         <button type="button" id="fundsPrices" class="btn btn-default btn-lg btn-block">Fund prices</button>
+        </div>
+      </aside>
+
+      <section class="col-sm-10">
+        <div id="main-top"></div>
+        <div id='app'></div>
+        <div id="main-bot"></div>
+      </section>
+
+    </div>
+  </div>
+  <footer class="container-fluid">
+    <H1>FOOTER</H1>
+  </footer>
+
+    <script src='app.js'></script>
+
+</body>
