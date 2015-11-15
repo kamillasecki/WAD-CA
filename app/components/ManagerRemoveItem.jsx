@@ -1,44 +1,45 @@
 var React = require('react/addons');
 var action = require('./../actions/ManagerItemActionCreator.jsx')
+var Manager = require('./ManagersList.jsx')
 
 module.exports = React.createClass({
     getInitialState:function(){
         return{input:""};
     },
     handleInputName:function(e){
-        this.setState({input:e.target.value});
-
+        this.setState({input:e.target.options[e.target.selectedIndex].text});
     },
-    addItem:function(e){
+    delete:function(e){
+        console.log(JSON.stringify(e, null, 4));
         e.preventDefault();
-        //console.log("Adding manager", this.state.input);
-        action.add({
-            name:this.state.input
-            });
-            //clearing input
-            this.setState({
-                input:''
-            })
-            
+        console.log("DEleting: " + JSON.stringify(this.props,null,4))
+        action.delete(this.state);
     },
     render:function(){
         return (
-        <div className="modal fade" id="addmanager" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div className="modal fade" id="removemanager" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 className="modal-title" id="myModalLabel">Add new manager</h4>
+                        <h4 className="modal-title" id="myModalLabel">Remove manager</h4>
                     </div>
-                    
-                        <form onSubmit={this.addItem}> 
+                        <form onSubmit={this.delete}> 
                         <div className="modal-body">
                             <div className="row">
                                 <label htmlFor="inputName" className="col-sm-2" control-label>Manager name</label>
                                 <div className="col-sm-10">
-                                    <input type="text" value={this.state.input} onChange={this.handleInputName}  className="form-control" placeholder="Insert manager name" required/>
-                                </div>
+                                     <select onChange={this.handleInputName}>
+                                        {
+                                            this.props.items.map(function(item, index){
+                                                return (
+                                                   <Manager item={item} key={"item"+index}/> 
+                                                )
+                                            })
+                                        }
+                                      </select> 
                             </div>
+                        </div>
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>

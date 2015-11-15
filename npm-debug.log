@@ -1,23 +1,764 @@
 0 info it worked if it ends with ok
 1 verbose cli [ '/home/ubuntu/.nvm/v0.10.35/bin/node',
 1 verbose cli   '/home/ubuntu/.nvm/v0.10.35/bin/npm',
-1 verbose cli   'install' ]
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'react-selectize' ]
 2 info using npm@1.4.28
 3 info using node@v0.10.35
-4 error install Couldn't read dependencies
-5 error Failed to parse json
-5 error Unexpected string
-6 error File: /home/ubuntu/workspace/package.json
-7 error Failed to parse package.json data.
-7 error package.json must be actual JSON, not just JavaScript.
-7 error
-7 error This is not a bug in npm.
-7 error Tell the package author to fix their package.json file. JSON.parse
-8 error System Linux 4.2.0-c9
-9 error command "/home/ubuntu/.nvm/v0.10.35/bin/node" "/home/ubuntu/.nvm/v0.10.35/bin/npm" "install"
-10 error cwd /home/ubuntu/workspace
-11 error node -v v0.10.35
-12 error npm -v 1.4.28
-13 error file /home/ubuntu/workspace/package.json
-14 error code EJSONPARSE
-15 verbose exit [ 1, true ]
+4 warn package.json workspace@1.0.0 No description
+5 warn package.json workspace@1.0.0 No README data
+6 warn package.json react-addons-css-transition-group@0.14.2 No repository field.
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'react-selectize', null ]
+9 verbose cache add name=undefined spec="react-selectize" args=["react-selectize",null]
+10 verbose parsed url { protocol: null,
+10 verbose parsed url   slashes: null,
+10 verbose parsed url   auth: null,
+10 verbose parsed url   host: null,
+10 verbose parsed url   port: null,
+10 verbose parsed url   hostname: null,
+10 verbose parsed url   hash: null,
+10 verbose parsed url   search: null,
+10 verbose parsed url   query: null,
+10 verbose parsed url   pathname: 'react-selectize',
+10 verbose parsed url   path: 'react-selectize',
+10 verbose parsed url   href: 'react-selectize' }
+11 silly lockFile 07df1382-react-selectize react-selectize
+12 verbose lock react-selectize /home/ubuntu/.npm/07df1382-react-selectize.lock
+13 silly lockFile 07df1382-react-selectize react-selectize
+14 silly lockFile 07df1382-react-selectize react-selectize
+15 verbose addNamed [ 'react-selectize', '' ]
+16 verbose addNamed [ null, '*' ]
+17 silly lockFile 2267e869-react-selectize react-selectize@
+18 verbose lock react-selectize@ /home/ubuntu/.npm/2267e869-react-selectize.lock
+19 silly addNameRange { name: 'react-selectize', range: '*', hasData: false }
+20 verbose request where is /react-selectize
+21 verbose request registry https://registry.npmjs.org/
+22 verbose request id da92aa92a4d3f003
+23 verbose url raw /react-selectize
+24 verbose url resolving [ 'https://registry.npmjs.org/', './react-selectize' ]
+25 verbose url resolved https://registry.npmjs.org/react-selectize
+26 verbose request where is https://registry.npmjs.org/react-selectize
+27 info trying registry request attempt 1 at 21:58:09
+28 verbose etag "C76UEAY8XYVPQV2U1BKWUIF2U"
+29 http GET https://registry.npmjs.org/react-selectize
+30 http 304 https://registry.npmjs.org/react-selectize
+31 silly registry.get cb [ 304,
+31 silly registry.get   { date: 'Sun, 15 Nov 2015 21:58:09 GMT',
+31 silly registry.get     via: '1.1 varnish',
+31 silly registry.get     'cache-control': 'max-age=60',
+31 silly registry.get     etag: '"C76UEAY8XYVPQV2U1BKWUIF2U"',
+31 silly registry.get     age: '0',
+31 silly registry.get     connection: 'keep-alive',
+31 silly registry.get     'x-served-by': 'cache-ams4126-AMS',
+31 silly registry.get     'x-cache': 'MISS',
+31 silly registry.get     'x-cache-hits': '0',
+31 silly registry.get     'x-timer': 'S1447624689.270673,VS0,VE290',
+31 silly registry.get     vary: 'Accept' } ]
+32 verbose etag https://registry.npmjs.org/react-selectize from cache
+33 silly addNameRange number 2 { name: 'react-selectize', range: '*', hasData: true }
+34 silly addNameRange versions [ 'react-selectize',
+34 silly addNameRange   [ '0.0.4',
+34 silly addNameRange     '0.0.5',
+34 silly addNameRange     '0.0.6',
+34 silly addNameRange     '0.0.7',
+34 silly addNameRange     '0.0.8',
+34 silly addNameRange     '0.0.9',
+34 silly addNameRange     '0.0.10',
+34 silly addNameRange     '0.0.11',
+34 silly addNameRange     '0.0.12',
+34 silly addNameRange     '0.1.0',
+34 silly addNameRange     '0.1.1',
+34 silly addNameRange     '0.1.2',
+34 silly addNameRange     '0.1.3',
+34 silly addNameRange     '0.1.4',
+34 silly addNameRange     '0.1.6',
+34 silly addNameRange     '0.2.0',
+34 silly addNameRange     '0.2.1',
+34 silly addNameRange     '0.2.2',
+34 silly addNameRange     '0.2.3',
+34 silly addNameRange     '0.2.4',
+34 silly addNameRange     '0.2.5',
+34 silly addNameRange     '0.2.6',
+34 silly addNameRange     '0.3.0',
+34 silly addNameRange     '0.3.1',
+34 silly addNameRange     '0.3.2',
+34 silly addNameRange     '0.3.3',
+34 silly addNameRange     '0.3.4',
+34 silly addNameRange     '0.3.5',
+34 silly addNameRange     '0.3.6',
+34 silly addNameRange     '0.3.7' ] ]
+35 verbose addNamed [ 'react-selectize', '0.3.7' ]
+36 verbose addNamed [ '0.3.7', '0.3.7' ]
+37 silly lockFile 6bd84893-react-selectize-0-3-7 react-selectize@0.3.7
+38 verbose lock react-selectize@0.3.7 /home/ubuntu/.npm/6bd84893-react-selectize-0-3-7.lock
+39 silly lockFile 6bd84893-react-selectize-0-3-7 react-selectize@0.3.7
+40 silly lockFile 6bd84893-react-selectize-0-3-7 react-selectize@0.3.7
+41 silly lockFile 2267e869-react-selectize react-selectize@
+42 silly lockFile 2267e869-react-selectize react-selectize@
+43 silly resolved [ { name: 'react-selectize',
+43 silly resolved     version: '0.3.7',
+43 silly resolved     description: 'A Stateless & Flexible Select component for React inspired by Selectize',
+43 silly resolved     main: 'src/index.js',
+43 silly resolved     scripts:
+43 silly resolved      { test: 'mocha test/index.ls --compilers ls:livescript',
+43 silly resolved        coverage: 'istanbul cover _mocha -- test/index.ls --require should --compilers ls:livescript',
+43 silly resolved        coveralls: 'istanbul cover _mocha -- test/index.ls --require should --compilers ls:livescript  && cat coverage/lcov.info | coveralls' },
+43 silly resolved     author: { name: 'Furqan Zafar' },
+43 silly resolved     dependencies: { 'prelude-extension': '0.0.5', 'prelude-ls': '^1.1.1' },
+43 silly resolved     peerDependencies:
+43 silly resolved      { react: '^0.14.0',
+43 silly resolved        'react-addons-css-transition-group': '^0.14.0',
+43 silly resolved        'react-dom': '^0.14.0' },
+43 silly resolved     devDependencies:
+43 silly resolved      { 'async-ls': '0.0.3',
+43 silly resolved        brace: 'git+https://github.com/furqanZafar/brace.git',
+43 silly resolved        brfs: '^1.4.1',
+43 silly resolved        browserify: '^9.0.3',
+43 silly resolved        'browserify-shim': '^3.8.10',
+43 silly resolved        coveralls: '^2.11.4',
+43 silly resolved        gulp: '^3.8.11',
+43 silly resolved        'gulp-connect': '^2.2.0',
+43 silly resolved        'gulp-if': '^1.2.5',
+43 silly resolved        'gulp-livescript': '^2.4.0',
+43 silly resolved        'gulp-streamify': '^1.0.2',
+43 silly resolved        'gulp-stylus': '^2.0.1',
+43 silly resolved        'gulp-uglify': '^1.4.1',
+43 silly resolved        'gulp-util': '^3.0.4',
+43 silly resolved        history: '^1.11.0',
+43 silly resolved        istanbul: '^0.3.20',
+43 silly resolved        'jquery-browserify': '^1.8.1',
+43 silly resolved        jsdom: '^3.1.2',
+43 silly resolved        liveify: '^2.0.0',
+43 silly resolved        livescript: '^1.4.0',
+43 silly resolved        mocha: '^2.3.3',
+43 silly resolved        'mocha-lcov-reporter': '^1.0.0',
+43 silly resolved        nib: '^1.1.0',
+43 silly resolved        react: '^0.14.0',
+43 silly resolved        'react-addons-css-transition-group': '^0.14.0',
+43 silly resolved        'react-dom': '^0.14.0',
+43 silly resolved        'react-addons-test-utils': '^0.14.0',
+43 silly resolved        'react-router': '^1.0.0-rc1',
+43 silly resolved        'react-tools': '^0.13.3',
+43 silly resolved        should: '^7.1.0',
+43 silly resolved        underscore: '^1.8.3',
+43 silly resolved        'vinyl-source-stream': '^1.0.0',
+43 silly resolved        watchify: '^2.4.0' },
+43 silly resolved     repository:
+43 silly resolved      { type: 'git',
+43 silly resolved        url: 'git+https://github.com/furqanZafar/react-selectize.git' },
+43 silly resolved     keywords:
+43 silly resolved      [ 'react-component',
+43 silly resolved        'select',
+43 silly resolved        'selectize',
+43 silly resolved        'multiselect',
+43 silly resolved        'singleselect',
+43 silly resolved        'simpleselect',
+43 silly resolved        'tags',
+43 silly resolved        'dropdown',
+43 silly resolved        'combobox' ],
+43 silly resolved     gitHead: 'dc1a0e5bd400ef07fef7ed0dd6c0ca90fb546209',
+43 silly resolved     bugs: { url: 'https://github.com/furqanZafar/react-selectize/issues' },
+43 silly resolved     homepage: 'https://github.com/furqanZafar/react-selectize#readme',
+43 silly resolved     _id: 'react-selectize@0.3.7',
+43 silly resolved     _shasum: 'f3ccdacb3092474d1f3c4f0edb022db15d11587d',
+43 silly resolved     _from: 'react-selectize@',
+43 silly resolved     _npmVersion: '2.9.1',
+43 silly resolved     _nodeVersion: '0.10.15',
+43 silly resolved     _npmUser: { name: 'furqan.zafar', email: 'fruzi89@gmail.com' },
+43 silly resolved     maintainers: [ [Object] ],
+43 silly resolved     dist:
+43 silly resolved      { shasum: 'f3ccdacb3092474d1f3c4f0edb022db15d11587d',
+43 silly resolved        tarball: 'http://registry.npmjs.org/react-selectize/-/react-selectize-0.3.7.tgz' },
+43 silly resolved     directories: {},
+43 silly resolved     _resolved: 'https://registry.npmjs.org/react-selectize/-/react-selectize-0.3.7.tgz',
+43 silly resolved     readme: 'ERROR: No README data found!' } ]
+44 info install react-selectize@0.3.7 into /home/ubuntu/workspace
+45 info installOne react-selectize@0.3.7
+46 verbose node_modules/react-selectize unbuild
+47 info preuninstall react-selectize@0.3.7
+48 info uninstall react-selectize@0.3.7
+49 verbose true,/home/ubuntu/workspace/node_modules,/home/ubuntu/workspace/node_modules unbuild react-selectize@0.3.7
+50 info postuninstall react-selectize@0.3.7
+51 verbose tar unpack /home/ubuntu/.npm/react-selectize/0.3.7/package.tgz
+52 silly lockFile 6b086ee8-ace-node-modules-react-selectize tar:///home/ubuntu/workspace/node_modules/react-selectize
+53 verbose lock tar:///home/ubuntu/workspace/node_modules/react-selectize /home/ubuntu/.npm/6b086ee8-ace-node-modules-react-selectize.lock
+54 silly lockFile b50666a3-eact-selectize-0-3-7-package-tgz tar:///home/ubuntu/.npm/react-selectize/0.3.7/package.tgz
+55 verbose lock tar:///home/ubuntu/.npm/react-selectize/0.3.7/package.tgz /home/ubuntu/.npm/b50666a3-eact-selectize-0-3-7-package-tgz.lock
+56 silly gunzTarPerm modes [ '755', '644' ]
+57 silly gunzTarPerm extractEntry package.json
+58 silly gunzTarPerm extractEntry .npmignore
+59 silly gunzTarPerm extractEntry README.md
+60 silly gunzTarPerm extractEntry LICENSE
+61 silly gunzTarPerm extractEntry API.md
+62 silly gunzTarPerm extractEntry CHANGELOG.md
+63 silly gunzTarPerm extractEntry .coveralls.yml
+64 silly gunzTarPerm extractEntry src/HighlightedText.js
+65 silly gunzTarPerm extractEntry src/MultiSelect.js
+66 silly gunzTarPerm extractEntry src/ReactSelectize.js
+67 silly gunzTarPerm extractEntry src/SimpleSelect.js
+68 silly gunzTarPerm extractEntry src/index.js
+69 silly gunzTarPerm extractEntry src/index.css
+70 silly gunzTarPerm extractEntry .travis.yml
+71 silly gunzTarPerm extractEntry node_modules/history/package.json
+72 silly gunzTarPerm extractEntry node_modules/history/.npmignore
+73 silly gunzTarPerm extractEntry node_modules/history/README.md
+74 silly gunzTarPerm extractEntry node_modules/history/LICENSE
+75 silly gunzTarPerm extractEntry node_modules/history/docs/README.md
+76 silly gunzTarPerm extractEntry node_modules/history/docs/BasenameSupport.md
+77 silly gunzTarPerm extractEntry node_modules/history/docs/ConfirmingNavigation.md
+78 silly gunzTarPerm extractEntry node_modules/history/docs/GettingStarted.md
+79 silly gunzTarPerm extractEntry node_modules/history/docs/HashHistoryCaveats.md
+80 silly gunzTarPerm extractEntry node_modules/history/docs/Location.md
+81 silly gunzTarPerm extractEntry node_modules/history/docs/QuerySupport.md
+82 silly gunzTarPerm extractEntry node_modules/history/docs/Terms.md
+83 silly gunzTarPerm extractEntry node_modules/history/lib/Actions.js
+84 silly gunzTarPerm extractEntry node_modules/history/lib/createDOMHistory.js
+85 silly gunzTarPerm extractEntry node_modules/history/lib/createHashHistory.js
+86 silly gunzTarPerm extractEntry node_modules/history/lib/createHistory.js
+87 silly gunzTarPerm extractEntry node_modules/history/lib/createBrowserHistory.js
+88 silly gunzTarPerm extractEntry node_modules/history/lib/createMemoryHistory.js
+89 silly gunzTarPerm extractEntry node_modules/history/lib/deprecate.js
+90 silly gunzTarPerm extractEntry node_modules/history/lib/enableBeforeUnload.js
+91 silly gunzTarPerm extractEntry node_modules/history/lib/enableQueries.js
+92 silly gunzTarPerm extractEntry node_modules/history/lib/index.js
+93 silly gunzTarPerm extractEntry node_modules/history/lib/ExecutionEnvironment.js
+94 silly gunzTarPerm extractEntry node_modules/history/lib/runTransitionHook.js
+95 silly gunzTarPerm extractEntry node_modules/history/lib/DOMUtils.js
+96 silly gunzTarPerm extractEntry node_modules/history/lib/useBasename.js
+97 silly gunzTarPerm extractEntry node_modules/history/lib/DOMStateStorage.js
+98 silly gunzTarPerm extractEntry node_modules/history/lib/useBeforeUnload.js
+99 silly gunzTarPerm extractEntry node_modules/history/lib/AsyncUtils.js
+100 silly gunzTarPerm extractEntry node_modules/history/lib/useQueries.js
+101 silly gunzTarPerm extractEntry node_modules/history/lib/createLocation.js
+102 silly gunzTarPerm extractEntry node_modules/history/modules/Actions.js
+103 silly gunzTarPerm extractEntry node_modules/history/modules/createDOMHistory.js
+104 silly gunzTarPerm extractEntry node_modules/history/modules/createHashHistory.js
+105 silly gunzTarPerm extractEntry node_modules/history/modules/createHistory.js
+106 silly gunzTarPerm extractEntry node_modules/history/modules/createBrowserHistory.js
+107 silly gunzTarPerm extractEntry node_modules/history/modules/createMemoryHistory.js
+108 silly gunzTarPerm extractEntry node_modules/history/modules/deprecate.js
+109 silly gunzTarPerm extractEntry node_modules/history/modules/enableBeforeUnload.js
+110 silly gunzTarPerm extractEntry node_modules/history/modules/enableQueries.js
+111 silly gunzTarPerm extractEntry node_modules/history/modules/index.js
+112 silly gunzTarPerm extractEntry node_modules/history/modules/ExecutionEnvironment.js
+113 silly gunzTarPerm extractEntry node_modules/history/modules/runTransitionHook.js
+114 silly gunzTarPerm extractEntry node_modules/history/modules/DOMUtils.js
+115 silly gunzTarPerm extractEntry node_modules/history/modules/useBasename.js
+116 silly gunzTarPerm extractEntry node_modules/history/modules/DOMStateStorage.js
+117 silly gunzTarPerm extractEntry node_modules/history/modules/useBeforeUnload.js
+118 silly gunzTarPerm extractEntry node_modules/history/modules/AsyncUtils.js
+119 silly gunzTarPerm extractEntry node_modules/history/modules/useQueries.js
+120 silly gunzTarPerm extractEntry node_modules/history/modules/createLocation.js
+121 silly gunzTarPerm extractEntry node_modules/history/umd/History.js
+122 silly gunzTarPerm extractEntry node_modules/history/umd/History.min.js
+123 silly gunzTarPerm extractEntry node_modules/history/node_modules/deep-equal/package.json
+124 silly gunzTarPerm extractEntry node_modules/history/node_modules/deep-equal/LICENSE
+125 silly gunzTarPerm extractEntry node_modules/history/node_modules/deep-equal/index.js
+126 silly gunzTarPerm extractEntry node_modules/history/node_modules/deep-equal/.travis.yml
+127 silly gunzTarPerm extractEntry node_modules/history/node_modules/deep-equal/example/cmp.js
+128 silly gunzTarPerm extractEntry node_modules/history/node_modules/deep-equal/lib/is_arguments.js
+129 silly gunzTarPerm extractEntry node_modules/history/node_modules/deep-equal/lib/keys.js
+130 silly gunzTarPerm extractEntry node_modules/history/node_modules/deep-equal/readme.markdown
+131 silly gunzTarPerm extractEntry node_modules/history/node_modules/deep-equal/test/cmp.js
+132 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/package.json
+133 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/README.md
+134 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/browser.js
+135 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/invariant.js
+136 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/CHANGELOG.md
+137 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/package.json
+138 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/.npmignore
+139 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/README.md
+140 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/custom.js
+141 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/index.js
+142 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/loose-envify.js
+143 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/package.json
+144 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/.npmignore
+145 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/LICENSE
+146 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/esprima-compare.js
+147 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/index.js
+148 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/generate-index.js
+149 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/.travis.yml
+150 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/changelog.md
+151 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/readme.md
+152 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/regex.coffee
+153 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/test/index.js
+154 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/test/fixtures/base64.js
+155 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/test/fixtures/division.js
+156 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/test/fixtures/errors.js
+157 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/test/fixtures/regex.js
+158 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/test/fixtures/base64.json
+159 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/test/fixtures/division.json
+160 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/test/fixtures/errors.json
+161 silly gunzTarPerm extractEntry node_modules/history/node_modules/invariant/node_modules/loose-envify/node_modules/js-tokens/test/fixtures/regex.json
+162 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/package.json
+163 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/.npmignore
+164 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/README.md
+165 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/LICENSE
+166 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/CONTRIBUTING.md
+167 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/.eslintignore
+168 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/.travis.yml
+169 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/bower.json
+170 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/lib/index.js
+171 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/lib/parse.js
+172 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/lib/stringify.js
+173 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/lib/utils.js
+174 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/CHANGELOG.md
+175 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/test/parse.js
+176 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/test/stringify.js
+177 silly gunzTarPerm extractEntry node_modules/history/node_modules/qs/test/utils.js
+178 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/package.json
+179 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/.npmignore
+180 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/README.md
+181 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/browser.js
+182 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/warning.js
+183 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/CHANGELOG.md
+184 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/LICENSE.md
+185 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/package.json
+186 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/.npmignore
+187 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/README.md
+188 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/custom.js
+189 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/index.js
+190 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/visitors.js
+191 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/bin/envify
+192 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/package.json
+193 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/.npmignore
+194 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/README.md
+195 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/LICENSE
+196 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/jestPreprocessor.js
+197 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/jestEnvironment.js
+198 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/.travis.yml
+199 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/src/docblock.js
+200 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/src/jstransform.js
+201 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/src/utils.js
+202 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/src/__tests__/jstransform-test.js
+203 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/src/__tests__/jstransform-utils-test.js
+204 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/.jshintrc
+205 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/polyfill/Object.es6.js
+206 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/type-syntax.js
+207 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/es6-class-visitors.js
+208 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/es6-destructuring-visitors.js
+209 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/es6-object-concise-method-visitors.js
+210 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/es6-object-short-notation-visitors.js
+211 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/es6-call-spread-visitors.js
+212 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/es6-template-visitors.js
+213 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/es7-rest-property-helpers.js
+214 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/es7-spread-property-visitors.js
+215 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/reserved-words-helper.js
+216 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/reserved-words-visitors.js
+217 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/es6-arrow-function-visitors.js
+218 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/es6-rest-param-visitors.js
+219 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/es6-arrow-function-visitors-test.js
+220 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/es6-object-short-notation-visitors-test.js
+221 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/es6-rest-param-visitors-test.js
+222 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/es6-template-visitors-test.js
+223 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/es7-rest-property-helpers-test.js
+224 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/es6-object-concise-method-visitors-test.js
+225 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/type-syntax-test.js
+226 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/reserved-words-test.js
+227 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/type-alias-syntax-test.js
+228 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/type-class-syntax-test.js
+229 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/type-function-syntax-test.js
+230 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/es6-es7-object-integration-test.js
+231 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/type-interface-syntax-test.js
+232 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/es6-destructuring-visitors-test.js
+233 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/type-object-method-syntax-test.js
+234 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/es6-class-visitors-test.js
+235 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/type-pattern-syntax-test.js
+236 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/es6-call-spread-visitors-test.js
+237 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/type-variable-declaration-syntax-test.js
+238 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/es7-spread-property-visitors-test.js
+239 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/gen/generate-type-syntax-test.js
+240 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/visitors/__tests__/gen/type-syntax-test.rec.js
+241 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/base62/package.json
+242 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/base62/LICENSE
+243 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/base62/base62.js
+244 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/base62/.travis.yml
+245 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/base62/Readme.md
+246 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/base62/test/test.js
+247 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/esprima-fb/package.json
+248 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/esprima-fb/README.md
+249 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/esprima-fb/esprima.js
+250 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/esprima-fb/bin/esparse.js
+251 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/esprima-fb/bin/esvalidate.js
+252 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/esprima-fb/test/compat.js
+253 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/esprima-fb/test/reflect.js
+254 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/esprima-fb/test/run.js
+255 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/esprima-fb/test/runner.js
+256 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/esprima-fb/test/test.js
+257 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/package.json
+258 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/.npmignore
+259 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/README.md
+260 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/LICENSE
+261 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/Makefile.dryice.js
+262 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/.travis.yml
+263 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/build/assert-shim.js
+264 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/build/mini-require.js
+265 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/build/suffix-browser.js
+266 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/build/test-prefix.js
+267 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/build/test-suffix.js
+268 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/build/prefix-source-map.jsm
+269 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/build/prefix-utils.jsm
+270 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/build/suffix-source-map.jsm
+271 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/build/suffix-utils.jsm
+272 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/lib/source-map.js
+273 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/lib/source-map/array-set.js
+274 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/lib/source-map/base64-vlq.js
+275 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/lib/source-map/base64.js
+276 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/lib/source-map/binary-search.js
+277 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/lib/source-map/source-map-consumer.js
+278 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/lib/source-map/source-map-generator.js
+279 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/lib/source-map/source-node.js
+280 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/lib/source-map/util.js
+281 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/CHANGELOG.md
+282 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/test/run-tests.js
+283 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/test/source-map/test-api.js
+284 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/test/source-map/test-array-set.js
+285 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/test/source-map/test-base64-vlq.js
+286 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/test/source-map/test-base64.js
+287 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/test/source-map/test-binary-search.js
+288 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/test/source-map/test-dog-fooding.js
+289 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/test/source-map/test-source-map-consumer.js
+290 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/test/source-map/test-source-map-generator.js
+291 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/test/source-map/test-source-node.js
+292 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/test/source-map/util.js
+293 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/node_modules/amdefine/package.json
+294 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/node_modules/amdefine/README.md
+295 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/node_modules/amdefine/LICENSE
+296 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/node_modules/amdefine/amdefine.js
+297 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/jstransform/node_modules/source-map/node_modules/amdefine/intercept.js
+298 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/through/package.json
+299 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/through/index.js
+300 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/through/.travis.yml
+301 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/through/LICENSE.APACHE2
+302 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/through/LICENSE.MIT
+303 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/through/readme.markdown
+304 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/through/test/async.js
+305 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/through/test/auto-destroy.js
+306 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/through/test/buffering.js
+307 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/through/test/end.js
+308 silly gunzTarPerm extractEntry node_modules/history/node_modules/warning/node_modules/envify/node_modules/through/test/index.js
+309 silly lockFile 6b086ee8-ace-node-modules-react-selectize tar:///home/ubuntu/workspace/node_modules/react-selectize
+310 silly lockFile 6b086ee8-ace-node-modules-react-selectize tar:///home/ubuntu/workspace/node_modules/react-selectize
+311 silly lockFile b50666a3-eact-selectize-0-3-7-package-tgz tar:///home/ubuntu/.npm/react-selectize/0.3.7/package.tgz
+312 silly lockFile b50666a3-eact-selectize-0-3-7-package-tgz tar:///home/ubuntu/.npm/react-selectize/0.3.7/package.tgz
+313 info preinstall react-selectize@0.3.7
+314 verbose readDependencies using package.json deps
+315 verbose readDependencies using package.json deps
+316 verbose cache add [ 'prelude-ls@^1.1.1', null ]
+317 verbose cache add name=undefined spec="prelude-ls@^1.1.1" args=["prelude-ls@^1.1.1",null]
+318 verbose parsed url { protocol: null,
+318 verbose parsed url   slashes: null,
+318 verbose parsed url   auth: null,
+318 verbose parsed url   host: null,
+318 verbose parsed url   port: null,
+318 verbose parsed url   hostname: null,
+318 verbose parsed url   hash: null,
+318 verbose parsed url   search: null,
+318 verbose parsed url   query: null,
+318 verbose parsed url   pathname: 'prelude-ls@^1.1.1',
+318 verbose parsed url   path: 'prelude-ls@^1.1.1',
+318 verbose parsed url   href: 'prelude-ls@^1.1.1' }
+319 verbose cache add name="prelude-ls" spec="^1.1.1" args=["prelude-ls","^1.1.1"]
+320 verbose parsed url { protocol: null,
+320 verbose parsed url   slashes: null,
+320 verbose parsed url   auth: null,
+320 verbose parsed url   host: null,
+320 verbose parsed url   port: null,
+320 verbose parsed url   hostname: null,
+320 verbose parsed url   hash: null,
+320 verbose parsed url   search: null,
+320 verbose parsed url   query: null,
+320 verbose parsed url   pathname: '^1.1.1',
+320 verbose parsed url   path: '^1.1.1',
+320 verbose parsed url   href: '^1.1.1' }
+321 verbose addNamed [ 'prelude-ls', '^1.1.1' ]
+322 verbose addNamed [ null, '>=1.1.1-0 <2.0.0-0' ]
+323 silly lockFile b38a5c0d-prelude-ls-1-1-1 prelude-ls@^1.1.1
+324 verbose lock prelude-ls@^1.1.1 /home/ubuntu/.npm/b38a5c0d-prelude-ls-1-1-1.lock
+325 verbose cache add [ 'prelude-extension@0.0.5', null ]
+326 verbose cache add name=undefined spec="prelude-extension@0.0.5" args=["prelude-extension@0.0.5",null]
+327 verbose parsed url { protocol: null,
+327 verbose parsed url   slashes: null,
+327 verbose parsed url   auth: null,
+327 verbose parsed url   host: null,
+327 verbose parsed url   port: null,
+327 verbose parsed url   hostname: null,
+327 verbose parsed url   hash: null,
+327 verbose parsed url   search: null,
+327 verbose parsed url   query: null,
+327 verbose parsed url   pathname: 'prelude-extension@0.0.5',
+327 verbose parsed url   path: 'prelude-extension@0.0.5',
+327 verbose parsed url   href: 'prelude-extension@0.0.5' }
+328 verbose cache add name="prelude-extension" spec="0.0.5" args=["prelude-extension","0.0.5"]
+329 verbose parsed url { protocol: null,
+329 verbose parsed url   slashes: null,
+329 verbose parsed url   auth: null,
+329 verbose parsed url   host: null,
+329 verbose parsed url   port: null,
+329 verbose parsed url   hostname: null,
+329 verbose parsed url   hash: null,
+329 verbose parsed url   search: null,
+329 verbose parsed url   query: null,
+329 verbose parsed url   pathname: '0.0.5',
+329 verbose parsed url   path: '0.0.5',
+329 verbose parsed url   href: '0.0.5' }
+330 verbose addNamed [ 'prelude-extension', '0.0.5' ]
+331 verbose addNamed [ '0.0.5', '0.0.5' ]
+332 silly lockFile b60bdc0c-prelude-extension-0-0-5 prelude-extension@0.0.5
+333 verbose lock prelude-extension@0.0.5 /home/ubuntu/.npm/b60bdc0c-prelude-extension-0-0-5.lock
+334 silly addNameRange { name: 'prelude-ls',
+334 silly addNameRange   range: '>=1.1.1-0 <2.0.0-0',
+334 silly addNameRange   hasData: false }
+335 verbose request where is /prelude-ls
+336 verbose request registry https://registry.npmjs.org/
+337 verbose url raw /prelude-ls
+338 verbose url resolving [ 'https://registry.npmjs.org/', './prelude-ls' ]
+339 verbose url resolved https://registry.npmjs.org/prelude-ls
+340 verbose request where is https://registry.npmjs.org/prelude-ls
+341 info trying registry request attempt 1 at 21:58:10
+342 verbose etag "8I0F2XAALLVC37LAFP3HBI7UT"
+343 http GET https://registry.npmjs.org/prelude-ls
+344 verbose request where is /prelude-extension
+345 verbose request registry https://registry.npmjs.org/
+346 verbose url raw /prelude-extension
+347 verbose url resolving [ 'https://registry.npmjs.org/', './prelude-extension' ]
+348 verbose url resolved https://registry.npmjs.org/prelude-extension
+349 verbose request where is https://registry.npmjs.org/prelude-extension
+350 info trying registry request attempt 1 at 21:58:10
+351 verbose etag "F2F4EZBL8DKKZS1S0AM6W9LS4"
+352 http GET https://registry.npmjs.org/prelude-extension
+353 http 304 https://registry.npmjs.org/prelude-extension
+354 silly registry.get cb [ 304,
+354 silly registry.get   { date: 'Sun, 15 Nov 2015 21:58:10 GMT',
+354 silly registry.get     via: '1.1 varnish',
+354 silly registry.get     'cache-control': 'max-age=60',
+354 silly registry.get     etag: '"F2F4EZBL8DKKZS1S0AM6W9LS4"',
+354 silly registry.get     age: '19',
+354 silly registry.get     connection: 'keep-alive',
+354 silly registry.get     'x-served-by': 'cache-lcy1123-LCY',
+354 silly registry.get     'x-cache': 'HIT',
+354 silly registry.get     'x-cache-hits': '1',
+354 silly registry.get     'x-timer': 'S1447624690.424569,VS0,VE0',
+354 silly registry.get     vary: 'Accept' } ]
+355 verbose etag https://registry.npmjs.org/prelude-extension from cache
+356 silly lockFile b60bdc0c-prelude-extension-0-0-5 prelude-extension@0.0.5
+357 silly lockFile b60bdc0c-prelude-extension-0-0-5 prelude-extension@0.0.5
+358 http 304 https://registry.npmjs.org/prelude-ls
+359 silly registry.get cb [ 304,
+359 silly registry.get   { date: 'Sun, 15 Nov 2015 21:58:10 GMT',
+359 silly registry.get     via: '1.1 varnish',
+359 silly registry.get     'cache-control': 'max-age=60',
+359 silly registry.get     etag: '"8I0F2XAALLVC37LAFP3HBI7UT"',
+359 silly registry.get     age: '0',
+359 silly registry.get     connection: 'keep-alive',
+359 silly registry.get     'x-served-by': 'cache-ams4131-AMS',
+359 silly registry.get     'x-cache': 'HIT',
+359 silly registry.get     'x-cache-hits': '1',
+359 silly registry.get     'x-timer': 'S1447624690.379551,VS0,VE721',
+359 silly registry.get     vary: 'Accept' } ]
+360 verbose etag https://registry.npmjs.org/prelude-ls from cache
+361 silly addNameRange number 2 { name: 'prelude-ls',
+361 silly addNameRange   range: '>=1.1.1-0 <2.0.0-0',
+361 silly addNameRange   hasData: true }
+362 silly addNameRange versions [ 'prelude-ls',
+362 silly addNameRange   [ '0.2.0',
+362 silly addNameRange     '0.3.0',
+362 silly addNameRange     '0.4.0',
+362 silly addNameRange     '0.5.0',
+362 silly addNameRange     '0.6.0',
+362 silly addNameRange     '1.0.0',
+362 silly addNameRange     '1.0.1',
+362 silly addNameRange     '1.0.2',
+362 silly addNameRange     '1.0.3',
+362 silly addNameRange     '1.1.0',
+362 silly addNameRange     '1.1.1',
+362 silly addNameRange     '1.1.2' ] ]
+363 verbose addNamed [ 'prelude-ls', '1.1.2' ]
+364 verbose addNamed [ '1.1.2', '1.1.2' ]
+365 silly lockFile 8f49367a-prelude-ls-1-1-2 prelude-ls@1.1.2
+366 verbose lock prelude-ls@1.1.2 /home/ubuntu/.npm/8f49367a-prelude-ls-1-1-2.lock
+367 silly lockFile 8f49367a-prelude-ls-1-1-2 prelude-ls@1.1.2
+368 silly lockFile 8f49367a-prelude-ls-1-1-2 prelude-ls@1.1.2
+369 silly lockFile b38a5c0d-prelude-ls-1-1-1 prelude-ls@^1.1.1
+370 silly lockFile b38a5c0d-prelude-ls-1-1-1 prelude-ls@^1.1.1
+371 silly resolved [ { name: 'prelude-extension',
+371 silly resolved     version: '0.0.5',
+371 silly resolved     description: 'prelude-extension',
+371 silly resolved     main: 'index.js',
+371 silly resolved     scripts: { test: 'echo "Error: no test specified" && exit 1' },
+371 silly resolved     author: { name: 'Furqan Zafar' },
+371 silly resolved     license: 'ISC',
+371 silly resolved     repository:
+371 silly resolved      { type: 'git',
+371 silly resolved        url: 'git+https://github.com/furqanZafar/prelude-extension.git' },
+371 silly resolved     dependencies: { 'prelude-ls': '^1.1.2' },
+371 silly resolved     gitHead: '27e59bb90d62ec130693314a7e23c49ab6cecdd0',
+371 silly resolved     bugs: { url: 'https://github.com/furqanZafar/prelude-extension/issues' },
+371 silly resolved     homepage: 'https://github.com/furqanZafar/prelude-extension#readme',
+371 silly resolved     _id: 'prelude-extension@0.0.5',
+371 silly resolved     _shasum: '297f19fcc8056057a239bb5cad732f6764504810',
+371 silly resolved     _from: 'prelude-extension@0.0.5',
+371 silly resolved     _npmVersion: '2.9.1',
+371 silly resolved     _nodeVersion: '0.10.15',
+371 silly resolved     _npmUser: { name: 'furqan.zafar', email: 'fruzi89@gmail.com' },
+371 silly resolved     maintainers: [ [Object] ],
+371 silly resolved     dist:
+371 silly resolved      { shasum: '297f19fcc8056057a239bb5cad732f6764504810',
+371 silly resolved        tarball: 'http://registry.npmjs.org/prelude-extension/-/prelude-extension-0.0.5.tgz' },
+371 silly resolved     directories: {},
+371 silly resolved     _resolved: 'https://registry.npmjs.org/prelude-extension/-/prelude-extension-0.0.5.tgz',
+371 silly resolved     readme: 'ERROR: No README data found!' },
+371 silly resolved   { name: 'prelude-ls',
+371 silly resolved     version: '1.1.2',
+371 silly resolved     author: { name: 'George Zahariev', email: 'z@georgezahariev.com' },
+371 silly resolved     description: 'prelude.ls is a functionally oriented utility library. It is powerful and flexible. Almost all of its functions are curried. It is written in, and is the recommended base library for, LiveScript.',
+371 silly resolved     keywords:
+371 silly resolved      [ 'prelude',
+371 silly resolved        'livescript',
+371 silly resolved        'utility',
+371 silly resolved        'ls',
+371 silly resolved        'coffeescript',
+371 silly resolved        'javascript',
+371 silly resolved        'library',
+371 silly resolved        'functional',
+371 silly resolved        'array',
+371 silly resolved        'list',
+371 silly resolved        'object',
+371 silly resolved        'string' ],
+371 silly resolved     main: 'lib/',
+371 silly resolved     files: [ 'lib/', 'README.md', 'LICENSE' ],
+371 silly resolved     homepage: 'http://preludels.com',
+371 silly resolved     bugs: { url: 'https://github.com/gkz/prelude-ls/issues' },
+371 silly resolved     licenses: [ [Object] ],
+371 silly resolved     engines: { node: '>= 0.8.0' },
+371 silly resolved     repository: { type: 'git', url: 'git://github.com/gkz/prelude-ls.git' },
+371 silly resolved     scripts: { test: 'make test' },
+371 silly resolved     devDependencies:
+371 silly resolved      { livescript: '~1.4.0',
+371 silly resolved        'uglify-js': '~2.4.12',
+371 silly resolved        mocha: '~2.2.4',
+371 silly resolved        istanbul: '~0.2.4',
+371 silly resolved        browserify: '~3.24.13',
+371 silly resolved        sinon: '~1.10.2' },
+371 silly resolved     gitHead: 'd69be8fd8a682321ba24eced17caf3a1b8ca73b8',
+371 silly resolved     _id: 'prelude-ls@1.1.2',
+371 silly resolved     _shasum: '21932a549f5e52ffd9a827f570e04be62a97da54',
+371 silly resolved     _from: 'prelude-ls@^1.1.1',
+371 silly resolved     _npmVersion: '2.7.6',
+371 silly resolved     _nodeVersion: '0.11.15',
+371 silly resolved     _npmUser: { name: 'gkz', email: 'z@georgezahariev.com' },
+371 silly resolved     maintainers: [ [Object] ],
+371 silly resolved     dist:
+371 silly resolved      { shasum: '21932a549f5e52ffd9a827f570e04be62a97da54',
+371 silly resolved        tarball: 'http://registry.npmjs.org/prelude-ls/-/prelude-ls-1.1.2.tgz' },
+371 silly resolved     directories: {},
+371 silly resolved     _resolved: 'https://registry.npmjs.org/prelude-ls/-/prelude-ls-1.1.2.tgz',
+371 silly resolved     readme: 'ERROR: No README data found!' } ]
+372 info install prelude-extension@0.0.5 into /home/ubuntu/workspace/node_modules/react-selectize
+373 info install prelude-ls@1.1.2 into /home/ubuntu/workspace/node_modules/react-selectize
+374 info installOne prelude-extension@0.0.5
+375 info installOne prelude-ls@1.1.2
+376 verbose node_modules/react-selectize/node_modules/prelude-extension unbuild
+377 verbose node_modules/react-selectize/node_modules/prelude-ls unbuild
+378 verbose tar unpack /home/ubuntu/.npm/prelude-extension/0.0.5/package.tgz
+379 silly lockFile ae6ebd2e-e-node-modules-prelude-extension tar:///home/ubuntu/workspace/node_modules/react-selectize/node_modules/prelude-extension
+380 verbose lock tar:///home/ubuntu/workspace/node_modules/react-selectize/node_modules/prelude-extension /home/ubuntu/.npm/ae6ebd2e-e-node-modules-prelude-extension.lock
+381 silly lockFile ed6f9d08-lude-extension-0-0-5-package-tgz tar:///home/ubuntu/.npm/prelude-extension/0.0.5/package.tgz
+382 verbose lock tar:///home/ubuntu/.npm/prelude-extension/0.0.5/package.tgz /home/ubuntu/.npm/ed6f9d08-lude-extension-0-0-5-package-tgz.lock
+383 verbose tar unpack /home/ubuntu/.npm/prelude-ls/1.1.2/package.tgz
+384 silly lockFile 1cb6304b-electize-node-modules-prelude-ls tar:///home/ubuntu/workspace/node_modules/react-selectize/node_modules/prelude-ls
+385 verbose lock tar:///home/ubuntu/workspace/node_modules/react-selectize/node_modules/prelude-ls /home/ubuntu/.npm/1cb6304b-electize-node-modules-prelude-ls.lock
+386 silly lockFile 56c655ff-npm-prelude-ls-1-1-2-package-tgz tar:///home/ubuntu/.npm/prelude-ls/1.1.2/package.tgz
+387 verbose lock tar:///home/ubuntu/.npm/prelude-ls/1.1.2/package.tgz /home/ubuntu/.npm/56c655ff-npm-prelude-ls-1-1-2-package-tgz.lock
+388 silly gunzTarPerm modes [ '755', '644' ]
+389 silly gunzTarPerm modes [ '755', '644' ]
+390 silly gunzTarPerm extractEntry package.json
+391 silly gunzTarPerm extractEntry package.json
+392 silly gunzTarPerm modified mode [ 'package.json', 436, 420 ]
+393 silly gunzTarPerm extractEntry .npmignore
+394 silly gunzTarPerm extractEntry README.md
+395 silly gunzTarPerm extractEntry README.md
+396 silly gunzTarPerm modified mode [ 'README.md', 436, 420 ]
+397 silly gunzTarPerm extractEntry LICENSE
+398 silly gunzTarPerm modified mode [ 'LICENSE', 436, 420 ]
+399 silly gunzTarPerm extractEntry index.js
+400 silly gunzTarPerm extractEntry CHANGELOG.md
+401 silly gunzTarPerm modified mode [ 'CHANGELOG.md', 436, 420 ]
+402 silly gunzTarPerm extractEntry lib/Func.js
+403 silly gunzTarPerm modified mode [ 'lib/Func.js', 436, 420 ]
+404 silly gunzTarPerm extractEntry lib/List.js
+405 silly gunzTarPerm modified mode [ 'lib/List.js', 436, 420 ]
+406 silly gunzTarPerm extractEntry lib/Num.js
+407 silly gunzTarPerm modified mode [ 'lib/Num.js', 436, 420 ]
+408 silly gunzTarPerm extractEntry lib/Obj.js
+409 silly gunzTarPerm modified mode [ 'lib/Obj.js', 436, 420 ]
+410 silly gunzTarPerm extractEntry lib/Str.js
+411 silly gunzTarPerm modified mode [ 'lib/Str.js', 436, 420 ]
+412 silly gunzTarPerm extractEntry lib/index.js
+413 silly gunzTarPerm modified mode [ 'lib/index.js', 436, 420 ]
+414 silly lockFile ae6ebd2e-e-node-modules-prelude-extension tar:///home/ubuntu/workspace/node_modules/react-selectize/node_modules/prelude-extension
+415 silly lockFile ae6ebd2e-e-node-modules-prelude-extension tar:///home/ubuntu/workspace/node_modules/react-selectize/node_modules/prelude-extension
+416 silly lockFile ed6f9d08-lude-extension-0-0-5-package-tgz tar:///home/ubuntu/.npm/prelude-extension/0.0.5/package.tgz
+417 silly lockFile ed6f9d08-lude-extension-0-0-5-package-tgz tar:///home/ubuntu/.npm/prelude-extension/0.0.5/package.tgz
+418 info preinstall prelude-extension@0.0.5
+419 verbose readDependencies using package.json deps
+420 verbose readDependencies using package.json deps
+421 silly resolved []
+422 verbose about to build /home/ubuntu/workspace/node_modules/react-selectize/node_modules/prelude-extension
+423 info build /home/ubuntu/workspace/node_modules/react-selectize/node_modules/prelude-extension
+424 verbose linkStuff [ false,
+424 verbose linkStuff   false,
+424 verbose linkStuff   false,
+424 verbose linkStuff   '/home/ubuntu/workspace/node_modules/react-selectize/node_modules' ]
+425 info linkStuff prelude-extension@0.0.5
+426 verbose linkBins prelude-extension@0.0.5
+427 verbose linkMans prelude-extension@0.0.5
+428 verbose rebuildBundles prelude-extension@0.0.5
+429 info install prelude-extension@0.0.5
+430 info postinstall prelude-extension@0.0.5
+431 silly lockFile 1cb6304b-electize-node-modules-prelude-ls tar:///home/ubuntu/workspace/node_modules/react-selectize/node_modules/prelude-ls
+432 silly lockFile 1cb6304b-electize-node-modules-prelude-ls tar:///home/ubuntu/workspace/node_modules/react-selectize/node_modules/prelude-ls
+433 silly lockFile 56c655ff-npm-prelude-ls-1-1-2-package-tgz tar:///home/ubuntu/.npm/prelude-ls/1.1.2/package.tgz
+434 silly lockFile 56c655ff-npm-prelude-ls-1-1-2-package-tgz tar:///home/ubuntu/.npm/prelude-ls/1.1.2/package.tgz
+435 info preinstall prelude-ls@1.1.2
+436 verbose readDependencies using package.json deps
+437 verbose readDependencies using package.json deps
+438 silly resolved []
+439 verbose about to build /home/ubuntu/workspace/node_modules/react-selectize/node_modules/prelude-ls
+440 info build /home/ubuntu/workspace/node_modules/react-selectize/node_modules/prelude-ls
+441 verbose linkStuff [ false,
+441 verbose linkStuff   false,
+441 verbose linkStuff   false,
+441 verbose linkStuff   '/home/ubuntu/workspace/node_modules/react-selectize/node_modules' ]
+442 info linkStuff prelude-ls@1.1.2
+443 verbose linkBins prelude-ls@1.1.2
+444 verbose linkMans prelude-ls@1.1.2
+445 verbose rebuildBundles prelude-ls@1.1.2
+446 info install prelude-ls@1.1.2
+447 info postinstall prelude-ls@1.1.2
+448 verbose about to build /home/ubuntu/workspace/node_modules/react-selectize
+449 info build /home/ubuntu/workspace/node_modules/react-selectize
+450 verbose linkStuff [ false, false, false, '/home/ubuntu/workspace/node_modules' ]
+451 info linkStuff react-selectize@0.3.7
+452 verbose linkBins react-selectize@0.3.7
+453 verbose linkMans react-selectize@0.3.7
+454 verbose rebuildBundles react-selectize@0.3.7
+455 verbose rebuildBundles [ 'history', 'prelude-extension', 'prelude-ls' ]
+456 info install react-selectize@0.3.7
+457 info postinstall react-selectize@0.3.7
+458 verbose readDependencies using package.json deps
+459 verbose already installed skipping react@^0.14.0 /home/ubuntu/workspace
+460 silly resolved []
+461 error peerinvalid The package react does not satisfy its siblings' peerDependencies requirements!
+461 error peerinvalid Peer react-addons-css-transition-group@0.14.2 wants react@^0.14.2
+461 error peerinvalid Peer react-dom@0.14.2 wants react@^0.14.2
+461 error peerinvalid Peer react-selectize@0.3.7 wants react@^0.14.0
+462 error System Linux 4.2.0-c9
+463 error command "/home/ubuntu/.nvm/v0.10.35/bin/node" "/home/ubuntu/.nvm/v0.10.35/bin/npm" "install" "--save" "react-selectize"
+464 error cwd /home/ubuntu/workspace
+465 error node -v v0.10.35
+466 error npm -v 1.4.28
+467 error code EPEERINVALID
+468 verbose exit [ 1, true ]

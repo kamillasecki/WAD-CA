@@ -1,6 +1,7 @@
 var React = require('react/addons');
 var Security = require('./Security.jsx')
 var AddManager = require('./ManagerAddItem.jsx')
+var RemoveManager = require('./ManagerRemoveItem.jsx')
 
 module.exports = React.createClass({
     render:function(){
@@ -16,6 +17,7 @@ module.exports = React.createClass({
                             <th className='col-sm-2'>NAV price</th>
                             <th className='col-sm-2'>Valuation date</th>
                         </tr>
+                        <tbody>
                     {
                         this.props.items.map(function(item,index){
                             return (
@@ -23,9 +25,15 @@ module.exports = React.createClass({
                             )
                         })
                     }
+                    </tbody>
                     </table>
                 </div>
                 <AddManager />
+                    {
+
+                               <RemoveManager items={this.props.items}/> 
+ 
+                    }
             </div>
         )
     }
