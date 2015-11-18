@@ -1,4 +1,4 @@
-var React = require('react/addons');
+var React = require('react');
 var action = require('./../actions/ManagerItemActionCreator.jsx')
 
 module.exports = React.createClass({
@@ -13,8 +13,8 @@ module.exports = React.createClass({
         e.preventDefault();
         //console.log("Adding manager", this.state.input);
         action.add({
-            name:this.state.input
-            });
+            name:this.state.input,
+            funds:[]});
             //clearing input
             this.setState({
                 input:''

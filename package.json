@@ -2,39 +2,32 @@
   "name": "workspace",
   "version": "1.0.0",
   "description": "",
-  "main": "node.js",
-  "dependencies": {
-    "babel": "^5.5.6",
-    "babelify": "^6.1.2",
-    "body-parser": "^1.12.4",
-    "browser-sync": "^2.10.0",
-    "browserify": "^10.2.6",
-    "cors": "^2.7.1",
-    "ejs": "^2.3.1",
-    "express": "^4.13.0",
-    "guid": "^0.0.12",
-    "gulp": "^3.9.0",
-    "gulp-live-server": "0.0.14",
-    "jquery": "^2.1.4",
-    "mongoose": "^4.0.5",
-    "node-jsx": "^0.13.3",
-    "react": "^0.13.3",
-    "react-tools": "^0.13.3",
-    "reactify": "^1.1.1",
-    "vinyl-source-stream": "^1.1.0"
-  },
-  "devDependencies": {},
+  "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kamillasecki/WAD-CA.git"
+    "url": "git+https://github.com/kamillasecki/WAD-CA.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kamillasecki/WAD-CA/issues"
   },
-  "homepage": "https://github.com/kamillasecki/WAD-CA"
+  "homepage": "https://github.com/kamillasecki/WAD-CA#readme",
+  "dependencies": {
+    "browser-sync": "^2.10.0",
+    "browserify": "^12.0.1",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "guid": "0.0.12",
+    "gulp": "^3.9.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-live-server": "0.0.29",
+    "gulp-open": "^1.0.0",
+    "react": "^0.14.2",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0"
+  }
 }

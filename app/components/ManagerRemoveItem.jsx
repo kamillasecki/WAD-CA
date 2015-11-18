@@ -1,4 +1,4 @@
-var React = require('react/addons');
+var React = require('react');
 var action = require('./../actions/ManagerItemActionCreator.jsx')
 var Manager = require('./ManagersList.jsx')
 
@@ -12,7 +12,6 @@ module.exports = React.createClass({
     delete:function(e){
         console.log(JSON.stringify(e, null, 4));
         e.preventDefault();
-        console.log("DEleting: " + JSON.stringify(this.props,null,4))
         action.delete(this.state);
     },
     render:function(){

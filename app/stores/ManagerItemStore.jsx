@@ -19,11 +19,61 @@ function ManagerItemStore(){
                 bid:"12.23",
                 offer:"12.25"
             }]
+        },{
+          isin:"IE0012333446",
+            name:"Majedie UK Focus",
+            currency:"EUR",
+            active:true,
+            prices:[{
+                date:"11/11/2015",
+                nav:"12.32",
+                bid:"12.33",
+                offer:"12.35"
+                },{ 
+                date:"10/11/2015",
+                nav:"12.22",
+                bid:"12.23",
+                offer:"12.25"
+            }]  
         }]
 },{
-    name:"Fidelity"
+    name:"Fidelity",
+    funds:[{
+            isin:"IE0012333446",
+            name:"Majedie UK Focus",
+            currency:"EUR",
+            active:true,
+            prices:[{
+                date:"11/11/2015",
+                nav:"12.32",
+                bid:"12.33",
+                offer:"12.35"
+                },{ 
+                date:"10/11/2015",
+                nav:"12.22",
+                bid:"12.23",
+                offer:"12.25"
+            }]
+        }]
 },{
-    name:"BNP Paribas"
+    name:"BNP Paribas",
+    funds:[{
+            isin:"IE0012333446",
+            name:"Majedie UK Focus",
+            currency:"EUR",
+            active:true,
+            prices:[{
+                date:"11/11/2015",
+                nav:"12.32",
+                bid:"12.33",
+                offer:"12.35"
+                },{ 
+                date:"10/11/2015",
+                nav:"12.22",
+                bid:"12.23",
+                offer:"12.25"
+            }]
+        }]
 }];
     var listeners = [];
     

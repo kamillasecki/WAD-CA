@@ -7,6 +7,23 @@
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <script src="js/fundsprices.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script>  
+  function changePriceType(type) {
+    priceType = type;
+    render(priceType);
+    alert("!!")
+  }
+  
+  
+    $("#btn_chng_nav").click(function() {
+      changePriceType("NAV");
+      alert("!!")
+    });
+    
+    $("#btn_chng_dual").click(function() {
+      changePriceType("Dual");
+      alert("!!")
+    });</script>
 </head>
 
 <body>
