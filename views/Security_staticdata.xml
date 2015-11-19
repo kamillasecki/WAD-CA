@@ -1,5 +1,5 @@
 <fundstatic>
-    <manager name="test empty"/>
+    
     <manager name="Fidelity ltd">
         <fund currency="EUR" code="IE0012333446">
             <fname>Fidelity open bond</fname>

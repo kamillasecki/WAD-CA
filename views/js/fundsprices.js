@@ -30,18 +30,18 @@
   }
 
 
-//MENU CONTROL
+  //MENU CONTROL
   //use this function to remove highlight form button
   function zeroButton(btnName) {
-      $(btnName).addClass("btn-default")
+    $(btnName).addClass("btn-default")
       .removeClass("btn-primary");
   }
   //use this function to highlight button
   function activeButton(btnName) {
-      $(btnName).addClass("btn-primary")
+    $(btnName).addClass("btn-primary")
       .removeClass("btn-default");
   }
-  
+
   //actions to execute on Funds Prices button click
   $(document).ready(function() {
     $("#fundsPrices").click(function() {
@@ -56,25 +56,25 @@
     $("#btnSaveAddManager").click(function() {
       addManager();
     });
-    
+
     $("#btnRemoveManager").click(function() {
       loadManagerList();
     });
-    
+
     $("#btnSaveRemoveManager").click(function() {
       removeManager();
     });
   });
-  
-  
+
+
   //function resposible for adding 'show all' button
   function loadShowAll_btn() {
     var showAll = '';
-    
-    if (activeManager === "All"){
-    showAll = "<button type='button' id='btn_coll_all' class='btn btn-default'>Colaps all</button>";
+
+    if (activeManager === "All") {
+      showAll = "<button type='button' id='btn_coll_all' class='btn btn-default'>Colaps all</button>";
     } else {
-    showAll = "<button type='button' id='btn_show_all' class='btn btn-default'>Expand all</button>";
+      showAll = "<button type='button' id='btn_show_all' class='btn btn-default'>Expand all</button>";
     }
     if (priceType === "NAV") {
       showAll = showAll + "<button type='button' id='btn_chng_dual' class='btn btn-default'>Display dual</button>";
@@ -82,108 +82,97 @@
       showAll = showAll + "<button type='button' id='btn_chng_nav' class='btn btn-default'>Display NAV</button>";
     }
     document.getElementById('main-top').innerHTML = showAll;
-    
+
     $("#btn_show_all").click(function() {
       changeActiveManager("All");
     });
-    
+
     $("#btn_coll_all").click(function() {
       changeActiveManager("");
     });
-    
+
     $("#btn_chng_nav").click(function() {
       changePriceType("NAV");
     });
-    
+
     $("#btn_chng_dual").click(function() {
       changePriceType("Dual");
     });
   }
-  
+
   function loadManagerList() {
-     $.get('Security_staticdata.xml', function(staticData) {
-       var html = '';
-       html = html + "<select id='selectManager'>";
-       var $manager = $(staticData).find("manager");        
-          $manager.each(function() {
-          //assign current manager to $thisManager in order to easy access to the item inside another loop
-          var $thisManager = $(this);
-          var managerName = $thisManager.attr("name");
-          html = html + "<option value = '"+managerName+"'>"+managerName+"</option>";
-          });
-          html = html + "</select>";
-          document.getElementById("managersList").innerHTML = html;
-     });
-  }
-  
-  function removeManager(){
     $.get('Security_staticdata.xml', function(staticData) {
-      
+      var html = '';
+      html = html + "<select id='selectManager'>";
+      var $manager = $(staticData).find("manager");
+      $manager.each(function() {
+        //assign current manager to $thisManager in order to easy access to the item inside another loop
+        var $thisManager = $(this);
+        var managerName = $thisManager.attr("name");
+        html = html + "<option value = '" + managerName + "'>" + managerName + "</option>";
+      });
+      html = html + "</select>";
+      document.getElementById("managersList").innerHTML = html;
+    });
+  }
+
+  function removeManager() {
+    $.get('Security_staticdata.xml', function(staticData) {
+
       var sel = document.getElementById("selectManager");
       var selected = sel.options[sel.selectedIndex].value;
+      var $manager = $(staticData).find("manager");
+      $manager.each(function() {
+        //assign current manager to $thisManager in order to easy access to the item inside another loop
+        var $thisManager = $(this);
+        var managerName = $thisManager.attr("name");
+        if (managerName === selected) {
+          $(this).remove();
+        }
+      });
 
-            console.log("Removing " + selected);
-    
-    var $manager = $(staticData).find("manager");
-          $manager.each(function() {
-          //assign current manager to $thisManager in order to easy access to the item inside another loop
-          var $thisManager = $(this);
-          var managerName = $thisManager.attr("name");
-          if (managerName === selected) {
-            $(this).remove();
-          }
-          });
-     
-    var xmlString = (new XMLSerializer()).serializeToString(staticData);
- 
-    updateXML(xmlString);
-    loadManagerList();
-      
+      var xmlString = (new XMLSerializer()).serializeToString(staticData);
 
-    });  
+      updateXML(xmlString);
+      loadManagerList();
+    });
   }
-  
-  
+
   function addManager() {
     console.log("Adding: " + $("#newManager").val());
-          
+
     if ($("#newManager").val() === '') {
-        
-      } else {
-    $.get('Security_staticdata.xml', function(staticData) {
-      
-    $(staticData).find('fundstatic').append($('<manager>').attr('name', $("#newManager").val()));
-     
-    var xmlString = (new XMLSerializer()).serializeToString(staticData);
-    
-    console.log(xmlString)
-    
-    updateXML(xmlString);
-    $("#newManager").val('');
-    });
+      alert("Please provide manager name before saving.")
+    } else {
+      $.get('Security_staticdata.xml', function(staticData) {
+
+        $(staticData).find('fundstatic').append($('<manager>').attr('name', $("#newManager").val()));
+        var xmlString = (new XMLSerializer()).serializeToString(staticData);
+        updateXML(xmlString);
+        $("#newManager").val('');
+      });
+    }
+  }
+
+  function updateXML(value) {
+    $.ajax({
+      type: "POST",
+      url: "/updateXML",
+      data: value,
+      contentType: "text/xml",
+      dataType: "xml",
+      cache: false,
+      error: function() {
+        alert("No data found.");
+      },
+      success: function() {
+        loadTable();
       }
+    });
   }
-  
-  function updateXML(value){
-        $.ajax({ type: "POST",
-                        url: "/updateXML",
-                        data: value,
-                        contentType: "text/xml",
-                        dataType: "xml",
-                        cache: false,
-                        error: function() { alert("No data found."); },
-                        success: function() {
-                            loadTable();
-                            
-                        }
-        });
-  }
-  
+
   function loadTable() {
-
-
-
-//aquire data from staticdata xml file and assign to staticData 
+    //aquire data from staticdata xml file and assign to staticData 
     $.get('Security_staticdata.xml', function(staticData) {
       //aquire data from pricingdata xml file and assign to staticData
       $.get('Security_pricingdata.xml', function(pricingData) {
@@ -207,19 +196,19 @@
           var managerName = $thisManager.attr("name");
           //for each manager build header / link
           if (priceType === "NAV") {
-          table = table + 
-                  "<tr class='manager'><td colspan='5'><h4><a href='javascript:changeActiveManager(&quot;" + 
-                  managerName + 
-                  "&quot;)'><div>" + 
-                  managerName + 
-                  "</div></a></h4></td></tr>";
+            table = table +
+              "<tr class='manager'><td colspan='5'><h4><a href='javascript:changeActiveManager(&quot;" +
+              managerName +
+              "&quot;)'><div>" +
+              managerName +
+              "</div></a></h4></td></tr>";
           } else {
-            table = table + 
-                  "<tr class='manager'><td colspan='6'><h4><a href='javascript:changeActiveManager(&quot;" + 
-                  managerName + 
-                  "&quot;)'><div>" + 
-                  managerName + 
-                  "</div></a></h4></td></tr>";
+            table = table +
+              "<tr class='manager'><td colspan='6'><h4><a href='javascript:changeActiveManager(&quot;" +
+              managerName +
+              "&quot;)'><div>" +
+              managerName +
+              "</div></a></h4></td></tr>";
           }
           //if manager is active/has been clicked or all managers are selected keep printing funds assigned to this manager
           if (activeManager === "All" | activeManager === managerName) {
@@ -244,7 +233,7 @@
                   fund.nav = $thisFund.find("price:first").find("NAV").text();
                   fund.bid = $thisFund.find("price:first").find("bid").text();
                   fund.offer = $thisFund.find("price:first").find("offer").text();
-                  
+
                   table = table + "<tr class='fund'><td>" + fund.isin + "</td>" +
                     "<td><a href='javascript:changeActiveISIN(&quot;" + fund.isin + "&quot;)'>" + fund.name + "</a></td>" +
                     "<td>" + fund.currency + "</td>";
