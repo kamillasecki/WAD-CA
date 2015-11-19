@@ -4,7 +4,7 @@ var fs = require('fs');
 
 //define routes
 
-router.post('/addmanager', function(request, respond) {
+router.post('/updateXML', function(request, respond) {
     console.log("Saving");
     var body = '';
     var filePath = __dirname + '/views/Security_staticdata.xml';
@@ -18,5 +18,7 @@ router.post('/addmanager', function(request, respond) {
         });
     });
 });
+
+
 
 module.exports = router;

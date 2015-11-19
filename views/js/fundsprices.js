@@ -56,6 +56,14 @@
     $("#btnSaveAddManager").click(function() {
       addManager();
     });
+    
+    $("#btnRemoveManager").click(function() {
+      loadManagerList();
+    });
+    
+    $("#btnSaveRemoveManager").click(function() {
+      removeManager();
+    });
   });
   
   
@@ -75,7 +83,7 @@
     }
     document.getElementById('main-top').innerHTML = showAll;
     
-        $("#btn_show_all").click(function() {
+    $("#btn_show_all").click(function() {
       changeActiveManager("All");
     });
     
@@ -90,8 +98,49 @@
     $("#btn_chng_dual").click(function() {
       changePriceType("Dual");
     });
+  }
+  
+  function loadManagerList() {
+     $.get('Security_staticdata.xml', function(staticData) {
+       var html = '';
+       html = html + "<select id='selectManager'>";
+       var $manager = $(staticData).find("manager");        
+          $manager.each(function() {
+          //assign current manager to $thisManager in order to easy access to the item inside another loop
+          var $thisManager = $(this);
+          var managerName = $thisManager.attr("name");
+          html = html + "<option value = '"+managerName+"'>"+managerName+"</option>";
+          });
+          html = html + "</select>";
+          document.getElementById("managersList").innerHTML = html;
+     });
+  }
+  
+  function removeManager(){
+    $.get('Security_staticdata.xml', function(staticData) {
+      
+      var sel = document.getElementById("selectManager");
+      var selected = sel.options[sel.selectedIndex].value;
+      
+    console.log("Removing " + selected);
     
+    var $manager = $(staticData).find("manager");
+          $manager.each(function() {
+          //assign current manager to $thisManager in order to easy access to the item inside another loop
+          var $thisManager = $(this);
+          var managerName = $thisManager.attr("name");
+          if (managerName === selected) {
+            $(this).remove();
+          }
+          });
+     
+    var xmlString = (new XMLSerializer()).serializeToString(staticData);
     
+    console.log(xmlString)
+    
+    updateXML(xmlString);
+        
+    });  
   }
   
   
@@ -106,34 +155,24 @@
     
     console.log(xmlString)
     
-    $.ajax({ type: "POST",
-                        url: "/addmanager",
-                        data: xmlString,
+    updateXML(xmlString);
+    });  
+  }
+  
+  function updateXML(value){
+        $.ajax({ type: "POST",
+                        url: "/updateXML",
+                        data: value,
                         contentType: "text/xml",
                         dataType: "xml",
                         cache: false,
                         error: function() { alert("No data found."); },
-                        success: function(xml) {
-                            alert("it works");
+                        success: function() {
+                            loadTable();
+                            $("#newManager").val('')
                     
                         }
         });
-     
-     var $manager = $(staticData).find("manager");        
-          
-          
-          
-          
-          $manager.each(function() {
-          //assign current manager to $thisManager in order to easy access to the item inside another loop
-          var $thisManager = $(this);
-          var managerName = $thisManager.attr("name");
-          //for each manager build header / link
-          
-          console.log(managerName)
-  
-          })
-    });  
   }
   
   function loadTable() {
