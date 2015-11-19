@@ -8,12 +8,39 @@
   <link href="style.css" rel="stylesheet" />
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="js/fundsprices.js"></script>
+  <script src="js/managerAdd.js"></script>
 
 
 </head>
 
 <body>
+  <div class="modal fade" id="addmanager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add new manager</h4>
+        </div>
+        
+          <div class="modal-body">
+            <div class="row">
+              <label htmlFor="inputName" class="col-sm-2" control-label>Manager name</label>
+              <div class="col-sm-10">
+                <input type="text" id="newManager" class="form-control" placeholder="Insert manager name" required/>
+              </div>
+            </div>
+          </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button id="btnSaveAddManager" class="btn btn-primary">Save changes</button>
+            </div>
+     
+      </div>
+    </div>
+  </div>
+  
   <header class="container-fluid">
     <div class="jumbotron">
       <H1>FUND MANAGEMENT SYSTEM</H1>
@@ -23,7 +50,9 @@
     <div class="row">
       <aside class="col-sm-2">
         <div class="menu-list">
-         <button type="button" id="addManager" class="btn btn-default btn-lg btn-block">Add manager</button>
+        <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#addmanager">
+            Add manager
+          </button>
          <button type="button" id="addFund" class="btn btn-default btn-lg btn-block">Add fund</button>
          <button type="button" id="updatePrices" class="btn btn-default btn-lg btn-block">Update prices</button>
          <button type="button" id="fundsPrices" class="btn btn-default btn-lg btn-block">Fund prices</button>
@@ -41,6 +70,7 @@
   <footer class="container-fluid">
     <H1>FOOTER</H1>
   </footer>
+         
 </body>
 
 </html>

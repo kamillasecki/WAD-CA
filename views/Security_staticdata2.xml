@@ -1,4 +1,5 @@
 <fundstatic>
+    <manager name="test empty"/>
     <manager name="Fidelity ltd">
         <fund code="IE0012333446" currency="EUR">
             <fname>Fidelity open bond</fname>
@@ -55,4 +56,4 @@
             <frequency>daily</frequency>
         </fund>
     </manager>
-</fundstatic>
+<manager xmlns="http://www.w3.org/1999/xhtml" name="fsddsddfdsv"></manager></fundstatic>

@@ -42,16 +42,22 @@
       .removeClass("btn-default");
   }
   
-  //actions to execute on button click
+  //actions to execute on Funds Prices button click
   $(document).ready(function() {
     $("#fundsPrices").click(function() {
+      //load content
       fundsPrices();
+      //change appearence of buttons
       zeroButton("#addManager");
       zeroButton("#addFund");
       zeroButton("#updatePrices");
       activeButton("#fundsPrices");
     });
+    $("#btnSaveAddManager").click(function() {
+      addManager();
+    });
   });
+  
   
   //function resposible for adding 'show all' button
   function loadShowAll_btn() {
@@ -69,7 +75,7 @@
     }
     document.getElementById('main-top').innerHTML = showAll;
     
-    $("#btn_show_all").click(function() {
+        $("#btn_show_all").click(function() {
       changeActiveManager("All");
     });
     
@@ -88,11 +94,50 @@
     
   }
   
+  
+  function addManager() {
+    console.log("Adding: " + $("#newManager").val());
+    
+    $.get('Security_staticdata.xml', function(staticData) {
+      
+    $(staticData).find('fundstatic').append($('<manager>').attr('name', $("#newManager").val()));
+     
+    var xmlString = (new XMLSerializer()).serializeToString(staticData);
+    
+    console.log(xmlString)
+    
+    $.ajax({ type: "POST",
+                        url: "/addmanager",
+                        data: xmlString,
+                        contentType: "text/xml",
+                        dataType: "xml",
+                        cache: false,
+                        error: function() { alert("No data found."); },
+                        success: function(xml) {
+                            alert("it works");
+                    
+                        }
+        });
+     
+     var $manager = $(staticData).find("manager");        
+          
+          
+          
+          
+          $manager.each(function() {
+          //assign current manager to $thisManager in order to easy access to the item inside another loop
+          var $thisManager = $(this);
+          var managerName = $thisManager.attr("name");
+          //for each manager build header / link
+          
+          console.log(managerName)
+  
+          })
+    });  
+  }
+  
   function loadTable() {
-  $('.row').on('click', function() {
-   var row = $(this).find('td:first').text();
-   console.log('You clicked ' + row);
-});
+
 
 
 //aquire data from staticdata xml file and assign to staticData 
