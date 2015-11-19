@@ -121,8 +121,8 @@
       
       var sel = document.getElementById("selectManager");
       var selected = sel.options[sel.selectedIndex].value;
-      
-    console.log("Removing " + selected);
+
+            console.log("Removing " + selected);
     
     var $manager = $(staticData).find("manager");
           $manager.each(function() {
@@ -135,18 +135,21 @@
           });
      
     var xmlString = (new XMLSerializer()).serializeToString(staticData);
-    
-    console.log(xmlString)
-    
+ 
     updateXML(xmlString);
-        
+    loadManagerList();
+      
+
     });  
   }
   
   
   function addManager() {
     console.log("Adding: " + $("#newManager").val());
-    
+          
+    if ($("#newManager").val() === '') {
+        
+      } else {
     $.get('Security_staticdata.xml', function(staticData) {
       
     $(staticData).find('fundstatic').append($('<manager>').attr('name', $("#newManager").val()));
@@ -156,7 +159,9 @@
     console.log(xmlString)
     
     updateXML(xmlString);
-    });  
+    $("#newManager").val('');
+    });
+      }
   }
   
   function updateXML(value){
@@ -169,8 +174,7 @@
                         error: function() { alert("No data found."); },
                         success: function() {
                             loadTable();
-                            $("#newManager").val('')
-                    
+                            
                         }
         });
   }

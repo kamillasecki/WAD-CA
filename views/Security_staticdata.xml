@@ -56,12 +56,4 @@
             <frequency>daily</frequency>
         </fund>
     </manager>
-
-
-
-
-
-
-
-
-<manager xmlns="http://www.w3.org/1999/xhtml" name="xxx"></manager></fundstatic>
+</fundstatic>
