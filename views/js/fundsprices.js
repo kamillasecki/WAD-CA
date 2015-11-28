@@ -125,7 +125,7 @@
   function loadManagerList2() {
     $.get('Security_staticdata.xml', function(staticData) {
       var html = '';
-      html = html + "<select id='selectManager'>";
+      html = html + "<select id='selectManager2'>";
       var $manager = $(staticData).find("manager");
       $manager.each(function() {
         //assign current manager to $thisManager in order to easy access to the item inside another loop
@@ -137,24 +137,44 @@
       document.getElementById("managersList2").innerHTML = html;
     });
   }
+  
+  
 //Fund Name List
-   function loadFundNameList(){
-     $.get('Security_staticdata.xml', function(staticData) {
-      var html = '';
-      html = html + "<select id='selectFund'>";
-      var $fname = $(staticData).find("fname");
+  function loadFundNameList(){
+      $.get('Security_staticdata.xml', function(staticData) {
+      var sel = document.getElementById("selectManager2");
+      var selected = sel.options[sel.selectedIndex].value;
+      var $manager = $(staticData).find("manager");
       $manager.each(function() {
         //assign current manager to $thisManager in order to easy access to the item inside another loop
         var $thisManager = $(this);
         var managerName = $thisManager.attr("name");
-        html = html + "<option value = '" + managerName + "'>" + managerName + "</option>";
+        if (managerName === selected) {
+   $.get('Security_staticdata.xml', function(staticData2) {
+      var html = '';
+      html = html + "<select id='selectFund'>";
+      var $fname = $(staticData).find("fund");
+      $fname.each(function() {
+        //assign current manager to $thisManager in order to easy access to the item inside another loop
+        var $thisName = $(this);
+        var fundName = $thisName.attr("fund");
+        html = html + "<option value = '" + fundName + "'>" + fundName + "</option>";
       });
       html = html + "</select>";
-      document.getElementById("managersList2").innerHTML = html;
-    });
+      document.getElementById("fundnameList").innerHTML = html;
+   });
+        }
+      });
+      });
   }
+      
      
-   }
+   
+    
+
+
+  
+     
 
   function removeManager() {
     $.get('Security_staticdata.xml', function(staticData) {
@@ -222,6 +242,8 @@
         var $funds = $(pricingData).find("fund");
         //create list of all managers with their details
         var $manager = $(staticData).find("manager");
+        //create list of all fund names
+        var $fname = $(staticData).find("fname");
         //start building table
         var table = "";
         //create table header, two options depending on which priceType has been chosen (with nav only or with bid and offer)
