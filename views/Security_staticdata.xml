@@ -56,4 +56,4 @@
             <frequency>daily</frequency>
         </fund>
     </manager>
-</fundstatic>
+<manager xmlns="http://www.w3.org/1999/xhtml" name="Olesya"></manager></fundstatic>

@@ -60,6 +60,11 @@
     $("#btnRemoveManager").click(function() {
       loadManagerList();
     });
+    
+    $("#updatePrices").click(function() {
+      loadManagerList2();
+      loadFundNameList();
+    });
 
     $("#btnSaveRemoveManager").click(function() {
       removeManager();
@@ -99,7 +104,7 @@
       changePriceType("Dual");
     });
   }
-
+//ManagerList
   function loadManagerList() {
     $.get('Security_staticdata.xml', function(staticData) {
       var html = '';
@@ -115,6 +120,41 @@
       document.getElementById("managersList").innerHTML = html;
     });
   }
+  
+//ManagerList2
+  function loadManagerList2() {
+    $.get('Security_staticdata.xml', function(staticData) {
+      var html = '';
+      html = html + "<select id='selectManager'>";
+      var $manager = $(staticData).find("manager");
+      $manager.each(function() {
+        //assign current manager to $thisManager in order to easy access to the item inside another loop
+        var $thisManager = $(this);
+        var managerName = $thisManager.attr("name");
+        html = html + "<option value = '" + managerName + "'>" + managerName + "</option>";
+      });
+      html = html + "</select>";
+      document.getElementById("managersList2").innerHTML = html;
+    });
+  }
+//Fund Name List
+   function loadFundNameList(){
+     $.get('Security_staticdata.xml', function(staticData) {
+      var html = '';
+      html = html + "<select id='selectFund'>";
+      var $fname = $(staticData).find("fname");
+      $manager.each(function() {
+        //assign current manager to $thisManager in order to easy access to the item inside another loop
+        var $thisManager = $(this);
+        var managerName = $thisManager.attr("name");
+        html = html + "<option value = '" + managerName + "'>" + managerName + "</option>";
+      });
+      html = html + "</select>";
+      document.getElementById("managersList2").innerHTML = html;
+    });
+  }
+     
+   }
 
   function removeManager() {
     $.get('Security_staticdata.xml', function(staticData) {
@@ -130,6 +170,8 @@
           $(this).remove();
         }
       });
+
+//fCodeList 
 
       var xmlString = (new XMLSerializer()).serializeToString(staticData);
 
