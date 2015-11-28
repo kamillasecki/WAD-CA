@@ -156,9 +156,9 @@
       var $fname = $(staticData).find("fund");
       $fname.each(function() {
         //assign current manager to $thisManager in order to easy access to the item inside another loop
-        var $thisName = $(this);
-        var fundName = $thisName.attr("fund");
-        html = html + "<option value = '" + fundName + "'>" + fundName + "</option>";
+        var $thisFund = $(this);
+       $thisFund.find("fname").text();
+        html = html + "<option value = '" + this + "'>" + this + "</option>";
       });
       html = html + "</select>";
       document.getElementById("fundnameList").innerHTML = html;
