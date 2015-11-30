@@ -9,6 +9,7 @@
   }
 
   $(document).ready(function() {
+  
     $("#addFund").click(function() {
       //load content
       //change appearence of buttons
@@ -17,5 +18,5 @@
       zeroButton("#updatePrices");
       activeButton("#addManager");
     });
-  });
-  
+
+  })

@@ -63,12 +63,21 @@
     
     $("#updatePrices").click(function() {
       loadManagerList2();
-      loadFundNameList();
+      // loadFundNameList();
+    });
+    
+    $("#addFund").click(function() {
+      loadManagerList3();
+      
     });
 
     $("#btnSaveRemoveManager").click(function() {
       removeManager();
     });
+    $("#btnSaveAddFund").click(function(){
+      addFund();
+    
+    })
   });
 
 
@@ -120,12 +129,27 @@
       document.getElementById("managersList").innerHTML = html;
     });
   }
-  
-//ManagerList2
-  function loadManagerList2() {
+  function loadManagerList3() {
     $.get('Security_staticdata.xml', function(staticData) {
       var html = '';
-      html = html + "<select id='selectManager2'>";
+      html = html + "<select id='selectManager'>";
+      var $manager = $(staticData).find("manager");
+      $manager.each(function() {
+        //assign current manager to $thisManager in order to easy access to the item inside another loop
+        var $thisManager = $(this);
+        var managerName = $thisManager.attr("name");
+        html = html + "<option value = '" + managerName + "'>" + managerName + "</option>";
+      });
+      html = html + "</select>";
+      document.getElementById("managersList3").innerHTML = html;
+    });
+  }
+   
+  
+function loadManagerList2() {
+    $.get('Security_staticdata.xml', function(staticData) {
+      var html = '';
+      html = html + "<select id='selectManager'>";
       var $manager = $(staticData).find("manager");
       $manager.each(function() {
         //assign current manager to $thisManager in order to easy access to the item inside another loop
@@ -137,44 +161,7 @@
       document.getElementById("managersList2").innerHTML = html;
     });
   }
-  
-  
-//Fund Name List
-  function loadFundNameList(){
-      $.get('Security_staticdata.xml', function(staticData) {
-      var sel = document.getElementById("selectManager2");
-      var selected = sel.options[sel.selectedIndex].value;
-      var $manager = $(staticData).find("manager");
-      $manager.each(function() {
-        //assign current manager to $thisManager in order to easy access to the item inside another loop
-        var $thisManager = $(this);
-        var managerName = $thisManager.attr("name");
-        if (managerName === selected) {
-   $.get('Security_staticdata.xml', function(staticData2) {
-      var html = '';
-      html = html + "<select id='selectFund'>";
-      var $fname = $(staticData).find("fund");
-      $fname.each(function() {
-        //assign current manager to $thisManager in order to easy access to the item inside another loop
-        var $thisFund = $(this);
-       $thisFund.find("fname").text();
-        html = html + "<option value = '" + this + "'>" + this + "</option>";
-      });
-      html = html + "</select>";
-      document.getElementById("fundnameList").innerHTML = html;
-   });
-        }
-      });
-      });
-  }
-      
-     
-   
     
-
-
-  
-     
 
   function removeManager() {
     $.get('Security_staticdata.xml', function(staticData) {
@@ -214,6 +201,28 @@
         $("#newManager").val('');
       });
     }
+  }
+  
+  //ADdition of fund info  to xlm
+    function addFund() {
+    console.log("Adding: " + $("#newFund").val());
+
+    if ($("#newFund" || "#newCode" || "#newCurr" ).val() === ''){
+      alert("Please provide fund name before saving.") }
+       else {
+      $.get('Security_staticdata.xml', function(staticData) {
+
+        $(staticData).find('fundstatic').append($('<fname>').text($("#newfund").val()));
+        $(staticData).find('fundstatic').append($('<fund>').attr('code',$("#newCode").val()));
+        $(staticData).find('fundstatic').append($('<fund>').attr('currency',$("#newCurr").val()));
+        var xmlString = (new XMLSerializer()).serializeToString(staticData);
+        updateXML(xmlString);
+        $("#newFund").val('');
+         $("#newCode").val('');
+          $("#newCurr").val('');
+      });
+    }
+    
   }
 
   function updateXML(value) {
