@@ -56,4 +56,4 @@
             <frequency>daily</frequency>
         </fund>
     </manager>
-<manager xmlns="http://www.w3.org/1999/xhtml" name="Olesya"></manager><manager xmlns="http://www.w3.org/1999/xhtml" name="Don"></manager><manager xmlns="http://www.w3.org/1999/xhtml" name="olesya"></manager><fname xmlns="http://www.w3.org/1999/xhtml"></fname><fund xmlns="http://www.w3.org/1999/xhtml" code="EOI3121584"></fund><fund xmlns="http://www.w3.org/1999/xhtml" currency="EUR"></fund><fname xmlns="http://www.w3.org/1999/xhtml"></fname><fund xmlns="http://www.w3.org/1999/xhtml" code=""></fund><fund xmlns="http://www.w3.org/1999/xhtml" currency=""></fund></fundstatic>
+<fname xmlns="http://www.w3.org/1999/xhtml"></fname><fund xmlns="http://www.w3.org/1999/xhtml" code="EOI3121584"></fund><fund xmlns="http://www.w3.org/1999/xhtml" currency="EUR"></fund><fname xmlns="http://www.w3.org/1999/xhtml"></fname><fund xmlns="http://www.w3.org/1999/xhtml" code=""></fund><fund xmlns="http://www.w3.org/1999/xhtml" currency=""></fund><manager xmlns="http://www.w3.org/1999/xhtml" name="MICHAEL"></manager></fundstatic>

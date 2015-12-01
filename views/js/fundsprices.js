@@ -75,7 +75,7 @@
       removeManager();
     });
     $("#btnSaveAddFund").click(function(){
-      addFund();
+           addFund();
     
     })
   });
@@ -132,7 +132,7 @@
   function loadManagerList3() {
     $.get('Security_staticdata.xml', function(staticData) {
       var html = '';
-      html = html + "<select id='selectManager'>";
+      html = html + "<select id='selectManager3'>";
       var $manager = $(staticData).find("manager");
       $manager.each(function() {
         //assign current manager to $thisManager in order to easy access to the item inside another loop
@@ -149,7 +149,7 @@
 function loadManagerList2() {
     $.get('Security_staticdata.xml', function(staticData) {
       var html = '';
-      html = html + "<select id='selectManager'>";
+      html = html + "<select id='selectManager2'>";
       var $manager = $(staticData).find("manager");
       $manager.each(function() {
         //assign current manager to $thisManager in order to easy access to the item inside another loop
@@ -203,27 +203,53 @@ function loadManagerList2() {
     }
   }
   
-  //ADdition of fund info  to xlm
-    function addFund() {
-    console.log("Adding: " + $("#newFund").val());
+  function addFund() {
+   console.log("Adding: " + $("#newFund").val());
 
-    if ($("#newFund" || "#newCode" || "#newCurr" ).val() === ''){
+ if ($("#newFund" || "#newCode" || "#newCurr" ).val() === ''){
       alert("Please provide fund name before saving.") }
-       else {
+      else {
       $.get('Security_staticdata.xml', function(staticData) {
-
-        $(staticData).find('fundstatic').append($('<fname>').text($("#newfund").val()));
-        $(staticData).find('fundstatic').append($('<fund>').attr('code',$("#newCode").val()));
-        $(staticData).find('fundstatic').append($('<fund>').attr('currency',$("#newCurr").val()));
+        var sel = document.getElementById("selectManager3");
+        var selected = sel.options[sel.selectedIndex].value;
+        $(staticData).find('fundstatic').find(selected).append($('<fund>').attr('code', $("#newCode").val()).attr('currency', $("#newCurr").val()).child('<fname>', $("#newFund").val()));
+     
         var xmlString = (new XMLSerializer()).serializeToString(staticData);
         updateXML(xmlString);
         $("#newFund").val('');
-         $("#newCode").val('');
-          $("#newCurr").val('');
-      });
-    }
+        $("#newCode").val('');
+        $("#newCurr").val('');
+      })
     
   }
+  }  
+  
+  
+  //ADdition of fund info  to xlm
+  //   function addFund() {
+  //   console.log("Adding: " + $("#newFund").val());
+
+  //   if ($("#newFund" || "#newCode" || "#newCurr" ).val() === ''){
+  //     alert("Please provide fund name before saving.") }
+  //     else {
+  //     $.get('Security_staticdata.xml', function(staticData) {
+  //     var sel = document.getElementById("selectManager");
+  //     var selected = sel.options[sel.selectedIndex].value;
+  //     if($(staticData).find('manager').text()===(selected)){
+  //     $(staticData).find('manager').text()===(selected).append($('<fund>').child('fname',$("#newfund").val()));
+  //     $(staticData).find('manager').text()===(selected).append($('<fund>').attr('code',$("#newCode").val()));
+  //     $(staticData).find('manager').text()===(selected).append($('<fund>').attr('currency',$("#newCurr").val()));
+          
+  //     var xmlString = (new XMLSerializer()).serializeToString(staticData);
+  //       updateXML(xmlString);
+  //       $("#newFund").val('');
+  //       $("#newCode").val('');
+  //         $("#newCurr").val('');
+  //     }
+  //     });
+  //   }
+    
+  // }
 
   function updateXML(value) {
     $.ajax({

@@ -9,7 +9,7 @@ app.use(express.static(__dirname + '/views'));
 
 //define routes
 app.use(require("./managerHandler"));
-
+app.use(require("./fundHandler"));
 app.get('/', function(req, res) {
   res.render('index');
 });
