@@ -5,13 +5,14 @@
             <fname>Fidelity open bond</fname>
             <frequency>daily</frequency>
         </fund>
+    <fund xmlns="http://www.w3.org/1999/xhtml" code="IE188888" currency="RUB"><fname>Olesya</fname>
     </manager>
     <manager name="Blackrock">
         <fund currency="EUR" code="LU0097548765">
             <fname>Blackrock open ended</fname>
             <frequency>daily</frequency>
         </fund>
-    </manager>
+    <fund xmlns="http://www.w3.org/1999/xhtml" code="TR34566" currency="TBH"><fname>Rob</fname></fund></manager>
     <manager name="Majedie">
         <fund currency="AUD" code="GB0032730698">
             <fname>Majedie UK Equity Fund Acc</fname>
@@ -56,4 +57,4 @@
             <frequency>daily</frequency>
         </fund>
     </manager>
-<fname xmlns="http://www.w3.org/1999/xhtml"></fname><fund xmlns="http://www.w3.org/1999/xhtml" code="EOI3121584"></fund><fund xmlns="http://www.w3.org/1999/xhtml" currency="EUR"></fund><fname xmlns="http://www.w3.org/1999/xhtml"></fname><fund xmlns="http://www.w3.org/1999/xhtml" code=""></fund><fund xmlns="http://www.w3.org/1999/xhtml" currency=""></fund><manager xmlns="http://www.w3.org/1999/xhtml" name="MICHAEL"></manager></fundstatic>
+</fundstatic>
