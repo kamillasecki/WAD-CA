@@ -27,60 +27,40 @@
     loadShowAll_btn();
   }
 
-
-  //MENU CONTROL
-  //use this function to remove highlight form button
-  function zeroButton(btnName) {
-    $(btnName).addClass("btn-default")
-      .removeClass("btn-primary");
-  }
-  //use this function to highlight button
-  function activeButton(btnName) {
-    $(btnName).addClass("btn-primary")
-      .removeClass("btn-default");
-  }
-
-  //actions to execute on Funds Prices button click
+  //buttons behaviours
   $(document).ready(function() {
-    $("#fundsPrices").click(function() {
-      //load content
-      fundsPrices();
-      //change appearence of buttons
-      zeroButton("#addManager");
-      zeroButton("#addFund");
-      zeroButton("#updatePrices");
-      activeButton("#fundsPrices");
-    });
-    $("#btnSaveAddManager").click(function() {
-      addManager();
-    });
-
+    fundsPrices();
+    //MENU BUTTONS
+    //BUTTON - menu - Add manager
     $("#btnRemoveManager").click(function() {
       loadManagerList(1);
     });
+    
+    //BUTTON - menu - Add new fund
+    $("#addFund").click(function() {
+      loadManagerList(2);
+    });
 
+    //BUTTON - menu - Update prices
     $("#updatePrices").click(function() {
       loadManagerList(3);
     });
 
-    $("#addFund").click(function() {
-      console.log("rabotaet");
-      loadManagerList(2);
-
+    //SAVE BUTTONS
+    $("#btnSaveAddManager").click(function() {
+      addManager();
     });
 
     $("#btnSaveRemoveManager").click(function() {
-      removeManager(1);
+      removeManager();
     });
 
     $("#btnSaveAddFund").click(function() {
       addFund();
-
     });
 
     $("#btnSaveAddPrice").click(function() {
       addPrice();
-
     });
   });
 
@@ -117,78 +97,97 @@
     });
   }
 
-  //ManagerList
+  // ManagerList loading manager list in depends on variable x loading manager list in 3 different places:
+  // 1. Remove manager
+  // 2. Add fund
+  // 3. Update prices
   function loadManagerList(x) {
-
-
+  //ajax static data
     $.get('Security_staticdata.xml', function(staticData) {
+      //start drawing dropdown
       var html = '';
       html = html + "<select id='selectManager" + x + "'><option selected disabled hidden value=''></option>";
+      //get list of all manager nodes
       var $manager = $(staticData).find("manager");
+      //loop for each manager found
       $manager.each(function() {
         //assign current manager to $thisManager in order to easy access to the item inside another loop
         var $thisManager = $(this);
+        //get current manager name
         var managerName = $thisManager.attr("name");
+        //generate dropdown item using manager name
         html = html + "<option value = '" + managerName + "'>" + managerName + "</option>";
       });
+      //finish drawing dropdown
       html = html + "</select>";
+      
+      //create destination so depends on x=? the dropdown will go different place
       var destination = "managersList" + x;
       document.getElementById(destination).innerHTML = html;
-      $("#selectManager3").change(function() {
-        $.get('Security_pricingdata.xml', function(pricingData) {
-          var html = '';
-          html = html + "<select id='selectFund'>";
-          var $managers = $(staticData).find("manager");
-          var sel = document.getElementById("selectManager3");
-          var selected = sel.options[sel.selectedIndex].value;
-          $managers.each(function() {
-            var $thisManager = $(this);
-            var managerName = $thisManager.attr("name");
-            if (selected === managerName) {
-              var $funds = $thisManager.find("fund");
-              $funds.each(function() {
-                var $thisFund = $(this);
-                var fundName = $thisFund.find("fname").text();
-
-                html = html + "<option value = '" + fundName + "'>" + fundName + "</option>";
-
-              });
-            }
-          });
-          html = html + "</select>";
-          document.getElementById("fcodesList").innerHTML = html;
+      // if the abowe dropdown is for "update prices" menu, create additional dropdown with list of funds for selected manager once it is seleceted
+      if (x===3){
+        //create listener for previous dropdown
+        $("#selectManager3").change(function() {
+          //start drawing dropdown
+            var html = '';
+            html = html + "<select id='selectFund'>";
+            //get a name of selected manager
+            var sel = document.getElementById("selectManager3");
+            var selected = sel.options[sel.selectedIndex].value;
+            //loop through all managers untill you find selected one
+            $manager.each(function() {
+              var $thisManager = $(this);
+              var managerName = $thisManager.attr("name");
+              //match currenlty checked manager against selected one
+              if (selected === managerName) {
+                //if match get list of funds under this manager
+                var $funds = $thisManager.find("fund");
+                //for each fund add one item in the dropdown
+                $funds.each(function() {
+                  var $thisFund = $(this);
+                  var fundName = $thisFund.find("fname").text();
+                  html = html + "<option value = '" + fundName + "'>" + fundName + "</option>";
+                });
+              }
+            });
+            //finish drawing dropdown
+            html = html + "</select>";
+            //push html with dropdown containing fund names to the form
+            document.getElementById("fcodesList").innerHTML = html;
         });
-      });
+      }
     });
   }
 
+//function responsible for removing the manager
   function removeManager() {
+    //ajax static data
     $.get('Security_staticdata.xml', function(staticData) {
-
+      //get name of manager to be removed from the dropdown
       var sel = document.getElementById("selectManager1");
       var selected = sel.options[sel.selectedIndex].value;
+      //find all manager nodes in xml
       var $manager = $(staticData).find("manager");
+      //loop through all managers until selected manager found
       $manager.each(function() {
-        //assign current manager to $thisManager in order to easy access to the item inside another loop
         var $thisManager = $(this);
         var managerName = $thisManager.attr("name");
         if (managerName === selected) {
+          //once found remove whole node
           $(this).remove();
         }
       });
-
-      //fCodeList 
-
+      //push xml with removed node to string 
       var xmlString = (new XMLSerializer()).serializeToString(staticData);
-
+      //push xml string to be saved in the file on the server
       updateStaticXML(xmlString);
-      loadManagerList();
+      //refresh table
+      fundsPrices();
     });
   }
 
+//function responsible for adding new manager
   function addManager() {
-    console.log("Adding: " + $("#newManager").val());
-
     if ($("#newManager").val() === '') {
       alert("Please provide manager name before saving.");
     } else {
@@ -198,21 +197,17 @@
         var xmlString = (new XMLSerializer()).serializeToString(staticData);
         updateStaticXML(xmlString);
         $("#newManager").val('');
+        fundsPrices();
       });
     }
   }
 
   function addFund() {
-    console.log("Adding: " + $("#newFund").val());
-
     if ($("#newFund" || "#newCode" || "#newCurr").val() === '') {
       alert("Fill in all the fields");
     } else {
 
       $.get('Security_staticdata.xml', function(staticData) {
-
-
-
         var $manager = $(staticData).find("manager");
 
         $manager.each(function() {
@@ -220,9 +215,7 @@
           var $thisManager = $(this);
           var managerName = $thisManager.attr("name");
           var selection = document.getElementById("selectManager2");
-          console.log("index=: " + selection.selectedIndex);
           var selected = selection.options[selection.selectedIndex].value;
-          console.log("adding to: " + selected);
           if (managerName === selected) {
 
             var newCode = $("#newCode").val();
@@ -230,7 +223,6 @@
             var newFname = $("#newFund").val();
 
             var newNode = '<fund code="' + newCode + '" currency="' + newCurrency + '"><fname>' + newFname + '</fname></fund>';
-            alert(newNode);
             $(staticData).find('fundstatic')
               .find("manager[name='" + managerName + "']")
               .append(newNode);
@@ -242,7 +234,6 @@
               $(pricingData).find("fundspricing").append('<fund code="' + newCode + '"></fund>');
               var xmlStringPricing = (new XMLSerializer()).serializeToString(pricingData);
               updatePricingXML(xmlStringPricing);
-
             });
           }
         });
@@ -253,7 +244,6 @@
 
 
   function addPrice() {
-    console.log("Adding: " + $("#newDate").val());
 
     if ($("#newDate" || "#newNav" || "#newBid" || "#newOffer").val() === '') {
       alert("Fill in all the fields");
@@ -271,10 +261,8 @@
           //gertting code from selected name
           var $managers = $(staticData).find("manager");
           $managers.each(function() {
-            console.log("ok");
             var $thisManager = $(this);
             var managerName = $thisManager.attr("name");
-            console.log("checking selected:" +selectedManager+ "against"  + managerName);
             if (selectedManager === managerName) {
               var $funds = $thisManager.find("fund");
               $funds.each(function() {
@@ -282,8 +270,6 @@
                 var fundName = $thisFund.find("fname").text();
                 if (selectedFund === fundName) {
                   var code = $thisFund.attr("code");
-                  console.log(code);
-
                   var newDate = $("#newDate").val();
                   var newNav = $("#newNav").val();
                   var newBid = $("#newBid").val();
@@ -295,13 +281,14 @@
 
 
                   var xmlString = (new XMLSerializer()).serializeToString(pricingData);
-                  console.log(xmlString);
                   updatePricingXML(xmlString);
 
                   $("#newDate").val('');
                   $("#newNav").val('');
                   $("#newBid").val('');
                   $("#newOffer").val('');
+                  
+                  document.getElementById("fcodesList").innerHTML = '';
 
                   loadTable();
                 }

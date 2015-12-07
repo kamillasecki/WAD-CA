@@ -100,4 +100,4 @@
             <offer>99.95</offer>
         </price> 
     </fund>
-<fund code="aa"/><fund code="dd"/></fundspricing>
+<fund code="bbb"><price date="07/12/2015"><NAV>3</NAV><bid>3</bid><offer>3</offer></price><price date="08/12/2015"><NAV>22</NAV><bid>23</bid><offer>24</offer></price><price date="07/12/2015"><NAV>11</NAV><bid>12</bid><offer>13</offer></price></fund></fundspricing>

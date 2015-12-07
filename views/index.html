@@ -2,15 +2,18 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" data-semver="3.3.5" data-require="bootstrap@*" />
-  <link href="style.css" rel="stylesheet" />
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="js/fundsprices.js"></script>
-
-
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" data-semver="3.3.5" data-require="bootstrap@*" />
+   <link href="style.css" rel="stylesheet" />
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script src="js/functions.js"></script>
+  <!--<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>-->
+  <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
+  <!--<script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
+  <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
 
 </head>
 
@@ -34,7 +37,6 @@
           Add fund</button>
           <button type="button" id="updatePrices" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#addprice">
           Update prices</button>
-          <button type="button" id="fundsPrices" class="btn btn-default btn-lg btn-block">Fund prices</button>
         </div>
       </aside>
 
@@ -87,7 +89,7 @@
         <div class="modal-body">
           <div class="row">
             <label class="col-sm-2" control-label>Manager name</label>
-            <div id="managersList" class="col-sm-10">
+            <div id="managersList1" class="col-sm-10">
             </div>
           </div>
         </div>
@@ -103,44 +105,40 @@
   <div class="modal fade" id="addfund" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <form method="post" id="form" action="/post/json">
-              <input type="text" name="-name">
-        </form>
 
-        <!--<div class="modal-header">-->
-        <!--  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
-        <!--  <h4 class="modal-title" id="myModalLabel">Add new fund</h4>-->
-        <!--</div>-->
-        <!--<div class="modal-body">-->
-        <!-- <div class="row">-->
-        <!--    <label htmlFor="inputManager" class="col-sm-2" control-label>Manager name</label>-->
-        <!--    <div class="col-sm-10">-->
-        <!--      <input type="text" id="exisManager" class="form-control" placeholder="Enter fund name" required/>-->
-        <!--    </div>-->
-        <!--  </div>-->
-        <!--  <div class="row">-->
-        <!--    <label htmlFor="inputName" class="col-sm-2" control-label>Fund name</label>-->
-        <!--    <div class="col-sm-10">-->
-        <!--      <input type="text" id="newFund" class="form-control" placeholder="Enter fund name" required/>-->
-        <!--    </div>-->
-        <!--  </div>-->
-        <!--  <div class="row">-->
-        <!--    <label htmlFor="inputCode" class="col-sm-2" control-label>Fund Code</label>-->
-        <!--    <div class="col-sm-10">-->
-        <!--      <input type="text" id="newCode" class="form-control" placeholder="Enter code" required/>-->
-        <!--    </div>-->
-        <!--  </div>-->
-        <!--  <div class="row">-->
-        <!--    <label htmlFor="inputCurrency" class="col-sm-2" control-label>Fund Currency</label>-->
-        <!--    <div class="col-sm-10">-->
-        <!--      <input type="text" id="newCurr" class="form-control" placeholder="Enter currency" required/>-->
-        <!--    </div>-->
-        <!--  </div>-->
-        <!--</div>-->
-        <!--<div class="modal-footer">-->
-        <!--  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
-        <!--  <button id="btnSaveAddFund" class="btn btn-primary">Save fund</button>-->
-        <!--</div>-->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Add new fund</h4>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+            <label class="col-sm-2" control-label>Manager name</label>
+            <div id="managersList2" class="col-sm-10">
+            </div>
+          </div>
+          <div class="row">
+            <label htmlFor="inputName" class="col-sm-2" control-label>Fund name</label>
+            <div class="col-sm-10">
+              <input type="text" id="newFund" class="form-control" placeholder="Enter fund name" required/>
+            </div>
+          </div>
+          <div class="row">
+            <label htmlFor="inputCode" class="col-sm-2" control-label>Fund Code</label>
+            <div class="col-sm-10">
+              <input type="text" id="newCode" class="form-control" placeholder="Insert manager name" required/>
+            </div>
+          </div>
+          <div class="row">
+            <label htmlFor="inputCurrency" class="col-sm-2" control-label>Fund Currency</label>
+            <div class="col-sm-10">
+              <input type="text" id="newCurr" class="form-control" placeholder="Enter currency" required/>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="btnSaveAddFund" class="btn btn-primary">Save fund</button>
+        </div>
 
       </div>
     </div>
@@ -155,13 +153,11 @@
           <h4 class="modal-title" id="myModalLabel">Update Prices</h4>
         </div>
         <div class="modal-body">
-          <!--ManagerList-->
           <div class="row">
           <label class="col-sm-2" control-label>Manager name</label>
-          <div id="managersList2" class="col-sm-10">
+          <div id="managersList3" class="col-sm-10">
           </div>
          </div>
-         <!--Fund List-->
           <div class="row">
             <label class="col-sm-2" control-label>Fund Code</label>
             <div id="fcodesList" class="col-sm-10">
@@ -171,6 +167,13 @@
             <label htmlFor="inputDate" class="col-sm-3" control-label>Date</label>
             <div class="col-sm-10">
               <input type="text" id="newDate" class="form-control" placeholder="Enter date" required/>
+                      <script type="text/javascript">
+            $(function () {
+                $('#newDate').datetimepicker({
+                    format: 'DD/MM/YYYY'
+                });
+            });
+        </script>
             </div>
           </div>
           <div class="row">
@@ -188,7 +191,7 @@
           <div class="row">
             <label htmlFor="inputOffer" class="col-sm-3" control-label>Offer price</label>
             <div class="col-sm-10">
-              <input type="text" id="newBid" class="form-control" placeholder="Enter Offer" required/>
+              <input type="text" id="newOffer" class="form-control" placeholder="Enter Offer" required/>
             </div>
           </div>
         </div>
@@ -199,7 +202,5 @@
       </div>
     </div>
   </div>
-  
 </body>
-
 </html>

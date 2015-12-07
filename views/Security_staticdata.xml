@@ -59,4 +59,4 @@
             <frequency>daily</frequency>
         </fund>
     </manager>
-</fundstatic>
+<manager xmlns="http://www.w3.org/1999/xhtml" name="aaaa"><fund xmlns="" code="bbb" currency="bbb"><fname>bbb</fname></fund></manager></fundstatic>
