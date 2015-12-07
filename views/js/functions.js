@@ -188,16 +188,26 @@
 
 //function responsible for adding new manager
   function addManager() {
+    //Checking if the name is not empty
     if ($("#newManager").val() === '') {
       alert("Please provide manager name before saving.");
     } else {
+      //ajax static data
       $.get('Security_staticdata.xml', function(staticData) {
-
-        $(staticData).find('fundstatic').append($('<manager>').attr('name', $("#newManager").val()));
-        var xmlString = (new XMLSerializer()).serializeToString(staticData);
-        updateStaticXML(xmlString);
-        $("#newManager").val('');
-        fundsPrices();
+        //getting name entered by user
+        var newName = $("#newManager").val();
+        //checking if the same name already exists by searching the name and checking a number of items found
+        var check = $(staticData).find('fundstatic')
+              .find("manager[name='" + newName + "']");
+        if (check.length === 0) {
+          $(staticData).find('fundstatic').append($('<manager>').attr('name', newName));
+          var xmlString = (new XMLSerializer()).serializeToString(staticData);
+          updateStaticXML(xmlString);
+          $("#newManager").val('');
+          fundsPrices();
+        } else {
+          alert("Manager already exists.");
+        }
       });
     }
   }
