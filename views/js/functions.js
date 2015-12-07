@@ -69,9 +69,9 @@
     var showAll = '';
 
     if (activeManager === "All") {
-      showAll = "<button type='button' id='btn_coll_all' class='btn btn-default'>Colaps all</button>";
+      showAll = "<br/><button type='button' id='btn_coll_all' class='btn btn-default'>Colaps all</button>";
     } else {
-      showAll = "<button type='button' id='btn_show_all' class='btn btn-default'>Expand all</button>";
+      showAll = "<br/><button type='button' id='btn_show_all' class='btn btn-default'>Expand all</button>";
     }
     if (priceType === "NAV") {
       showAll = showAll + "<button type='button' id='btn_chng_dual' class='btn btn-default'>Display dual</button>";
