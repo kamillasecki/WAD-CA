@@ -45,7 +45,7 @@
             <offer>20.03</offer>
         </price>
     </fund>
-    <fund code="LU0097548765">
+    <fund code="LU0097548765"><price date="06/12/2015"><NAV>121</NAV><bid>121</bid><offer>121</offer></price><price date="06/12/2015"><NAV>112</NAV><bid>112</bid><offer>112</offer></price><price date="33"><NAV>33</NAV><bid>33</bid><offer>33</offer></price><price date="11"><NAV>11</NAV><bid>11</bid><offer>11</offer></price>
         <price date="11/08/2014">
             <NAV>34.22</NAV>
             <bid>33.11</bid>
@@ -100,4 +100,4 @@
             <offer>99.95</offer>
         </price> 
     </fund>
-</fundspricing>
+<fund code="aa"/><fund code="dd"/></fundspricing>

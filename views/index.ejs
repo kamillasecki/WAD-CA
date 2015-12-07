@@ -1,19 +1,22 @@
 <!DOCTYPE html>
- 
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" data-semver="3.3.5" data-require="bootstrap@*" />
-  <link href="style.css" rel="stylesheet" />
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="js/fundsprices.js"></script>
- 
- 
- 
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" data-semver="3.3.5" data-require="bootstrap@*" />
+   <link href="style.css" rel="stylesheet" />
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script src="js/fundsprices.js"></script>
+  <!--<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>-->
+  <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
+  <!--<script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
+  <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
+
 </head>
- 
+
 <body>
   <header class="container-fluid">
     <div class="jumbotron">
@@ -37,24 +40,24 @@
           <button type="button" id="fundsPrices" class="btn btn-default btn-lg btn-block">Fund prices</button>
         </div>
       </aside>
- 
+
       <section class="col-sm-10">
         <div id="main-top"></div>
         <div id="main-mid"></div>
         <div id="main-bot"></div>
       </section>
- 
+
     </div>
   </div>
   <footer class="container-fluid">
     <H1>FOOTER</H1>
   </footer>
- 
+  
   <!--pop up for Add manager-->
     <div class="modal fade" id="addmanager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
- 
+
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">Add new manager</h4>
@@ -71,11 +74,11 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button id="btnSaveAddManager" class="btn btn-primary">Save changes</button>
         </div>
- 
+
       </div>
     </div>
   </div>
- 
+  
    <!--pop up forRemove manager-->
   <div class="modal fade" id="removemanager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -98,12 +101,12 @@
       </div>
     </div>
   </div>
- 
+  
    <!--pop up for Add Fund-->
   <div class="modal fade" id="addfund" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
- 
+
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">Add new fund</h4>
@@ -137,11 +140,11 @@
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button id="btnSaveAddFund" class="btn btn-primary">Save fund</button>
         </div>
- 
+
       </div>
     </div>
   </div>
- 
+  
   <!--pop up for Add Price-->
     <div class="modal fade" id="addprice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -165,6 +168,13 @@
             <label htmlFor="inputDate" class="col-sm-3" control-label>Date</label>
             <div class="col-sm-10">
               <input type="text" id="newDate" class="form-control" placeholder="Enter date" required/>
+                      <script type="text/javascript">
+            $(function () {
+                $('#newDate').datetimepicker({
+                    format: 'DD/MM/YYYY'
+                });
+            });
+        </script>
             </div>
           </div>
           <div class="row">
@@ -193,6 +203,5 @@
       </div>
     </div>
   </div>
- 
 </body>
 </html>

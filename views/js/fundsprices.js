@@ -1,33 +1,33 @@
- //getting pricing and static data from xml files
+  //getting pricing and static data from xml files
   var activeISIN;
   var activeManager;
   var priceType = "NAV";
- 
+
   //changge type of price which is being displayed
   function changePriceType(type) {
     priceType = type;
     fundsPrices();
   }
- 
+
   //update manager which is currently being displayed
   function changeActiveManager(manager) {
     activeManager = manager;
     fundsPrices();
   }
- 
+
   //update security for which pricing history is being displayed
   function changeActiveISIN(isin) {
     activeISIN = isin;
     fundsPrices();
   }
- 
+
   //this function is called when 'Funds prices' is clicked on menu panel
   function fundsPrices() {
     loadTable();
     loadShowAll_btn();
   }
- 
- 
+
+
   //MENU CONTROL
   //use this function to remove highlight form button
   function zeroButton(btnName) {
@@ -39,7 +39,7 @@
     $(btnName).addClass("btn-primary")
       .removeClass("btn-default");
   }
- 
+
   //actions to execute on Funds Prices button click
   $(document).ready(function() {
     $("#fundsPrices").click(function() {
@@ -54,41 +54,40 @@
     $("#btnSaveAddManager").click(function() {
       addManager();
     });
- 
+
     $("#btnRemoveManager").click(function() {
       loadManagerList(1);
     });
- 
+
     $("#updatePrices").click(function() {
       loadManagerList(3);
     });
- 
+
     $("#addFund").click(function() {
       console.log("rabotaet");
       loadManagerList(2);
- 
+
     });
- 
+
     $("#btnSaveRemoveManager").click(function() {
       removeManager(1);
     });
- 
+
     $("#btnSaveAddFund").click(function() {
       addFund();
- 
+
     });
- 
+
     $("#btnSaveAddPrice").click(function() {
       addPrice();
-      loadManagerList(3);
- 
+
     });
   });
- 
+
   //function resposible for adding 'show all' button
   function loadShowAll_btn() {
     var showAll = '';
- 
+
     if (activeManager === "All") {
       showAll = "<button type='button' id='btn_coll_all' class='btn btn-default'>Colaps all</button>";
     } else {
@@ -100,28 +99,28 @@
       showAll = showAll + "<button type='button' id='btn_chng_nav' class='btn btn-default'>Display NAV</button>";
     }
     document.getElementById('main-top').innerHTML = showAll;
- 
+
     $("#btn_show_all").click(function() {
       changeActiveManager("All");
     });
- 
+
     $("#btn_coll_all").click(function() {
       changeActiveManager("");
     });
- 
+
     $("#btn_chng_nav").click(function() {
       changePriceType("NAV");
     });
- 
+
     $("#btn_chng_dual").click(function() {
       changePriceType("Dual");
     });
   }
- 
+
   //ManagerList
   function loadManagerList(x) {
- 
- 
+
+
     $.get('Security_staticdata.xml', function(staticData) {
       var html = '';
       html = html + "<select id='selectManager" + x + "'><option selected disabled hidden value=''></option>";
@@ -150,9 +149,9 @@
               $funds.each(function() {
                 var $thisFund = $(this);
                 var fundName = $thisFund.find("fname").text();
- 
+
                 html = html + "<option value = '" + fundName + "'>" + fundName + "</option>";
- 
+
               });
             }
           });
@@ -162,10 +161,10 @@
       });
     });
   }
- 
+
   function removeManager() {
     $.get('Security_staticdata.xml', function(staticData) {
- 
+
       var sel = document.getElementById("selectManager1");
       var selected = sel.options[sel.selectedIndex].value;
       var $manager = $(staticData).find("manager");
@@ -177,24 +176,24 @@
           $(this).remove();
         }
       });
- 
-      //fCodeList
- 
+
+      //fCodeList 
+
       var xmlString = (new XMLSerializer()).serializeToString(staticData);
- 
+
       updateStaticXML(xmlString);
       loadManagerList();
     });
   }
- 
+
   function addManager() {
     console.log("Adding: " + $("#newManager").val());
- 
+
     if ($("#newManager").val() === '') {
       alert("Please provide manager name before saving.");
     } else {
       $.get('Security_staticdata.xml', function(staticData) {
- 
+
         $(staticData).find('fundstatic').append($('<manager>').attr('name', $("#newManager").val()));
         var xmlString = (new XMLSerializer()).serializeToString(staticData);
         updateStaticXML(xmlString);
@@ -202,20 +201,20 @@
       });
     }
   }
- 
+
   function addFund() {
     console.log("Adding: " + $("#newFund").val());
- 
+
     if ($("#newFund" || "#newCode" || "#newCurr").val() === '') {
       alert("Fill in all the fields");
     } else {
- 
+
       $.get('Security_staticdata.xml', function(staticData) {
- 
- 
- 
+
+
+
         var $manager = $(staticData).find("manager");
- 
+
         $manager.each(function() {
           //assign current manager to $thisManager in order to easy access to the item inside another loop
           var $thisManager = $(this);
@@ -225,57 +224,57 @@
           var selected = selection.options[selection.selectedIndex].value;
           console.log("adding to: " + selected);
           if (managerName === selected) {
- 
+
             var newCode = $("#newCode").val();
             var newCurrency = $("#newCurr").val();
             var newFname = $("#newFund").val();
- 
+
             var newNode = '<fund code="' + newCode + '" currency="' + newCurrency + '"><fname>' + newFname + '</fname></fund>';
             alert(newNode);
             $(staticData).find('fundstatic')
               .find("manager[name='" + managerName + "']")
               .append(newNode);
- 
+
             var xmlStringStatic = (new XMLSerializer()).serializeToString(staticData);
             updateStaticXML(xmlStringStatic);
- 
+
             $.get('Security_pricingdata.xml', function(pricingData) {
               $(pricingData).find("fundspricing").append('<fund code="' + newCode + '"></fund>');
               var xmlStringPricing = (new XMLSerializer()).serializeToString(pricingData);
               updatePricingXML(xmlStringPricing);
- 
+
             });
           }
         });
       });
     }
- 
+
   }
- 
- 
+
+
   function addPrice() {
     console.log("Adding: " + $("#newDate").val());
- 
+
     if ($("#newDate" || "#newNav" || "#newBid" || "#newOffer").val() === '') {
       alert("Fill in all the fields");
     } else {
- 
+
       $.get('Security_pricingdata.xml', function(pricingData) {
         $.get('Security_staticdata.xml', function(staticData) {
- 
+
           var selManager = document.getElementById("selectManager3");
           var selectedManager = selManager.options[selManager.selectedIndex].value;
- 
+
           var selFund = document.getElementById("selectFund");
           var selectedFund = selFund.options[selFund.selectedIndex].value;
- 
+
           //gertting code from selected name
           var $managers = $(staticData).find("manager");
           $managers.each(function() {
             console.log("ok");
             var $thisManager = $(this);
             var managerName = $thisManager.attr("name");
-            console.log(managerName);
+            console.log("checking selected:" +selectedManager+ "against"  + managerName);
             if (selectedManager === managerName) {
               var $funds = $thisManager.find("fund");
               $funds.each(function() {
@@ -284,26 +283,26 @@
                 if (selectedFund === fundName) {
                   var code = $thisFund.attr("code");
                   console.log(code);
- 
+
                   var newDate = $("#newDate").val();
                   var newNav = $("#newNav").val();
                   var newBid = $("#newBid").val();
                   var newOffer = $("#newOffer").val();
- 
+
                   var newNode = '<price date="' + newDate + '"><NAV>' + newNav + '</NAV><bid>' + newBid + '</bid><offer>' + newOffer + '</offer></price>';
- 
+
                   $(pricingData).find("fund[code='" + code + "']").prepend(newNode);
- 
- 
+
+
                   var xmlString = (new XMLSerializer()).serializeToString(pricingData);
                   console.log(xmlString);
                   updatePricingXML(xmlString);
- 
+
                   $("#newDate").val('');
                   $("#newNav").val('');
                   $("#newBid").val('');
                   $("#newOffer").val('');
- 
+
                   loadTable();
                 }
               });
@@ -313,7 +312,7 @@
       });
     }
   }
- 
+
   function updateStaticXML(value) {
     $.ajax({
       type: "POST",
@@ -330,7 +329,7 @@
       }
     });
   }
- 
+
   function updatePricingXML(value) {
     $.ajax({
       type: "POST",
@@ -347,11 +346,11 @@
       }
     });
   }
- 
- 
- 
+
+
+
   function loadTable() {
-    //aquire data from staticdata xml file and assign to staticData
+    //aquire data from staticdata xml file and assign to staticData 
     $.get('Security_staticdata.xml', function(staticData) {
       //aquire data from pricingdata xml file and assign to staticData
       $.get('Security_pricingdata.xml', function(pricingData) {
@@ -367,7 +366,7 @@
         } else {
           table = "<div class='row'><table class='table-hover col-sm-12'><tr><th class='col-sm-2'>ISIN code</th><th class='col-sm-5'>Security name</th><th class='col-sm-1'>Currency</th><th class='col-sm-1'>Bid price</th><th class='col-sm-1'>Offer price</th><th class='col-sm-2'>Valuation date</th></tr>";
         }
- 
+
         //loop through all managers
         $manager.each(function() {
           //assign current manager to $thisManager in order to easy access to the item inside another loop
@@ -412,19 +411,19 @@
                   fund.nav = $thisFund.find("price:first").find("NAV").text();
                   fund.bid = $thisFund.find("price:first").find("bid").text();
                   fund.offer = $thisFund.find("price:first").find("offer").text();
- 
+
                   table = table + "<tr class='fund'><td>" + fund.isin + "</td>" +
                     "<td><a href='javascript:changeActiveISIN(&quot;" + fund.isin + "&quot;)'>" + fund.name + "</a></td>" +
                     "<td>" + fund.currency + "</td>";
- 
+
                   if (priceType === "NAV") {
                     table = table + "<td>" + fund.nav + "</td>";
                   } else {
                     table = table + "<td>" + fund.bid + "</td><td>" + fund.offer + "</td>";
                   }
- 
+
                   table = table + "<td>" + fund.date + "</td></tr>";
- 
+
                   if (fund.isin == activeISIN) {
                     //check how many archive prices is available and print one row for each
                     var ArchPricesNo = $fundPrices.length;

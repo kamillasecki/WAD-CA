@@ -36,7 +36,7 @@
             <fname>Majedie Global Equity Fund</fname>
             <frequency>daily</frequency>
         </fund>
-    </manager>
+</manager>
     <manager name="Russell investment group">
         <fund currency="EUR" code="IE00B459FF93">
             <fname>Russell global strategic yield Class A Roll Up</fname>
