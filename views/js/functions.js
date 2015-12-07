@@ -61,6 +61,7 @@
 
     $("#btnSaveAddPrice").click(function() {
       addPrice();
+      loadManagerList(3);
     });
   });
 
@@ -126,11 +127,12 @@
       document.getElementById(destination).innerHTML = html;
       // if the abowe dropdown is for "update prices" menu, create additional dropdown with list of funds for selected manager once it is seleceted
       if (x===3){
+        document.getElementById("fcodesList").innerHTML = '';
         //create listener for previous dropdown
         $("#selectManager3").change(function() {
           //start drawing dropdown
             var html = '';
-            html = html + "<select id='selectFund'>";
+            html = html + "<select id='selectFund'><option selected disabled hidden value=''></option>";
             //get a name of selected manager
             var sel = document.getElementById("selectManager3");
             var selected = sel.options[sel.selectedIndex].value;
@@ -192,6 +194,8 @@
     if ($("#newManager").val() === '') {
       alert("Please provide manager name before saving.");
     } else {
+      var newName = $("#newManager").val();
+      var node = '<manager name="' + newName + '"></manager>';
       //ajax static data
       $.get('Security_staticdata.xml', function(staticData) {
         //getting name entered by user
@@ -201,7 +205,7 @@
               .find("manager[name='" + newName + "']");
         if (check.length === 0) {
           //if name not found add new node
-          $(staticData).find('fundstatic').append($('<manager>').attr('name', newName));
+          $(staticData).find('fundstatic').append(node);
           //transform xml object to the string
           var xmlString = (new XMLSerializer()).serializeToString(staticData);
           //save string to the file
@@ -325,15 +329,16 @@
           $("#newNav").val('');
           $("#newBid").val('');
           $("#newOffer").val('');
-          loadManagerList(2);
-          document.getElementById("fcodesList").innerHTML = '';
+          
+          loadManagerList(3);
           //refreshing the table
-          loadTable();
+          fundsPrices();
         });
       });
     }
   }
 
+//function responsible for saving the data to the static xml file
   function updateStaticXML(value) {
     $.ajax({
       type: "POST",
@@ -351,6 +356,7 @@
     });
   }
 
+//function responsible for saving the data to the pricing xml file
   function updatePricingXML(value) {
     $.ajax({
       type: "POST",
@@ -368,8 +374,7 @@
     });
   }
 
-
-
+//creating a table with prices
   function loadTable() {
     //aquire data from staticdata xml file and assign to staticData 
     $.get('Security_staticdata.xml', function(staticData) {
