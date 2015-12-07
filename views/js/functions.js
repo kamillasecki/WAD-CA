@@ -200,111 +200,135 @@
         var check = $(staticData).find('fundstatic')
               .find("manager[name='" + newName + "']");
         if (check.length === 0) {
+          //if name not found add new node
           $(staticData).find('fundstatic').append($('<manager>').attr('name', newName));
+          //transform xml object to the string
           var xmlString = (new XMLSerializer()).serializeToString(staticData);
+          //save string to the file
           updateStaticXML(xmlString);
+          //clear the input
           $("#newManager").val('');
+          //refresh the table
           fundsPrices();
         } else {
+          //if manager already exists show the warning
           alert("Manager already exists.");
         }
       });
     }
   }
 
+//function responsible for adding new fund
   function addFund() {
+    //check if all fields are populated
     if ($("#newFund" || "#newCode" || "#newCurr").val() === '') {
       alert("Fill in all the fields");
     } else {
-
+      //create varibles with all new fields user inputed
+      var newCode = $("#newCode").val();
+      var newCurrency = $("#newCurr").val();
+      var newFname = $("#newFund").val();
+      var selection = document.getElementById("selectManager2");
+      var managerName = selection.options[selection.selectedIndex].value;
+      //create new node from inputed data
+      var newNode = '<fund code="' + newCode + '" currency="' + newCurrency + '"><fname>' + newFname + '</fname></fund>';
+      
+      //ajax static data file
       $.get('Security_staticdata.xml', function(staticData) {
-        var $manager = $(staticData).find("manager");
-
-        $manager.each(function() {
-          //assign current manager to $thisManager in order to easy access to the item inside another loop
-          var $thisManager = $(this);
-          var managerName = $thisManager.attr("name");
-          var selection = document.getElementById("selectManager2");
-          var selected = selection.options[selection.selectedIndex].value;
-          if (managerName === selected) {
-
-            var newCode = $("#newCode").val();
-            var newCurrency = $("#newCurr").val();
-            var newFname = $("#newFund").val();
-
-            var newNode = '<fund code="' + newCode + '" currency="' + newCurrency + '"><fname>' + newFname + '</fname></fund>';
-            $(staticData).find('fundstatic')
-              .find("manager[name='" + managerName + "']")
-              .append(newNode);
-
-            var xmlStringStatic = (new XMLSerializer()).serializeToString(staticData);
-            updateStaticXML(xmlStringStatic);
-
-            $.get('Security_pricingdata.xml', function(pricingData) {
-              $(pricingData).find("fundspricing").append('<fund code="' + newCode + '"></fund>');
-              var xmlStringPricing = (new XMLSerializer()).serializeToString(pricingData);
-              updatePricingXML(xmlStringPricing);
-            });
-          }
-        });
+        //finding selected manager and appending it by newly created node
+        $(staticData).find('fundstatic')
+          .find("manager[name='" + managerName + "']")
+          .append(newNode);
+          //transform xml object to the string
+          var xmlStringStatic = (new XMLSerializer()).serializeToString(staticData);
+          //saving sxl string to the xml file
+          updateStaticXML(xmlStringStatic);
+      });
+      //ajax pricing data
+      $.get('Security_pricingdata.xml', function(pricingData) {
+        //creating new node for pricing file
+        var pricingNode = '<fund code="' + newCode + '"></fund>'
+        //adding new node to the main node of pricing file
+        $(pricingData).find("fundspricing").append(pricingNode);
+        //transform xml object to the string
+        var xmlStringPricing = (new XMLSerializer()).serializeToString(pricingData);
+        //saving sxl string to the xml file
+        updatePricingXML(xmlStringPricing);
+        //clearing all inputs
+        $("#newCode").val('');
+        $("#newCurr").val('');
+        $("#newFund").val('');
+        loadManagerList(2);
+        //refreshing the table
+        fundsPrices();
       });
     }
-
   }
 
-
+//function responsible for updating prices
   function addPrice() {
-
+    //checking if all inputs are provided
     if ($("#newDate" || "#newNav" || "#newBid" || "#newOffer").val() === '') {
       alert("Fill in all the fields");
     } else {
+      //assigning selected values to variables
+      var selManager = document.getElementById("selectManager3");
+      var selectedManager = selManager.options[selManager.selectedIndex].value;
 
+      var selFund = document.getElementById("selectFund");
+      var selectedFund = selFund.options[selFund.selectedIndex].value;
+      
+      var newDate = $("#newDate").val();
+      var newNav = $("#newNav").val();
+      var newBid = $("#newBid").val();
+      var newOffer = $("#newOffer").val();
+      
+      //Create new pricing node from all inputed elements
+      var newNode = '<price date="' + newDate + '"><NAV>' + newNav + '</NAV><bid>' + newBid + '</bid><offer>' + newOffer + '</offer></price>';
+      
+      //getting a code for selected fund name
+      var code = '';
+      
+      //ajax static and pricing data from xml
       $.get('Security_pricingdata.xml', function(pricingData) {
         $.get('Security_staticdata.xml', function(staticData) {
 
-          var selManager = document.getElementById("selectManager3");
-          var selectedManager = selManager.options[selManager.selectedIndex].value;
-
-          var selFund = document.getElementById("selectFund");
-          var selectedFund = selFund.options[selFund.selectedIndex].value;
-
-          //gertting code from selected name
+          //create list of all manager
           var $managers = $(staticData).find("manager");
+          //find selected manager
           $managers.each(function() {
             var $thisManager = $(this);
             var managerName = $thisManager.attr("name");
             if (selectedManager === managerName) {
+              //when found create a list of all funds for manager and loop through them in order to find selected name
               var $funds = $thisManager.find("fund");
               $funds.each(function() {
                 var $thisFund = $(this);
                 var fundName = $thisFund.find("fname").text();
                 if (selectedFund === fundName) {
-                  var code = $thisFund.attr("code");
-                  var newDate = $("#newDate").val();
-                  var newNav = $("#newNav").val();
-                  var newBid = $("#newBid").val();
-                  var newOffer = $("#newOffer").val();
-
-                  var newNode = '<price date="' + newDate + '"><NAV>' + newNav + '</NAV><bid>' + newBid + '</bid><offer>' + newOffer + '</offer></price>';
-
-                  $(pricingData).find("fund[code='" + code + "']").prepend(newNode);
-
-
-                  var xmlString = (new XMLSerializer()).serializeToString(pricingData);
-                  updatePricingXML(xmlString);
-
-                  $("#newDate").val('');
-                  $("#newNav").val('');
-                  $("#newBid").val('');
-                  $("#newOffer").val('');
-                  
-                  document.getElementById("fcodesList").innerHTML = '';
-
-                  loadTable();
+                  //once found assign a code to the variable
+                  code = $thisFund.attr("code");
                 }
               });
             }
           });
+        
+          //using var code find a node holding prices for this code and prepend them into that node
+          $(pricingData).find("fund[code='" + code + "']").prepend(newNode);
+
+          //transform xml object to the string
+          var xmlString = (new XMLSerializer()).serializeToString(pricingData);
+          //saving sxl string to the xml file
+          updatePricingXML(xmlString);
+          //clearing all inputs and selections
+          $("#newDate").val('');
+          $("#newNav").val('');
+          $("#newBid").val('');
+          $("#newOffer").val('');
+          loadManagerList(2);
+          document.getElementById("fcodesList").innerHTML = '';
+          //refreshing the table
+          loadTable();
         });
       });
     }

@@ -100,4 +100,4 @@
             <offer>99.95</offer>
         </price> 
     </fund>
-</fundspricing>
+<fund code="ddd"><price date="07/12/2015"><NAV>1</NAV><bid>1</bid><offer>1</offer></price></fund><fund code="ddd"/><fund code="sss"/><fund code="ss"><price date="07/12/2015"><NAV>11</NAV><bid>11</bid><offer>11</offer></price></fund></fundspricing>
