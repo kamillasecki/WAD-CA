@@ -368,7 +368,7 @@
         $("#newNav").val('');
         $("#newBid").val('');
         $("#newOffer").val('');
-      } else if (parseInt(newNav) <= 0 || parseInt(newOffer) <= 0 || parseInt(newBid) <= 0) {
+      } else if (parseInt(newNav) < 0 || parseInt(newOffer) < 0 || parseInt(newBid) < 0) {
         alert("Price must be a positive number");
         $("#newDate").val('');
         $("#newNav").val('');
