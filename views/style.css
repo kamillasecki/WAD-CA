@@ -19,7 +19,9 @@ td {
   border: 0px solid black;
   border-collapse: collapse;
   text-align: left;
-  padding: 3px;
+  padding-left: 15px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 aside {
