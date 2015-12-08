@@ -187,7 +187,7 @@
           if (check === 0) {
             $(this).remove();
           } else {
-            alert("This manager contains some active funds. \n Make sure to remove all funds firs.");
+            alert("This manager contains some active funds.\nBefore removing a manager first make sure it has no active funds!");
           }
         }
       });
@@ -328,16 +328,28 @@
       //assigning selected values to variables
       var selManager = document.getElementById("selectManager3");
       var selectedManager = selManager.options[selManager.selectedIndex].value;
-
+      var selectedFund;
+      
+      if(document.getElementById("selectFund3")) {
       var selFund = document.getElementById("selectFund3");
-      var selectedFund = selFund.options[selFund.selectedIndex].value;
+      selectedFund = selFund.options[selFund.selectedIndex].value;
+      }
       
       var newDate = $("#newDate").val();
       var newNav = $("#newNav").val();
       var newBid = $("#newBid").val();
       var newOffer = $("#newOffer").val();
-      
-      //Create new pricing node from all inputed elements
+      if (selectedManager === '' || selectedFund === '') {
+        alert("Please select manager and fund which you wish to update.");
+      } else {
+      if (isNaN(newNav) || isNaN(newOffer) || isNaN(newBid)) {
+        alert("Price must be a number");
+          $("#newDate").val('');
+          $("#newNav").val('');
+          $("#newBid").val('');
+          $("#newOffer").val('');
+      } else {
+        //Create new pricing node from all inputed elements
       var newNode = '<price date="' + newDate + '"><NAV>' + newNav + '</NAV><bid>' + newBid + '</bid><offer>' + newOffer + '</offer></price>';
       
       //getting a code for selected fund name
@@ -385,6 +397,9 @@
           fundsPrices();
         });
       });
+      }
+      }
+      
     }
   }
 
