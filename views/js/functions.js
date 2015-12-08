@@ -2,6 +2,15 @@
   var activeISIN;
   var activeManager;
   var priceType = "NAV";
+  $(document).ready(function() {
+    loadNews();
+  });
+
+  $(document).ready(function() {
+
+  });
+  //a simple function to click next link
+  //a timer will call this function, and the rotation will begin
 
   //changge type of price which is being displayed
   function changePriceType(type) {
@@ -24,7 +33,6 @@
       activeISIN = isin;
       fundsPrices();
     }
-
   }
 
   //this function is called when 'Funds prices' is clicked on menu panel
@@ -89,11 +97,11 @@
       showAll = "<br/><button type='button' id='btn_show_all' class='btn btn-default'>Expand all</button>";
     }
     if (priceType === "NAV") {
-      showAll = showAll + "<button type='button' id='btn_chng_dual' class='btn btn-default'>Display dual</button>" + 
-                          "<button type='button' id='btn_refresh' class='btn btn-default'><i class='fa fa-refresh fa-1x'> refresh</i></button>";
+      showAll = showAll + "<button type='button' id='btn_chng_dual' class='btn btn-default'>Display dual</button>" +
+        "<button type='button' id='btn_refresh' class='btn btn-default'><i class='fa fa-refresh fa-1x'> refresh</i></button>";
     } else {
-      showAll = showAll + "<button type='button' id='btn_chng_nav' class='btn btn-default'>Display NAV</button>" + 
-                          "<button type='button' id='btn_refresh' class='btn btn-default'><i class='fa fa-refresh fa-1x'> refresh</i></button>";
+      showAll = showAll + "<button type='button' id='btn_chng_nav' class='btn btn-default'>Display NAV</button>" +
+        "<button type='button' id='btn_refresh' class='btn btn-default'><i class='fa fa-refresh fa-1x'> refresh</i></button>";
     }
     document.getElementById('main-top').innerHTML = showAll;
 
@@ -112,11 +120,11 @@
     $("#btn_chng_dual").click(function() {
       changePriceType("Dual");
     });
-    
+
     $("#btn_refresh").click(function() {
       loadTable();
     });
-    
+
   }
 
   // ManagerList loading manager list in depends on variable x loading manager list in 3 different places:
@@ -355,69 +363,69 @@
       if (selectedManager === '' || selectedFund === '') {
         alert("Please select manager and fund which you wish to update.");
       } else if (isNaN(newNav) || isNaN(newOffer) || isNaN(newBid)) {
-          alert("Price must be a number");
-          $("#newDate").val('');
-          $("#newNav").val('');
-          $("#newBid").val('');
-          $("#newOffer").val('');
-      } else if (parseInt(newNav)<=0 || parseInt(newOffer)<=0 || parseInt(newBid)<=0) {
-          alert("Price must be a positive number");
-          $("#newDate").val('');
-          $("#newNav").val('');
-          $("#newBid").val('');
-          $("#newOffer").val('');
-      
-        } else {
-          //Create new pricing node from all inputed elements
-          var newNode = '<price date="' + newDate + '"><NAV>' + newNav + '</NAV><bid>' + newBid + '</bid><offer>' + newOffer + '</offer></price>';
+        alert("Price must be a number");
+        $("#newDate").val('');
+        $("#newNav").val('');
+        $("#newBid").val('');
+        $("#newOffer").val('');
+      } else if (parseInt(newNav) <= 0 || parseInt(newOffer) <= 0 || parseInt(newBid) <= 0) {
+        alert("Price must be a positive number");
+        $("#newDate").val('');
+        $("#newNav").val('');
+        $("#newBid").val('');
+        $("#newOffer").val('');
 
-          //getting a code for selected fund name
-          var code = '';
+      } else {
+        //Create new pricing node from all inputed elements
+        var newNode = '<price date="' + newDate + '"><NAV>' + newNav + '</NAV><bid>' + newBid + '</bid><offer>' + newOffer + '</offer></price>';
 
-          //ajax static and pricing data from xml
-          $.get('Security_pricingdata.xml', function(pricingData) {
-            $.get('Security_staticdata.xml', function(staticData) {
+        //getting a code for selected fund name
+        var code = '';
 
-              //create list of all manager
-              var $managers = $(staticData).find("manager");
-              //find selected manager
-              $managers.each(function() {
-                var $thisManager = $(this);
-                var managerName = $thisManager.attr("name");
-                if (selectedManager === managerName) {
-                  //when found create a list of all funds for manager and loop through them in order to find selected name
-                  var $funds = $thisManager.find("fund");
-                  $funds.each(function() {
-                    var $thisFund = $(this);
-                    var fundName = $thisFund.find("fname").text();
-                    if (selectedFund === fundName) {
-                      //once found assign a code to the variable
-                      code = $thisFund.attr("code");
-                    }
-                  });
-                }
-              });
+        //ajax static and pricing data from xml
+        $.get('Security_pricingdata.xml', function(pricingData) {
+          $.get('Security_staticdata.xml', function(staticData) {
 
-              //using var code find a node holding prices for this code and prepend them into that node
-              $(pricingData).find("fund[code='" + code + "']").prepend(newNode);
-
-              //transform xml object to the string
-              var xmlString = (new XMLSerializer()).serializeToString(pricingData);
-              //saving sxl string to the xml file
-              updatePricingXML(xmlString);
-              //clearing all inputs and selections
-              $("#newDate").val('');
-              $("#newNav").val('');
-              $("#newBid").val('');
-              $("#newOffer").val('');
-
-              loadManagerList(3);
-              //refreshing the table
-              fundsPrices();
+            //create list of all manager
+            var $managers = $(staticData).find("manager");
+            //find selected manager
+            $managers.each(function() {
+              var $thisManager = $(this);
+              var managerName = $thisManager.attr("name");
+              if (selectedManager === managerName) {
+                //when found create a list of all funds for manager and loop through them in order to find selected name
+                var $funds = $thisManager.find("fund");
+                $funds.each(function() {
+                  var $thisFund = $(this);
+                  var fundName = $thisFund.find("fname").text();
+                  if (selectedFund === fundName) {
+                    //once found assign a code to the variable
+                    code = $thisFund.attr("code");
+                  }
+                });
+              }
             });
+
+            //using var code find a node holding prices for this code and prepend them into that node
+            $(pricingData).find("fund[code='" + code + "']").prepend(newNode);
+
+            //transform xml object to the string
+            var xmlString = (new XMLSerializer()).serializeToString(pricingData);
+            //saving sxl string to the xml file
+            updatePricingXML(xmlString);
+            //clearing all inputs and selections
+            $("#newDate").val('');
+            $("#newNav").val('');
+            $("#newBid").val('');
+            $("#newOffer").val('');
+
+            loadManagerList(3);
+            //refreshing the table
+            fundsPrices();
           });
-        }
-      
+        });
+      }
+
 
     }
   }
@@ -456,6 +464,41 @@
       success: function() {
         loadTable();
       }
+    });
+  }
+
+  function loadNews() {
+    var newsHTML = '';
+    //aquire data from staticdata xml file and assign to staticData 
+    $.get('Security_staticdata.xml', function(staticData) {
+        //create list of all managers with their details
+        var $manager = $(staticData).find("manager");
+        //loop through all managers
+        $manager.each(function() {
+          //assign current manager to $thisManager in order to easy access to the item inside another loop
+          var managerName = $(this).attr("name");
+          var $securities = $(this).find("fund");
+          //looping through all securities assigned to manager (in static data file)
+          $securities.each(function() {
+            //looping through all securities (in pricing data file)
+            newsHTML = newsHTML + managerName + " / " + $(this).find("fname").text()+ ",";
+          });
+        });
+
+        document.getElementById("js-rotating").innerHTML = newsHTML;
+
+        $("#js-rotating").Morphext({
+          // The [in] animation type. Refer to Animate.css for a list of available animations.
+          animation: "fadeInDown",
+          // An array of phrases to rotate are created based on this separator. Change it if you wish to separate the phrases differently (e.g. So Simple | Very Doge | Much Wow | Such Cool).
+          separator: ",",
+          // The delay between the changing of each phrase in milliseconds.
+          speed: 6000,
+          complete: function() {
+            // Called after the entrance animation is executed.
+          }
+        });
+
     });
   }
 
@@ -534,7 +577,6 @@
                   }
 
                   table = table + "<td>" + fund.date + "</td></tr>";
-
                   if (fund.isin == activeISIN) {
                     //check how many archive prices is available and print one row for each
                     var ArchPricesNo = $fundPrices.length;

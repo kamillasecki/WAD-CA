@@ -2,21 +2,20 @@
 
 <head>
   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" data-semver="3.3.5" data-require="bootstrap@*" />
-   <link href="style.css" rel="stylesheet" />
-   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-   <script src="js/functions.js"></script>
-  <!--<script type="text/javascript" src="/bower_components/jquery/dist/jquery.min.js"></script>-->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" data-semver="3.3.5" data-require="bootstrap@*" />
+  <link href="style.css" rel="stylesheet" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="js/functions.js"></script>
   <script type="text/javascript" src="/bower_components/moment/min/moment.min.js"></script>
-  <!--<script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
   <script type="text/javascript" src="/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
   <link rel="stylesheet" href="/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-
+  <link rel="stylesheet" href="/bower_components/Morphext/dist/morphext.css">
+  <link rel="stylesheet" href="/bower_components/animate.css/animate.css">
+  <script src="/bower_components/Morphext/dist/morphext.min.js"></script>
 </head>
 
 <body>
@@ -29,22 +28,20 @@
     <div class="row">
       <aside class="col-sm-2">
         <div class="menu-list">
-          <br/>
+
           <button type="button" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#addmanager">
-          Add manager
+            Add manager
           </button>
           <button type="button" id="btnRemoveManager" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#removemanager">
-          Remove manager
+            Remove manager
           </button>
           <button type="button" id="addFund" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#addfund">
-          Add fund</button>
+            Add fund</button>
           <button type="button" id="removeFund" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#removeFundForm">
-          Remove fund</button>
+            Remove fund</button>
           <button type="button" id="updatePrices" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#addprice">
-          Update prices</button>
-<br/>
-          <p><a href="/rss"><i class="fa fa-rss fa-2x"> rss feed</i></a></p>           
-
+            Update prices</button>
+          <div class=rss><a href="/rss"><i class="fa fa-rss fa-2x"> rss feed</i></a></div>
         </div>
       </aside>
 
@@ -57,11 +54,21 @@
     </div>
   </div>
   <footer class="container-fluid">
-    <H1>FOOTER</H1>
+    <div class="row">
+      <div class="col-sm-5">
+        Providing prices for:
+      </div>
+      <div class="col-sm-7" id="js-rotating">
+
+      </div>
+    </div>
+
+
+
   </footer>
-  
+
   <!--pop up for Add manager-->
-    <div class="modal fade" id="addmanager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="addmanager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
 
@@ -85,8 +92,8 @@
       </div>
     </div>
   </div>
-  
-   <!--pop up forRemove manager-->
+
+  <!--pop up forRemove manager-->
   <div class="modal fade" id="removemanager" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -108,8 +115,8 @@
       </div>
     </div>
   </div>
-  
-   <!--pop up for Add Fund-->
+
+  <!--pop up for Add Fund-->
   <div class="modal fade" id="addfund" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -119,7 +126,7 @@
           <h4 class="modal-title" id="myModalLabel">Add new fund</h4>
         </div>
         <div class="modal-body">
-            <div class="row">
+          <div class="row">
             <label class="col-sm-2" control-label>Manager name</label>
             <div id="managersList2" class="col-sm-10">
             </div>
@@ -151,8 +158,8 @@
       </div>
     </div>
   </div>
-  
-<!--pop up forRemove fund-->
+
+  <!--pop up forRemove fund-->
   <div class="modal fade" id="removeFundForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -179,9 +186,9 @@
       </div>
     </div>
   </div>
-  
+
   <!--pop up for Add Price-->
-    <div class="modal fade" id="addprice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal fade" id="addprice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -190,10 +197,10 @@
         </div>
         <div class="modal-body">
           <div class="row">
-          <label class="col-sm-3" control-label>Manager name</label>
-          <div id="managersList3" class="col-sm-7">
+            <label class="col-sm-3" control-label>Manager name</label>
+            <div id="managersList3" class="col-sm-7">
+            </div>
           </div>
-         </div>
           <div class="row">
             <label class="col-sm-3" control-label>Fund Code</label>
             <div id="fcodesList3" class="col-sm-7">
@@ -203,13 +210,13 @@
             <label htmlFor="inputDate" class="col-sm-3" control-label>Date</label>
             <div class="col-sm-5">
               <input type="text" id="newDate" class="form-control" placeholder="Enter date" required/>
-                      <script type="text/javascript">
-            $(function () {
-                $('#newDate').datetimepicker({
+              <script type="text/javascript">
+                $(function() {
+                  $('#newDate').datetimepicker({
                     format: 'DD/MM/YYYY'
+                  });
                 });
-            });
-        </script>
+              </script>
             </div>
           </div>
           <div class="row">
@@ -239,4 +246,5 @@
     </div>
   </div>
 </body>
+
 </html>

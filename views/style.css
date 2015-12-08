@@ -9,6 +9,9 @@ Header, footer {
 
 footer {
   color: #ddd;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: right;
 }
 table,
 th,
@@ -38,3 +41,18 @@ aside {
   a:link {
     color: black;
   }
+.menu-list {
+    padding-top: 20px;
+}
+
+.rss {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#js-rotating {
+  text-align: left;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+

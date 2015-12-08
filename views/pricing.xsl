@@ -12,6 +12,7 @@
          <title>
             Latest prices for: <xsl:value-of select="@code"/>
          </title>
+         <link>https://wad-ca-kamillasecki.c9.io/</link>
          <xsl:for-each select="price[1]">
          <description>
             <![CDATA[<p>Net asset value..<b>]]>
