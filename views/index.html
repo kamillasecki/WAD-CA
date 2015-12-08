@@ -38,6 +38,8 @@
           </button>
           <button type="button" id="addFund" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#addfund">
           Add fund</button>
+          <button type="button" id="removeFund" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#removeFundForm">
+          Remove fund</button>
           <button type="button" id="updatePrices" class="btn btn-default btn-lg btn-block" data-toggle="modal" data-target="#addprice">
           Update prices</button>
 <br/>
@@ -150,6 +152,34 @@
     </div>
   </div>
   
+<!--pop up forRemove fund-->
+  <div class="modal fade" id="removeFundForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Remove manager</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <label class="col-sm-2" control-label>Manager name</label>
+            <div id="managersList4" class="col-sm-10">
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-sm-2" control-label>Fund name</label>
+            <div id="fcodesList4" class="col-sm-10">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="btnSaveRemoveFund" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <!--pop up for Add Price-->
     <div class="modal fade" id="addprice" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -166,7 +196,7 @@
          </div>
           <div class="row">
             <label class="col-sm-2" control-label>Fund Code</label>
-            <div id="fcodesList" class="col-sm-10">
+            <div id="fcodesList3" class="col-sm-10">
             </div>
           </div>
           <div class="row">
