@@ -35,12 +35,12 @@
     $("#btnRemoveManager").click(function() {
       loadManagerList(1);
     });
-    
+
     //BUTTON - menu - Add new fund
     $("#addFund").click(function() {
       loadManagerList(2);
     });
-    
+
     $("#removeFund").click(function() {
       loadManagerList(4);
     });
@@ -66,7 +66,7 @@
     $("#btnSaveRemoveFund").click(function() {
       removeFund();
     });
-    
+
     $("#btnSaveAddPrice").click(function() {
       addPrice();
       loadManagerList(3);
@@ -111,7 +111,7 @@
   // 2. Add fund
   // 3. Update prices
   function loadManagerList(x) {
-  //ajax static data
+    //ajax static data
     $.get('Security_staticdata.xml', function(staticData) {
       //start drawing dropdown
       var html = '';
@@ -129,47 +129,47 @@
       });
       //finish drawing dropdown
       html = html + "</select>";
-      
+
       //create destination so depends on x=? the dropdown will go different place
       var destination = "managersList" + x;
       document.getElementById(destination).innerHTML = html;
       // if the abowe dropdown is for "update prices" menu, create additional dropdown with list of funds for selected manager once it is seleceted
-      if (x===3 || x===4){
+      if (x === 3 || x === 4) {
         document.getElementById("fcodesList" + x).innerHTML = '';
         //create listener for previous dropdown
         $("#selectManager" + x).change(function() {
           //start drawing dropdown
-            var html = '';
-            html = html + "<select id='selectFund" + x + "'><option selected disabled hidden value=''></option>";
-            //get a name of selected manager
-            var sel = document.getElementById("selectManager" + x);
-            var selected = sel.options[sel.selectedIndex].value;
-            //loop through all managers untill you find selected one
-            $manager.each(function() {
-              var $thisManager = $(this);
-              var managerName = $thisManager.attr("name");
-              //match currenlty checked manager against selected one
-              if (selected === managerName) {
-                //if match get list of funds under this manager
-                var $funds = $thisManager.find("fund");
-                //for each fund add one item in the dropdown
-                $funds.each(function() {
-                  var $thisFund = $(this);
-                  var fundName = $thisFund.find("fname").text();
-                  html = html + "<option value = '" + fundName + "'>" + fundName + "</option>";
-                });
-              }
-            });
-            //finish drawing dropdown
-            html = html + "</select>";
-            //push html with dropdown containing fund names to the form
-            document.getElementById("fcodesList" + x).innerHTML = html;
+          var html = '';
+          html = html + "<select id='selectFund" + x + "'><option selected disabled hidden value=''></option>";
+          //get a name of selected manager
+          var sel = document.getElementById("selectManager" + x);
+          var selected = sel.options[sel.selectedIndex].value;
+          //loop through all managers untill you find selected one
+          $manager.each(function() {
+            var $thisManager = $(this);
+            var managerName = $thisManager.attr("name");
+            //match currenlty checked manager against selected one
+            if (selected === managerName) {
+              //if match get list of funds under this manager
+              var $funds = $thisManager.find("fund");
+              //for each fund add one item in the dropdown
+              $funds.each(function() {
+                var $thisFund = $(this);
+                var fundName = $thisFund.find("fname").text();
+                html = html + "<option value = '" + fundName + "'>" + fundName + "</option>";
+              });
+            }
+          });
+          //finish drawing dropdown
+          html = html + "</select>";
+          //push html with dropdown containing fund names to the form
+          document.getElementById("fcodesList" + x).innerHTML = html;
         });
       }
     });
   }
 
-//function responsible for removing the manager
+  //function responsible for removing the manager
   function removeManager() {
     //ajax static data
     $.get('Security_staticdata.xml', function(staticData) {
@@ -201,7 +201,7 @@
     });
   }
 
-//function responsible for adding new manager
+  //function responsible for adding new manager
   function addManager() {
     //Checking if the name is not empty
     if ($("#newManager").val() === '') {
@@ -215,7 +215,7 @@
         var newName = $("#newManager").val();
         //checking if the same name already exists by searching the name and checking a number of items found
         var check = $(staticData).find('fundstatic')
-              .find("manager[name='" + newName + "']");
+          .find("manager[name='" + newName + "']");
         if (check.length === 0) {
           //if name not found add new node
           $(staticData).find('fundstatic').append(node);
@@ -235,7 +235,7 @@
     }
   }
 
-//function responsible for adding new fund
+  //function responsible for adding new fund
   function addFund() {
     //check if all fields are populated
     if ($("#newFund" || "#newCode" || "#newCurr").val() === '') {
@@ -249,23 +249,23 @@
       var managerName = selection.options[selection.selectedIndex].value;
       //create new node from inputed data
       var newNode = '<fund code="' + newCode + '" currency="' + newCurrency + '"><fname>' + newFname + '</fname></fund>';
-      
+
       //ajax static data file
       $.get('Security_staticdata.xml', function(staticData) {
         //finding selected manager and appending it by newly created node
         $(staticData).find('fundstatic')
           .find("manager[name='" + managerName + "']")
           .append(newNode);
-          //transform xml object to the string
-          var xmlStringStatic = (new XMLSerializer()).serializeToString(staticData);
-          //saving sxl string to the xml file
-          updateStaticXML(xmlStringStatic);
+        //transform xml object to the string
+        var xmlStringStatic = (new XMLSerializer()).serializeToString(staticData);
+        //saving sxl string to the xml file
+        updateStaticXML(xmlStringStatic);
       });
       //ajax pricing data
       $.get('Security_pricingdata.xml', function(pricingData) {
         //creating new node for pricing file
         var pricingNode = '<fund code="' + newCode + '"></fund>'
-        //adding new node to the main node of pricing file
+          //adding new node to the main node of pricing file
         $(pricingData).find("fundspricing").append(pricingNode);
         //transform xml object to the string
         var xmlStringPricing = (new XMLSerializer()).serializeToString(pricingData);
@@ -282,7 +282,7 @@
     }
   }
 
-  function removeFund(){
+  function removeFund() {
     $.get('Security_staticdata.xml', function(staticData) {
       //get name of manager to be removed from the dropdown
       var selManager = document.getElementById("selectManager4");
@@ -302,7 +302,7 @@
           $funds.each(function() {
             var $thisFund = $(this);
             var fundName = $thisFund.find("fname").text();
-            if(fundName === selectedFund) {
+            if (fundName === selectedFund) {
               $(this).remove();
             }
           });
@@ -319,7 +319,7 @@
     });
   }
 
-//function responsible for updating prices
+  //function responsible for updating prices
   function addPrice() {
     //checking if all inputs are provided
     if ($("#newDate" || "#newNav" || "#newBid" || "#newOffer").val() === '') {
@@ -329,81 +329,88 @@
       var selManager = document.getElementById("selectManager3");
       var selectedManager = selManager.options[selManager.selectedIndex].value;
       var selectedFund;
-      
-      if(document.getElementById("selectFund3")) {
-      var selFund = document.getElementById("selectFund3");
-      selectedFund = selFund.options[selFund.selectedIndex].value;
+
+      if (document.getElementById("selectFund3")) {
+        var selFund = document.getElementById("selectFund3");
+        selectedFund = selFund.options[selFund.selectedIndex].value;
       }
-      
+
       var newDate = $("#newDate").val();
       var newNav = $("#newNav").val();
       var newBid = $("#newBid").val();
       var newOffer = $("#newOffer").val();
       if (selectedManager === '' || selectedFund === '') {
         alert("Please select manager and fund which you wish to update.");
-      } else {
-      if (isNaN(newNav) || isNaN(newOffer) || isNaN(newBid)) {
-        alert("Price must be a number");
+      } else if (isNaN(newNav) || isNaN(newOffer) || isNaN(newBid)) {
+          alert("Price must be a number");
           $("#newDate").val('');
           $("#newNav").val('');
           $("#newBid").val('');
           $("#newOffer").val('');
-      } else {
-        //Create new pricing node from all inputed elements
-      var newNode = '<price date="' + newDate + '"><NAV>' + newNav + '</NAV><bid>' + newBid + '</bid><offer>' + newOffer + '</offer></price>';
+      } else if (parseInt(newNav)<=0 || parseInt(newOffer)<=0 || parseInt(newBid)<=0) {
+          alert("Price must be a positive number");
+          $("#newDate").val('');
+          $("#newNav").val('');
+          $("#newBid").val('');
+          $("#newOffer").val('');
       
-      //getting a code for selected fund name
-      var code = '';
-      
-      //ajax static and pricing data from xml
-      $.get('Security_pricingdata.xml', function(pricingData) {
-        $.get('Security_staticdata.xml', function(staticData) {
+        } else {
+          //Create new pricing node from all inputed elements
+          var newNode = '<price date="' + newDate + '"><NAV>' + newNav + '</NAV><bid>' + newBid + '</bid><offer>' + newOffer + '</offer></price>';
 
-          //create list of all manager
-          var $managers = $(staticData).find("manager");
-          //find selected manager
-          $managers.each(function() {
-            var $thisManager = $(this);
-            var managerName = $thisManager.attr("name");
-            if (selectedManager === managerName) {
-              //when found create a list of all funds for manager and loop through them in order to find selected name
-              var $funds = $thisManager.find("fund");
-              $funds.each(function() {
-                var $thisFund = $(this);
-                var fundName = $thisFund.find("fname").text();
-                if (selectedFund === fundName) {
-                  //once found assign a code to the variable
-                  code = $thisFund.attr("code");
+          //getting a code for selected fund name
+          var code = '';
+
+          //ajax static and pricing data from xml
+          $.get('Security_pricingdata.xml', function(pricingData) {
+            $.get('Security_staticdata.xml', function(staticData) {
+
+              //create list of all manager
+              var $managers = $(staticData).find("manager");
+              //find selected manager
+              $managers.each(function() {
+                var $thisManager = $(this);
+                var managerName = $thisManager.attr("name");
+                if (selectedManager === managerName) {
+                  //when found create a list of all funds for manager and loop through them in order to find selected name
+                  var $funds = $thisManager.find("fund");
+                  $funds.each(function() {
+                    var $thisFund = $(this);
+                    var fundName = $thisFund.find("fname").text();
+                    if (selectedFund === fundName) {
+                      //once found assign a code to the variable
+                      code = $thisFund.attr("code");
+                    }
+                  });
                 }
               });
-            }
-          });
-        
-          //using var code find a node holding prices for this code and prepend them into that node
-          $(pricingData).find("fund[code='" + code + "']").prepend(newNode);
 
-          //transform xml object to the string
-          var xmlString = (new XMLSerializer()).serializeToString(pricingData);
-          //saving sxl string to the xml file
-          updatePricingXML(xmlString);
-          //clearing all inputs and selections
-          $("#newDate").val('');
-          $("#newNav").val('');
-          $("#newBid").val('');
-          $("#newOffer").val('');
-          
-          loadManagerList(3);
-          //refreshing the table
-          fundsPrices();
-        });
-      });
-      }
-      }
+              //using var code find a node holding prices for this code and prepend them into that node
+              $(pricingData).find("fund[code='" + code + "']").prepend(newNode);
+
+              //transform xml object to the string
+              var xmlString = (new XMLSerializer()).serializeToString(pricingData);
+              //saving sxl string to the xml file
+              updatePricingXML(xmlString);
+              //clearing all inputs and selections
+              $("#newDate").val('');
+              $("#newNav").val('');
+              $("#newBid").val('');
+              $("#newOffer").val('');
+
+              loadManagerList(3);
+              //refreshing the table
+              fundsPrices();
+            });
+          });
+        }
       
+
     }
   }
 
-//function responsible for saving the data to the static xml file
+
+  //function responsible for saving the data to the static xml file
   function updateStaticXML(value) {
     $.ajax({
       type: "POST",
@@ -421,7 +428,7 @@
     });
   }
 
-//function responsible for saving the data to the pricing xml file
+  //function responsible for saving the data to the pricing xml file
   function updatePricingXML(value) {
     $.ajax({
       type: "POST",
@@ -439,7 +446,7 @@
     });
   }
 
-//creating a table with prices
+  //creating a table with prices
   function loadTable() {
     //aquire data from staticdata xml file and assign to staticData 
     $.get('Security_staticdata.xml', function(staticData) {
