@@ -17,8 +17,14 @@
 
   //update security for which pricing history is being displayed
   function changeActiveISIN(isin) {
-    activeISIN = isin;
-    fundsPrices();
+    if (isin === activeISIN) {
+      activeISIN = '';
+      fundsPrices();
+    } else {
+      activeISIN = isin;
+      fundsPrices();
+    }
+
   }
 
   //this function is called when 'Funds prices' is clicked on menu panel
@@ -83,9 +89,11 @@
       showAll = "<br/><button type='button' id='btn_show_all' class='btn btn-default'>Expand all</button>";
     }
     if (priceType === "NAV") {
-      showAll = showAll + "<button type='button' id='btn_chng_dual' class='btn btn-default'>Display dual</button>";
+      showAll = showAll + "<button type='button' id='btn_chng_dual' class='btn btn-default'>Display dual</button>" + 
+                          "<button type='button' id='btn_refresh' class='btn btn-default'><i class='fa fa-refresh fa-1x'> refresh</i></button>";
     } else {
-      showAll = showAll + "<button type='button' id='btn_chng_nav' class='btn btn-default'>Display NAV</button>";
+      showAll = showAll + "<button type='button' id='btn_chng_nav' class='btn btn-default'>Display NAV</button>" + 
+                          "<button type='button' id='btn_refresh' class='btn btn-default'><i class='fa fa-refresh fa-1x'> refresh</i></button>";
     }
     document.getElementById('main-top').innerHTML = showAll;
 
@@ -104,6 +112,11 @@
     $("#btn_chng_dual").click(function() {
       changePriceType("Dual");
     });
+    
+    $("#btn_refresh").click(function() {
+      loadTable();
+    });
+    
   }
 
   // ManagerList loading manager list in depends on variable x loading manager list in 3 different places:
