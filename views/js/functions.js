@@ -29,7 +29,8 @@
     if (isin === activeISIN) {
       activeISIN = '';
       fundsPrices();
-    } else {
+    }
+    else {
       activeISIN = isin;
       fundsPrices();
     }
@@ -84,6 +85,7 @@
     $("#btnSaveAddPrice").click(function() {
       addPrice();
       loadManagerList(3);
+
     });
   });
 
@@ -93,13 +95,15 @@
 
     if (activeManager === "All") {
       showAll = "<br/><button type='button' id='btn_coll_all' class='btn btn-default'>Colaps all</button>";
-    } else {
+    }
+    else {
       showAll = "<br/><button type='button' id='btn_show_all' class='btn btn-default'>Expand all</button>";
     }
     if (priceType === "NAV") {
       showAll = showAll + "<button type='button' id='btn_chng_dual' class='btn btn-default'>Display dual</button>" +
         "<button type='button' id='btn_refresh' class='btn btn-default'><i class='fa fa-refresh fa-1x'> refresh</i></button>";
-    } else {
+    }
+    else {
       showAll = showAll + "<button type='button' id='btn_chng_nav' class='btn btn-default'>Display NAV</button>" +
         "<button type='button' id='btn_refresh' class='btn btn-default'><i class='fa fa-refresh fa-1x'> refresh</i></button>";
     }
@@ -207,7 +211,8 @@
           var check = $thisManager.find("fund").length;
           if (check === 0) {
             $(this).remove();
-          } else {
+          }
+          else {
             alert("This manager contains some active funds.\nBefore removing a manager first make sure it has no active funds!");
           }
         }
@@ -227,7 +232,8 @@
     //Checking if the name is not empty
     if ($("#newManager").val() === '') {
       alert("Please provide manager name before saving.");
-    } else {
+    }
+    else {
       var newName = $("#newManager").val();
       var node = '<manager name="' + newName + '"></manager>';
       //ajax static data
@@ -248,7 +254,8 @@
           $("#newManager").val('');
           //refresh the table
           fundsPrices();
-        } else {
+        }
+        else {
           //if manager already exists show the warning
           alert("Manager already exists.");
         }
@@ -261,7 +268,8 @@
     //check if all fields are populated
     if ($("#newFund" || "#newCode" || "#newCurr").val() === '') {
       alert("Fill in all the fields");
-    } else {
+    }
+    else {
       //create varibles with all new fields user inputed
       var newCode = $("#newCode").val();
       var newCurrency = $("#newCurr").val();
@@ -304,48 +312,79 @@
   }
 
   function removeFund() {
-    $.get('Security_staticdata.xml', function(staticData) {
-      //get name of manager to be removed from the dropdown
-      var selManager = document.getElementById("selectManager4");
-      var selectedManager = selManager.options[selManager.selectedIndex].value;
+    var code = '';
+    $.get('Security_pricingdata.xml', function(pricingData) {
+      $.get('Security_staticdata.xml', function(staticData) {
+        //get name of manager to be removed from the dropdown
+        var selManager = document.getElementById("selectManager4");
+        var selectedManager = selManager.options[selManager.selectedIndex].value;
 
-      var selFund = document.getElementById("selectFund4");
-      var selectedFund = selFund.options[selFund.selectedIndex].value;
-      //find all manager nodes in xml
-      var $manager = $(staticData).find("manager");
-      //loop through all managers until selected manager found
-      $manager.each(function() {
-        var $thisManager = $(this);
-        var managerName = $thisManager.attr("name");
-        if (managerName === selectedManager) {
-          //once found remove whole node
-          var $funds = $thisManager.find("fund");
-          $funds.each(function() {
-            var $thisFund = $(this);
-            var fundName = $thisFund.find("fname").text();
-            if (fundName === selectedFund) {
-              $(this).remove();
-            }
-          });
-        }
+        var selFund = document.getElementById("selectFund4");
+        var selectedFund = selFund.options[selFund.selectedIndex].value;
+        //find all manager nodes in xml
+
+        var $manager = $(staticData).find("manager");
+        //loop through all managers until selected manager found
+        $manager.each(function() {
+          var $thisManager = $(this);
+          var managerName = $thisManager.attr("name");
+          if (managerName === selectedManager) {
+            //once found remove whole node
+            var $funds = $thisManager.find("fund");
+            $funds.each(function() {
+
+              var $thisFund = $(this);
+              var fundName = $thisFund.find("fname").text();
+              if (fundName === selectedFund) {
+                code = $thisFund.attr("code");
+                $(this).remove();
+              }
+
+            });
+          }
+
+        });
+
+        var $funds = $(pricingData).find("fund");
+
+        $funds.each(function() {
+          var thisFund = $(this);
+          var ISIN = thisFund.attr("code");
+          console.log(ISIN);
+          if (ISIN === code) {
+            $(this).remove();
+          }
+        });
+
+
+
+
+        //push xml with removed node to string 
+        var xmlStringStatic = (new XMLSerializer()).serializeToString(staticData);
+        var xmlStringPricing = (new XMLSerializer()).serializeToString(pricingData);
+        //push xml string to be saved in the file on the server
+        updateStaticXML(xmlStringStatic);
+        updatePricingXML(xmlStringPricing);
+        document.getElementById("fcodesList4").innerHTML = '';
+        //refresh table
+        fundsPrices();
+        loadManagerList(4);
       });
-      //push xml with removed node to string 
-      var xmlString = (new XMLSerializer()).serializeToString(staticData);
-      //push xml string to be saved in the file on the server
-      updateStaticXML(xmlString);
-      document.getElementById("fcodesList4").innerHTML = '';
-      //refresh table
-      fundsPrices();
-      loadManagerList(4);
+
     });
+
   }
 
-  //function responsible for updating prices
+
+
+
+  //function responsible for updating prics
   function addPrice() {
     //checking if all inputs are provided
     if ($("#newDate" || "#newNav" || "#newBid" || "#newOffer").val() === '') {
       alert("Fill in all the fields");
-    } else {
+    }
+    else {
       //assigning selected values to variables
       var selManager = document.getElementById("selectManager3");
       var selectedManager = selManager.options[selManager.selectedIndex].value;
@@ -362,20 +401,24 @@
       var newOffer = $("#newOffer").val();
       if (selectedManager === '' || selectedFund === '') {
         alert("Please select manager and fund which you wish to update.");
-      } else if (isNaN(newNav) || isNaN(newOffer) || isNaN(newBid)) {
+      }
+      else if (isNaN(newNav) || isNaN(newOffer) || isNaN(newBid)) {
         alert("Price must be a number");
         $("#newDate").val('');
         $("#newNav").val('');
         $("#newBid").val('');
         $("#newOffer").val('');
-      } else if (parseInt(newNav) < 0 || parseInt(newOffer) < 0 || parseInt(newBid) < 0) {
+      }
+      else if (parseInt(newNav) < 0 || parseInt(newOffer) < 0 || parseInt(newBid) < 0) {
         alert("Price must be a positive number");
         $("#newDate").val('');
         $("#newNav").val('');
         $("#newBid").val('');
         $("#newOffer").val('');
+      }
 
-      } else {
+
+      else {
         //Create new pricing node from all inputed elements
         var newNode = '<price date="' + newDate + '"><NAV>' + newNav + '</NAV><bid>' + newBid + '</bid><offer>' + newOffer + '</offer></price>';
 
@@ -471,33 +514,33 @@
     var newsHTML = '';
     //aquire data from staticdata xml file and assign to staticData 
     $.get('Security_staticdata.xml', function(staticData) {
-        //create list of all managers with their details
-        var $manager = $(staticData).find("manager");
-        //loop through all managers
-        $manager.each(function() {
-          //assign current manager to $thisManager in order to easy access to the item inside another loop
-          var managerName = $(this).attr("name");
-          var $securities = $(this).find("fund");
-          //looping through all securities assigned to manager (in static data file)
-          $securities.each(function() {
-            //looping through all securities (in pricing data file)
-            newsHTML = newsHTML + managerName + " / " + $(this).find("fname").text()+ ",";
-          });
+      //create list of all managers with their details
+      var $manager = $(staticData).find("manager");
+      //loop through all managers
+      $manager.each(function() {
+        //assign current manager to $thisManager in order to easy access to the item inside another loop
+        var managerName = $(this).attr("name");
+        var $securities = $(this).find("fund");
+        //looping through all securities assigned to manager (in static data file)
+        $securities.each(function() {
+          //looping through all securities (in pricing data file)
+          newsHTML = newsHTML + managerName + " / " + $(this).find("fname").text() + ",";
         });
+      });
 
-        document.getElementById("js-rotating").innerHTML = newsHTML;
+      document.getElementById("js-rotating").innerHTML = newsHTML;
 
-        $("#js-rotating").Morphext({
-          // The [in] animation type. Refer to Animate.css for a list of available animations.
-          animation: "fadeInDown",
-          // An array of phrases to rotate are created based on this separator. Change it if you wish to separate the phrases differently (e.g. So Simple | Very Doge | Much Wow | Such Cool).
-          separator: ",",
-          // The delay between the changing of each phrase in milliseconds.
-          speed: 6000,
-          complete: function() {
-            // Called after the entrance animation is executed.
-          }
-        });
+      $("#js-rotating").Morphext({
+        // The [in] animation type. Refer to Animate.css for a list of available animations.
+        animation: "fadeInDown",
+        // An array of phrases to rotate are created based on this separator. Change it if you wish to separate the phrases differently (e.g. So Simple | Very Doge | Much Wow | Such Cool).
+        separator: ",",
+        // The delay between the changing of each phrase in milliseconds.
+        speed: 6000,
+        complete: function() {
+          // Called after the entrance animation is executed.
+        }
+      });
 
     });
   }
@@ -517,7 +560,8 @@
         //create table header, two options depending on which priceType has been chosen (with nav only or with bid and offer)
         if (priceType === "NAV") {
           table = "<div class='row'><table class='table-hover col-sm-12'><tr><th class='col-sm-2'>ISIN code</th><th class='col-sm-5'>Security name</th><th class='col-sm-1'>Currency</th><th class='col-sm-2'>NAV price</th><th class='col-sm-2'>Valuation date</th></tr>";
-        } else {
+        }
+        else {
           table = "<div class='row'><table class='table-hover col-sm-12'><tr><th class='col-sm-2'>ISIN code</th><th class='col-sm-5'>Security name</th><th class='col-sm-1'>Currency</th><th class='col-sm-1'>Bid price</th><th class='col-sm-1'>Offer price</th><th class='col-sm-2'>Valuation date</th></tr>";
         }
 
@@ -534,7 +578,8 @@
               "&quot;)'><div>" +
               managerName +
               "</div></a></h4></td></tr>";
-          } else {
+          }
+          else {
             table = table +
               "<tr class='manager'><td colspan='6'><h4><a href='javascript:changeActiveManager(&quot;" +
               managerName +
@@ -572,7 +617,8 @@
 
                   if (priceType === "NAV") {
                     table = table + "<td>" + fund.nav + "</td>";
-                  } else {
+                  }
+                  else {
                     table = table + "<td>" + fund.bid + "</td><td>" + fund.offer + "</td>";
                   }
 
@@ -590,7 +636,8 @@
                         table = table + "<tr class='archive'><td colspan='3'></td>" +
                           "<td>" + archNav + "</td>" +
                           "<td>" + archDate + "</td></tr>";
-                      } else {
+                      }
+                      else {
                         table = table + "<tr><td colspan='3'></td>" +
                           "<td>" + archBid + "</td>" +
                           "<td>" + archOffer + "</td>" +

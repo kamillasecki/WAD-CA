@@ -10,7 +10,7 @@ app.use(express.static(__dirname + '/views'));
 
 //define routes
 app.use(require("./managerHandler"));
-app.use(require("./fundHandler"));
+// app.use(require("./fundHandler"));
 app.get('/', function(req, res) {
   res.sent('index.html');
 });
@@ -21,6 +21,25 @@ app.get('/rss', function(req, res){
     var config = {
         xsltPath: 'views/pricing.xsl',
         sourcePath: 'views/Security_pricingdata.xml',
+        result: String,
+        props: {
+            indent: 'yes'
+        }
+    };
+
+    xslt4node.transform(config, function (err,result) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send(result);
+        }
+    });
+});
+
+app.get('/rss2', function(req, res){
+    var config = {
+        xsltPath: 'views/rss.xsl',
+        sourcePath: 'views/Security_staticdata.xml',
         result: String,
         props: {
             indent: 'yes'
